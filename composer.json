@@ -1,17 +1,18 @@
 {
-  "name": "houdunwang/hdphp",
-  "description": "hdphp framework",
+  "name": "houdunwang/hdcms",
+  "description": "HDCMS 桌面/移动/微信/小程序可扩展内容管理系统",
   "type": "project",
   "keywords": [
     "houdunwang",
-    "hdphp",
-    "framework"
+    "hdcms",
+    "framework",
+    "敖向军"
   ],
-  "homepage": "http://www.hdphp.com/",
+  "homepage": "http://www.hdcms.com/",
   "license": "MIT",
   "authors": [
     {
-      "name": "向军",
+      "name": "敖向军",
       "email": "2300071698@qq.com"
     }
   ],
