@@ -84,11 +84,11 @@ class Database extends Admin
     public function fieldMigrate()
     {
         $data = json_decode(Request::post('data'), true);
-        if ( ! preg_match('/^[a-z]+$/i', $data['migrate_table'])) {
+        if ( ! preg_match('/^[a-z_]+$/i', $data['migrate_table'])) {
             return message('表名必须为小写英文字母');
         }
         $table = $this->module.'_'.$data['migrate_table'];
-        $file  = $table.'_field_'.date('ymdhis');
+        $file  = $table.'_field';
         $cli   = "hd make:migration {$file} --table={$table}";
         if (Cli::call($cli) === false) {
             return message(Cli::getError(), '', 'error');

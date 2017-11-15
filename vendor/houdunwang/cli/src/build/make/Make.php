@@ -90,7 +90,7 @@ class Make extends Base
         //检查数据迁移文件是否已经存在
         $files = glob(self::$path['migration'].'/*.php');
         foreach ((array)$files as $file) {
-            if (stristr($file, $name)) {
+            if (stristr($file, $name.'.php')) {
                 return $this->error('File already exists');
             }
         }
