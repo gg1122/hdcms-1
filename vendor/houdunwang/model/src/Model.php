@@ -328,6 +328,24 @@ class Model implements ArrayAccess, Iterator
     }
 
     /**
+     * 存在编号时根据主键编号创建模型
+     * 不正在是new 新模型
+     *
+     * @param int $id 主键编号
+     *
+     * @return \houdunwang\model\Model
+     */
+    final static public function findOrCreate($id = 0)
+    {
+        $model = ! empty($id) && is_numeric($id) ? self::find($id) : new self();
+        if (empty($model)) {
+            return new self();
+        }
+
+        return $model;
+    }
+
+    /**
      * 删除数据
      *
      * @return bool

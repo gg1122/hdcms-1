@@ -42,21 +42,29 @@ class Manage extends Admin
         }
         if (IS_POST) {
             //更新数据缓存
-            if (isset($_POST['data'])) {
+            if (isset($_POST['cache'])) {
                 Dir::del(ROOT_PATH.'/storage/cache');
             }
             //更新模板缓存
-            if (isset($_POST['tpl'])) {
+            if (isset($_POST['view'])) {
                 Dir::del(ROOT_PATH.'/storage/view');
+            }
+            //站点日志
+            if (isset($_POST['log'])) {
+                Dir::del(ROOT_PATH.'/storage/log');
             }
             //微信缓存
             if (isset($_POST['weixin'])) {
                 Dir::del(ROOT_PATH.'/storage/weixin');
             }
             //更新所有站点缓存
-            Site::updateAllCache();
+            if (isset($_POST['site'])) {
+                Site::updateAllCache();
+            }
             return message('缓存更新成功', 'menu');
         }
+        Site::updateAllCache();
+
         return view();
     }
 }

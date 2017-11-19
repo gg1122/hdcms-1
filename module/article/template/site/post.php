@@ -107,7 +107,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label star">触发关键字</label>
                         <div class="col-sm-9">
-                            <input required class="form-control" @blur="checkWxKeyword($event)" v-model="field.keyword" placeholder="请输入微信关键词">
+                            <input class="form-control" @blur="checkWxKeyword($event)" v-model="field.keyword" placeholder="请输入微信关键词">
                             <span class="text-danger keyword_error"></span>
                             <span class="help-block">用户触发关键字，微信客户端发来这个关键词后系统回复此页面的图文链接</span>
                         </div>

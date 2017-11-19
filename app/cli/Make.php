@@ -28,7 +28,7 @@ trait Make
         $info      = explode('.', $_SERVER['argv'][0]);
         $namespace = 'addons\\'.$info[0]."\\model";
         $MODEL     = ucfirst($info[1]);
-        $TABLE     = $info[1];
+        $TABLE     = strtolower($info[0].'_'.$info[1]);
         $file      = 'addons/'.$info[0]."/model/{$MODEL}.php";
         //创建模型文件
         if (is_file($file)) {

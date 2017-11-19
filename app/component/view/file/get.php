@@ -15,7 +15,7 @@
     <foreach from="$data" value="$d">
         <tr>
             <td>
-                {{is_dir($d)?'<i class="fa fa-folder-open-o"></i>':'<i class="fa fa-file-text-o"></i>'}}
+                {!! is_dir($d)?'<i class="fa fa-folder-open-o"></i>':'<i class="fa fa-file-text-o"></i>' !!}
             </td>
             <td>{{$d}}</td>
             <td>

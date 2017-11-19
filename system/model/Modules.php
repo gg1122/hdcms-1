@@ -248,7 +248,7 @@ class Modules extends Common
         }
         //读取缓存
         if ($readFromCache) {
-            if ($data = cache("modules")) {
+            if ($data = cache("modules", '[get]', 0, [], $siteId)) {
                 return $data;
             }
         }

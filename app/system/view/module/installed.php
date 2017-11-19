@@ -47,13 +47,13 @@
                                 <div class="btn-group" role="group" aria-label="...">
                                     <a href="{!! u('createZip',['name'=>$m['name']]) !!}" class="btn btn-default btn-sm">打包下载</a>
                                     <a href="{!! u('update',['module'=>$m['name']]) !!}" class="btn btn-default btn-sm">更新模块</a>
-                                    <a href="javascript:;" onclick="uninstall('{{$m['name']}}')" class="btn btn-sm btn-default">卸载模块</a>
+                                    <a href="javascript:;" onclick="uninstall('{{$m['name']}}','{{$m['title']}}')" class="btn btn-sm btn-default">卸载模块</a>
                                     <a class="btn btn-default btn-sm" href="{!! u('resetDesign',array('module'=>$m['name'])) !!}">重新设计</a>
                                     <a class="btn btn-default btn-sm" href="{!! u('database.table',['name'=>$m['name']]) !!}">模块数据</a>
                                 </div>
                                 <else/>
                                 <div class="btn-group" role="group" aria-label="...">
-                                    <a href="javascript:;" onclick="uninstall('{{$m['name']}}')" class="btn btn-sm btn-default">卸载</a>
+                                    <a href="javascript:;" onclick="uninstall('{{$m['name']}}','{{$m['title']}}')" class="btn btn-sm btn-default">卸载</a>
                                 </div>
                             </if>
                         </if>
@@ -116,9 +116,9 @@
          * 删除模块
          * @param name 模块标识
          */
-        function uninstall(name) {
+        function uninstall(name,title) {
             require(['hdjs'], function (hdjs) {
-                hdjs.confirm('确定删除模块吗?', function () {
+                hdjs.confirm('确定删除【'+title+'】模块吗?', function () {
                     hdjs.submit({url: "{!! u('uninstall') !!}&name=" + name, successUrl: "refresh"});
                 });
             })

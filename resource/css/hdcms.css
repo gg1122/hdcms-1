@@ -220,7 +220,7 @@ body {
 .system {
   font-size: 14px !important;
   background: url('../images/bg.jpg');
-  background-size: 120%;
+  background-size: cover;
   height: 100vh;
 }
 .system table {
@@ -316,7 +316,8 @@ body {
 |--------------------------------------------------------------------------
 */
 .hdcms-login {
-  background: url('../images/bg-sky.jpg');
+  background-image: url('../images/bg-sky.jpg');
+  background-size: cover;
   position: fixed;
   top: 0px;
   left: 0px;

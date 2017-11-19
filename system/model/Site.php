@@ -133,13 +133,13 @@ class Site extends Common
             return;
         };
         //站点信息
-        v('site.info', cache("site"));
+        v('site.info', cache("site", '[get]', 0, [], $siteId));
         //站点设置
-        v('site.setting', cache("setting"));
+        v('site.setting', cache("setting", '[get]', 0, [], $siteId));
         //微信帐号
-        v('site.wechat', cache("wechat"));
+        v('site.wechat', cache("wechat", '[get]', 0, [], $siteId));
         //加载模块
-        v('site.modules', cache("modules"));
+        v('site.modules', cache("modules", '[get]', 0, [], $siteId));
         //设置微信配置
         $config = [
             "token"          => v('site.wechat.token'),
@@ -375,10 +375,9 @@ class Site extends Common
         //站点设置缓存
         $data['setting'] = self::formatSiteConfig($siteId);
         //站点模块
-        $module          = new Modules();
-        $data['modules'] = $module->getSiteAllModules($siteId, false);
+        $data['modules'] = (new Modules())->getSiteAllModules($siteId, false);
         foreach ($data as $key => $value) {
-            cache($key, $value, 0, ['siteid' => $siteId, 'module' => ''], $siteId);
+            cache($key, $value, 0, ['siteid' => $siteId, 'module' => '','type'=>'system'], $siteId);
         }
 
         return true;

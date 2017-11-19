@@ -13,7 +13,7 @@ HDCMS完全使用HDPHP开发，HDPHP中的所有功能均可应用于HDCMS，由
 
 ## 在线手册
 官方提供了完善的帮助手册，便于开发者进行二次开发 
-[查看手机](http://doc.hdcms.com/) 
+[查看手册](http://doc.hdcms.com/) 
 
 ## 官方网站
 [http://www.hdcms.com](http://www.hdcms.com)

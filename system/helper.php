@@ -52,9 +52,11 @@ function cache($name, $value = '[get]', $expire = 0, $field = [], $siteid = 0)
     $name            = $name.':'.$siteid;
     $field['siteid'] = $siteid;
     $field['module'] = $field['module'] ?: \Request::get('module', '');
+    $field['type']   = $field['type'] ?: '';
 
     return d($name, $value, $expire, $field);
 }
+
 
 /**
  * 记录日志

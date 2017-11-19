@@ -79,21 +79,23 @@ class Blueprint
     {
         $sql = 'ALTER TABLE '.$this->table." MODIFY ";
         foreach ($this->fields as $n) {
-            if ( ! empty($n['unsigned'])) {
-                $n['sql'] .= " unsigned ";
-            }
-            if (empty($n['null'])) {
-                $n['sql'] .= ' NULL';
-            }
-            if ( ! empty($n['default'])) {
-                $n['sql'] .= " DEFAULT ".$n['default'];
-            }
-            if ( ! empty($n['comment'])) {
-                $n['sql'] .= " COMMENT '{$n['comment']}'";
-            }
-            $s = $sql.$n['sql'];
+            if (Schema::fieldExists($n['field'], $this->noPreTable)) {
+                if ( ! empty($n['unsigned'])) {
+                    $n['sql'] .= " unsigned ";
+                }
+                if (empty($n['null'])) {
+                    $n['sql'] .= ' NULL';
+                }
+                if ( ! empty($n['default'])) {
+                    $n['sql'] .= " DEFAULT ".$n['default'];
+                }
+                if ( ! empty($n['comment'])) {
+                    $n['sql'] .= " COMMENT '{$n['comment']}'";
+                }
+                $s = $sql.$n['sql'];
 
-            return Db::execute($s);
+                return Db::execute($s);
+            }
         }
     }
 

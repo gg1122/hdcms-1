@@ -14,7 +14,7 @@
     <script>
         //HDJS组件需要的配置
         window.hdjs = {
-            'base': '{{root_url()}}/resource/hdjs',
+            'base': '{{root_url()}}/resource/hdjs/',
             'uploader': '{!! u("component/upload/uploader",["m"=>Request::get("m"),"siteid"=>siteid()]) !!}',
             'filesLists': '{!! u("component/upload/filesLists",["m"=>Request::get("m"),"siteid"=>siteid()]) !!}',
             'removeImage': '{!! u("component/upload/removeImage",["m"=>Request::get("m"),"siteid"=>siteid()]) !!}',

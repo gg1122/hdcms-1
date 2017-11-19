@@ -11,16 +11,21 @@
     <form action="" class="form-horizontal" method="post" onsubmit="post(event)">
         <div class="form-group">
             <label class="col-sm-1 control-label">缓存类型</label>
-
             <div class="col-sm-10">
                 <label class="checkbox-inline">
-                    <input type="checkbox" name="data" value="1" checked="checked"> 数据缓存
+                    <input type="checkbox" name="cache" value="1" checked="checked"> 删除文件缓存数据
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" name="tpl" value="1" checked="checked"> 模板编译
+                    <input type="checkbox" name="view" value="1" checked="checked"> 删除模板编译文件
                 </label>
                 <label class="checkbox-inline">
-                    <input type="checkbox" name="weixin" value="1" checked="checked"> 微信数据
+                    <input type="checkbox" name="log" value="1" checked="checked"> 删除网站日志文件
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="weixin" value="1" checked="checked"> 微信TOKEN数据
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="site" value="1" checked="checked"> 站点数据表缓存
                 </label>
             </div>
         </div>

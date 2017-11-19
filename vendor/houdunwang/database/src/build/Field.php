@@ -89,7 +89,7 @@ trait Field
         return $this;
     }
 
-    public function enum($field, $data)
+    public function enum($field, array $data)
     {
         $this->fields[] = ['field' => $field, 'sql' => $field." enum('".implode("','", $data)."') "];
 
