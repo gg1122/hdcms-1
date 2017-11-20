@@ -51,12 +51,10 @@
                                 <tr>
                                     <td>{{$d['aid']}}</td>
                                     <td>
-                                        <input type="text" class="form-control"
-                                               name="orderby[{{$d['aid']}}]"
-                                               value="{{$d['orderby']}}">
+                                        <input type="text" class="form-control" name="orderby[{{$d['aid']}}]" value="{{$d['orderby']}}">
                                     </td>
                                     <td>
-                                        <a href="{!! url('content.post',['mid'=>$d['mid'],'cid'=>$d['cid']])!!}">{{$d['catname'] !!}</a>
+                                        <a href="{!! url('content.post',['mid'=>$d['mid'],'cid'=>$d['cid']])!!}">{!! $d['catname'] !!}</a>
                                     </td>
                                     <td>{{$d['title']}}</td>
                                     <td>

@@ -6,7 +6,7 @@
     <form class="form-horizontal" id="app" v-cloak="" @submit.prevent="submit()">
         <div class="panel panel-default">
             <div class="panel-heading">
-                设置微信支付开关
+                设置微信支付参数
             </div>
             <div class="panel-body">
                 <div class="form-group">

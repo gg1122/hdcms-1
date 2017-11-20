@@ -210,9 +210,8 @@ class Query implements \ArrayAccess, \Iterator
         if ( ! empty($cache[$this->table])) {
             return $cache[$this->table];
         }
-        $isCache = Config::get('database.cache_field');
         //缓存字段
-        $data = $isCache && ! Config::get('app.debug') ? $this->cache($this->table) : [];
+        $data = Config::get('app.debug') ? [] : $this->cache($this->table);
         if (empty($data)) {
             $sql = "show columns from ".$this->table;
             if ( ! $result = $this->connection->query($sql)) {
@@ -230,7 +229,7 @@ class Query implements \ArrayAccess, \Iterator
                 $f ['extra']           = $res ['Extra'];
                 $data [$res ['Field']] = $f;
             }
-            $isCache and $this->cache($this->table, $data);
+            $this->cache($this->table, $data);
         }
         $cache[$this->table] = $data;
 

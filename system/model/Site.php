@@ -159,6 +159,8 @@ class Site extends Common
         Config::set('mail', v('site.setting.smtp'));
         //短信配置
         Config::set('aliyunsms', v('site.setting.sms.aliyun'));
+        //支付宝配置
+        Config::set('alipay', v('site.setting.pay.alipay'));
 
         return true;
     }
@@ -377,7 +379,7 @@ class Site extends Common
         //站点模块
         $data['modules'] = (new Modules())->getSiteAllModules($siteId, false);
         foreach ($data as $key => $value) {
-            cache($key, $value, 0, ['siteid' => $siteId, 'module' => '','type'=>'system'], $siteId);
+            cache($key, $value, 0, ['siteid' => $siteId, 'module' => '', 'type' => 'system'], $siteId);
         }
 
         return true;
@@ -425,8 +427,8 @@ class Site extends Common
         //支付设置
         $setting ['pay'] = Arr::merge([
             'wechat' => [
-                'open'           => '1',
-                'version'        => '1',
+                'open'           => 1,
+                'version'        => 1,
                 'mch_id'         => '',
                 'key'            => '',
                 'partnerid'      => '',
@@ -435,6 +437,17 @@ class Site extends Common
                 'apiclient_cert' => '',
                 'apiclient_key'  => '',
                 'rootca'         => '',
+            ],
+            'alipay' => [
+                'open'                 => 1,
+                'app_id'               => '',
+                'merchant_private_key' => '',
+                'notify_url'           => '',
+                'return_url'           => '',
+                'charset'              => 'UTF-8',
+                'sign_type'            => 'RSA2',
+                'gatewayUrl'           => 'https://openapi.alipay.com/gateway.do',
+                'alipay_public_key'    => '',
             ],
         ], json_decode($setting['pay'], true));
 

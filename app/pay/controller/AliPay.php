@@ -84,5 +84,7 @@ class AliPay extends Controller
                 return call_user_func_array([$this->getModule($pay['module']), 'async'], [$trade_status, $pay['tid']]) ? 'success' : 'fail';
             }
         }
+
+        return 'fail';
     }
 }

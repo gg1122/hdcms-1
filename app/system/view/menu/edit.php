@@ -14,7 +14,6 @@
         系统内置的菜单不允许修改 "链接地址"，不允许切换 "显示状态", 不允许 "删除"
     </div>
     <form action="" method="post" id="form" v-cloak @submit.prevent="post">
-        {{csrf_field()}}
         <div class="panel panel-default" ng-controller="ctrl">
             <div class="panel-body table-responsive">
                 <table class="table">

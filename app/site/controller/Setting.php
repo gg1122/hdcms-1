@@ -5,7 +5,7 @@ use houdunwang\view\View;
 use system\model\Message;
 use system\model\SiteSetting;
 use system\model\Site;
-use system\model\SiteWechat;
+use system\model\SiteWeChat;
 use houdunwang\config\Config;
 use houdunwang\mail\Mail;
 
@@ -204,14 +204,14 @@ class Setting extends Admin
     }
 
     /**
-     * 支付设置
+     * 微信支付
      *
      * @param \system\model\Site       $SiteModel
      * @param \system\model\SiteWeChat $WeChatModel
      *
      * @return mixed|string
      */
-    public function pay(Site $SiteModel, SiteWeChat $WeChatModel)
+    public function wepay(Site $SiteModel, SiteWeChat $WeChatModel)
     {
         if (IS_POST) {
             $this->db['id']  = $this->id;
@@ -221,13 +221,42 @@ class Setting extends Admin
 
             return message('修改会员支付参数成功', 'back');
         }
-        $wechat      = SiteWechat::where('siteid', siteid())->first();
+        $wechat      = SiteWeChat::where('siteid', siteid())->first();
         $weChatLevel = $WeChatModel->chatNameBylevel($wechat['level']);
         $data        = v('site.setting.pay');
 
         return view()->with(compact('wechat', 'weChatLevel', 'data'));
     }
 
+    /**
+     * 支付宝支付
+     *
+     * @param \system\model\Site $SiteModel
+     *
+     * @return mixed|string
+     */
+    public function alipay(Site $SiteModel)
+    {
+        if (IS_POST) {
+            $this->db['id']  = $this->id;
+            $this->db['pay'] = Request::post('data');
+            $this->db->save();
+            $SiteModel->updateCache();
+
+            return message('修改支付宝参数成功', 'back');
+        }
+        $data = v('site.setting.pay');
+
+        return view()->with(compact('data'));
+    }
+
+    /**
+     * 阿里云配置
+     *
+     * @param \system\model\Site $SiteModel
+     *
+     * @return mixed|string
+     */
     public function aliyun(Site $SiteModel)
     {
         if (IS_POST) {

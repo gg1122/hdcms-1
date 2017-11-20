@@ -337,9 +337,9 @@ class Model implements ArrayAccess, Iterator
      */
     final static public function findOrCreate($id = 0)
     {
-        $model = ! empty($id) && is_numeric($id) ? self::find($id) : new self();
+        $model = ! empty($id) && is_numeric($id) ? static::find($id) : new static();
         if (empty($model)) {
-            return new self();
+            return new static();
         }
 
         return $model;
