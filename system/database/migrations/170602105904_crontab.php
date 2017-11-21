@@ -3,13 +3,14 @@
 use houdunwang\database\build\Migration;
 use houdunwang\database\build\Blueprint;
 
-class crontab extends Migration {
-	//执行
-	public function up() {
-		if ( Schema::tableExists( 'crontab' ) ) {
-			return;
-		}
-		$sql = <<<sql
+class crontab extends Migration
+{
+    //执行
+    public function up()
+    {
+        if ( ! Schema::tableExists('crontab')) {
+            $sql
+                = <<<sql
 CREATE TABLE `hd_crontab` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `siteid` int(10) unsigned NOT NULL COMMENT '站点编号',
@@ -22,10 +23,12 @@ CREATE TABLE `hd_crontab` (
   KEY `siteid_module` (`siteid`,`module`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='定时任务';
 sql;
-		Db::execute( $sql );
-	}
+            Db::execute($sql);
+        }
+    }
 
-	//回滚
-	public function down() {
-	}
+    //回滚
+    public function down()
+    {
+    }
 }

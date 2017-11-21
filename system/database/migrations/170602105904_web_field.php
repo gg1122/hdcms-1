@@ -1,14 +1,16 @@
 <?php namespace system\database\migrations;
+
 use houdunwang\database\build\Migration;
 use houdunwang\database\build\Blueprint;
 
-class web_field extends Migration {
+class web_field extends Migration
+{
     //执行
-	public function up() {
-		if ( Schema::tableExists( 'web_field' ) ) {
-			return;
-		}
-		$sql = <<<sql
+    public function up()
+    {
+        if ( ! Schema::tableExists('web_field')) {
+            $sql
+                = <<<sql
 CREATE TABLE `hd_web_field` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `siteid` int(10) unsigned NOT NULL COMMENT '站点编号',
@@ -23,10 +25,12 @@ CREATE TABLE `hd_web_field` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='自字义字段参数表';
 sql;
-		Db::execute( $sql );
+            Db::execute($sql);
+        }
     }
 
     //回滚
-    public function down() {
+    public function down()
+    {
     }
 }

@@ -1,13 +1,16 @@
 <?php namespace system\database\migrations;
+
 use houdunwang\database\build\Migration;
 use houdunwang\database\build\Blueprint;
 
-class user_profile extends Migration {
+class user_profile extends Migration
+{
     //执行
-	public function up() {if(Schema::tableExists('user_profile')){
-      return;
-    }
-		$sql = <<<sql
+    public function up()
+    {
+        if ( ! Schema::tableExists('user_profile')) {
+            $sql
+                = <<<sql
 CREATE TABLE `hd_user_profile` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(10) unsigned NOT NULL,
@@ -38,10 +41,12 @@ CREATE TABLE `hd_user_profile` (
   UNIQUE KEY `uid` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户信息表';
 sql;
-		Db::execute( $sql );
+            Db::execute($sql);
+        }
     }
 
     //回滚
-    public function down() {
+    public function down()
+    {
     }
 }

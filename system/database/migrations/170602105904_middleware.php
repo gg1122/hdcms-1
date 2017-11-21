@@ -1,14 +1,16 @@
 <?php namespace system\database\migrations;
+
 use houdunwang\database\build\Migration;
 use houdunwang\database\build\Blueprint;
 
-class middleware extends Migration {
+class middleware extends Migration
+{
     //执行
-	public function up() {
-		if ( Schema::tableExists( 'middleware' ) ) {
-			return;
-		}
-		$sql = <<<sql
+    public function up()
+    {
+        if ( ! Schema::tableExists('middleware')) {
+            $sql
+                = <<<sql
 CREATE TABLE `hd_middleware` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `siteid` int(11) NOT NULL COMMENT '站点编号',
@@ -22,10 +24,12 @@ CREATE TABLE `hd_middleware` (
   KEY `siteid_module` (`siteid`,`module`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='模块中间件';
 sql;
-		Db::execute( $sql );
+            Db::execute($sql);
+        }
     }
 
     //回滚
-    public function down() {
+    public function down()
+    {
     }
 }

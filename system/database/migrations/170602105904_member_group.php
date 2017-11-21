@@ -1,14 +1,16 @@
 <?php namespace system\database\migrations;
+
 use houdunwang\database\build\Migration;
 use houdunwang\database\build\Blueprint;
 
-class member_group extends Migration {
+class member_group extends Migration
+{
     //执行
-	public function up() {
-    if(Schema::tableExists('member_group')){
-      return;
-    }
-		$sql = <<<sql
+    public function up()
+    {
+        if ( ! Schema::tableExists('member_group')) {
+            $sql
+                = <<<sql
 CREATE TABLE `hd_member_group` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `siteid` int(10) unsigned NOT NULL,
@@ -21,10 +23,12 @@ CREATE TABLE `hd_member_group` (
   KEY `siteid` (`siteid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='会员组';
 sql;
-		Db::execute( $sql );
+            Db::execute($sql);
+        }
     }
 
     //回滚
-    public function down() {
+    public function down()
+    {
     }
 }

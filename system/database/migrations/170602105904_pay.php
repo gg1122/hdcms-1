@@ -1,13 +1,16 @@
 <?php namespace system\database\migrations;
+
 use houdunwang\database\build\Migration;
 use houdunwang\database\build\Blueprint;
 
-class pay extends Migration {
+class pay extends Migration
+{
     //执行
-	public function up() {if(Schema::tableExists('pay')){
-      return;
-    }
-		$sql = <<<sql
+    public function up()
+    {
+        if ( ! Schema::tableExists('pay')) {
+            $sql
+                = <<<sql
 CREATE TABLE `hd_pay` (
   `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL COMMENT '会员编号',
@@ -32,10 +35,12 @@ CREATE TABLE `hd_pay` (
   KEY `uid` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='支付记录';
 sql;
-		Db::execute( $sql );
+            Db::execute($sql);
+        }
     }
 
     //回滚
-    public function down() {
+    public function down()
+    {
     }
 }

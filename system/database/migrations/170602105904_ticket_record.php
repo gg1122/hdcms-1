@@ -1,13 +1,16 @@
 <?php namespace system\database\migrations;
+
 use houdunwang\database\build\Migration;
 use houdunwang\database\build\Blueprint;
 
-class ticket_record extends Migration {
+class ticket_record extends Migration
+{
     //执行
-	public function up() {if(Schema::tableExists('ticket_record')){
-      return;
-    }
-		$sql = <<<sql
+    public function up()
+    {
+        if ( ! Schema::tableExists('ticket_record')) {
+            $sql
+                = <<<sql
 CREATE TABLE `hd_ticket_record` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `siteid` int(10) unsigned NOT NULL COMMENT '站点编号',
@@ -28,10 +31,12 @@ CREATE TABLE `hd_ticket_record` (
   KEY `manage` (`manage`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='折扣券与代金券使用记录';
 sql;
-		Db::execute( $sql );
+            Db::execute($sql);
+        }
     }
 
     //回滚
-    public function down() {
+    public function down()
+    {
     }
 }

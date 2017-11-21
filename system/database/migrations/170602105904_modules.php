@@ -1,13 +1,16 @@
 <?php namespace system\database\migrations;
+
 use houdunwang\database\build\Migration;
 use houdunwang\database\build\Blueprint;
 
-class modules extends Migration {
+class modules extends Migration
+{
     //执行
-	public function up() {if(Schema::tableExists('modules')){
-      return;
-    }
-		$sql = <<<sql
+    public function up()
+    {
+        if ( ! Schema::tableExists('modules')) {
+            $sql
+                = <<<sql
 CREATE TABLE `hd_modules` (
   `mid` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL COMMENT '英文标识',
@@ -38,10 +41,12 @@ CREATE TABLE `hd_modules` (
   KEY `is_system` (`is_system`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='模块列表';
 sql;
-		Db::execute( $sql );
+            Db::execute($sql);
+        }
     }
 
     //回滚
-    public function down() {
+    public function down()
+    {
     }
 }

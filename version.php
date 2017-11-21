@@ -1,7 +1,7 @@
 <?php return array (
-  'version' => 'v2.1.2',
-  'build' => '20171115154809',
-  'logs' => '####合并优化',
+  'version' => 'v2.0.1',
+  'build' => '20171121195435',
+  'logs' => '优化支付宝组件',
   'type' => 'upgrade',
   'explain' => '',
 );

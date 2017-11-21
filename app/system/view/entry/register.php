@@ -35,8 +35,8 @@
         })
     </script>
 </head>
-<body>
-<div class="hdcms-login" hd-cloak="">
+<body class="hdcms-login">
+<div hd-cloak="">
     <div class="container logo" style="width:800px;">
         <div style="background: url('/resource/images/logo.png') no-repeat; background-size: contain;height: 60px;"></div>
     </div>
@@ -65,7 +65,7 @@
                         <label class="star">手机号</label>
                         <input name="mobile" class="form-control input-lg" placeholder="请输入手机号">
                     </div>
-                    <if value="v('config.register.enable_code')==1">
+                    <if value="v('config.register.enable_register_code')==1">
                         <div class="form-group">
                             <label style="display: block" class="star">验证码</label>
                             <input name="code" class="form-control input-lg" placeholder="请输入验证码"

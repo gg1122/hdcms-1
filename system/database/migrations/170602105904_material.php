@@ -3,13 +3,14 @@
 use houdunwang\database\build\Migration;
 use houdunwang\database\build\Blueprint;
 
-class material extends Migration {
-	//执行
-	public function up() {
-		if ( Schema::tableExists( 'material' ) ) {
-			return;
-		}
-		$sql = <<<sql
+class material extends Migration
+{
+    //执行
+    public function up()
+    {
+        if ( ! Schema::tableExists('material')) {
+            $sql
+                = <<<sql
 CREATE TABLE `hd_material` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `type` char(10) NOT NULL DEFAULT '' COMMENT '图片（image）、语音（voice）、视频（video）news (图文)',
@@ -23,11 +24,13 @@ CREATE TABLE `hd_material` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='微信素材';
 sql;
-		Db::execute( $sql );
-	}
+            Db::execute($sql);
+        }
+    }
 
-	//回滚
-	public function down() {
-		Schema::drop( 'material' );
-	}
+    //回滚
+    public function down()
+    {
+        Schema::drop('material');
+    }
 }

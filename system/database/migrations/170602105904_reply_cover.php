@@ -1,13 +1,16 @@
 <?php namespace system\database\migrations;
+
 use houdunwang\database\build\Migration;
 use houdunwang\database\build\Blueprint;
 
-class reply_cover extends Migration {
+class reply_cover extends Migration
+{
     //执行
-	public function up() {if(Schema::tableExists('reply_cover')){
-      return;
-    }
-		$sql = <<<sql
+    public function up()
+    {
+        if ( ! Schema::tableExists('reply_cover')) {
+            $sql
+                = <<<sql
 CREATE TABLE `hd_reply_cover` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `siteid` int(10) unsigned NOT NULL COMMENT '站点编号',
@@ -17,17 +20,17 @@ CREATE TABLE `hd_reply_cover` (
   `description` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',
   `thumb` varchar(255) NOT NULL DEFAULT '' COMMENT '图片',
   `url` varchar(255) NOT NULL DEFAULT '' COMMENT '链接地址',
-  `hash` varchar(100) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `siteid` (`siteid`),
-  KEY `rid` (`rid`),
-  KEY `hash` (`hash`)
+  KEY `rid` (`rid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='模块封面关键词回复内容';
 sql;
-		Db::execute( $sql );
+            Db::execute($sql);
+        }
     }
 
     //回滚
-    public function down() {
+    public function down()
+    {
     }
 }

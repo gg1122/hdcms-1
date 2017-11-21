@@ -143,7 +143,7 @@ class Setting extends Admin
             //发送测试邮件
             if ($config['testing']) {
                 $d = Mail::send($config['testusername'], $config['testusername'], "邮箱配置测试成功", function () {
-                    return View::instance()->with(['title' => '测试邮件发送成功', 'content' => '恭喜！站点邮箱配置正确'])->fetch('resource/view/email.html');
+                    return View::instance()->with(['title' => '测试邮件发送成功', 'content' => '恭喜！站点邮箱配置正确'])->fetch('resource/view/email');
                 });
                 if ($d) {
                     return message("测试邮件发送成功", 'refresh', 'success', 3);

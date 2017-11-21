@@ -1,13 +1,16 @@
 <?php namespace system\database\migrations;
+
 use houdunwang\database\build\Migration;
 use houdunwang\database\build\Blueprint;
 
-class template extends Migration {
+class template extends Migration
+{
     //执行
-	public function up() {if(Schema::tableExists('template')){
-      return;
-    }
-		$sql = <<<sql
+    public function up()
+    {
+        if ( ! Schema::tableExists('template')) {
+            $sql
+                = <<<sql
 CREATE TABLE `hd_template` (
   `tid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL COMMENT '模板名称',
@@ -23,10 +26,12 @@ CREATE TABLE `hd_template` (
   PRIMARY KEY (`tid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='站点模板';
 sql;
-		Db::execute( $sql );
+            Db::execute($sql);
+        }
     }
 
     //回滚
-    public function down() {
+    public function down()
+    {
     }
 }

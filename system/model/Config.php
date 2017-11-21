@@ -80,8 +80,8 @@ class Config extends Common
             //开启注册
             'is_open'              => 1,
             'audit'                => 0,
-            'enable_register_code' => 0,
-            'enable_login_code'    => 0,
+            'enable_register_code' => 1,
+            'enable_login_code'    => 1,
             'groupid'              => 1,
         ], $this['register'] ? json_decode($this['register'], true) : []);
         v('config.register', $this->config['register']);

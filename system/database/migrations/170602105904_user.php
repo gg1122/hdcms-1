@@ -1,18 +1,21 @@
 <?php namespace system\database\migrations;
+
 use houdunwang\database\build\Migration;
 use houdunwang\database\build\Blueprint;
 
-class user extends Migration {
+class user extends Migration
+{
     //执行
-	public function up() {if(Schema::tableExists('user')){
-      return;
-    }
-		$sql = <<<sql
+    public function up()
+    {
+        if ( ! Schema::tableExists('user')) {
+            $sql
+                = <<<sql
 CREATE TABLE `hd_user` (
   `uid` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `groupid` int(11) NOT NULL COMMENT '后台组',
   `username` char(30) NOT NULL COMMENT '用户名',
-  `realname` char(20) NOT NULL COMMENT '真实姓名',
+  `realname` char(20) NOT NULL DEFAULT '' COMMENT '真实姓名',
   `password` char(50) NOT NULL COMMENT '密码',
   `security` varchar(15) NOT NULL DEFAULT '' COMMENT '密钥',
   `status` tinyint(1) NOT NULL COMMENT '状态',
@@ -31,12 +34,14 @@ CREATE TABLE `hd_user` (
   PRIMARY KEY (`uid`),
   UNIQUE KEY `username` (`username`),
   KEY `groupid` (`groupid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户';
 sql;
-		Db::execute( $sql );
+            Db::execute($sql);
+        }
     }
 
     //回滚
-    public function down() {
+    public function down()
+    {
     }
 }

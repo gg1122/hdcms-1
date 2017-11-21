@@ -27,6 +27,9 @@ class Entry extends Admin
      */
     public function register(UserRequest $request)
     {
+        if ( ! v('config.register.is_open')) {
+            return message('系统暂时关闭用户注册', '', 'info');
+        }
         if (IS_POST) {
             User::register($request());
 
@@ -53,7 +56,7 @@ class Entry extends Admin
                 return message($message, '', 'error');
             }
             if (siteid() && Session::get('system.login') == 'admin') {
-                $url = web_url().'?s=site/entry/home&siteid='.siteid();
+                $url = web_url(true).'?s=site/entry/home&siteid='.siteid();
             } else {
                 $url = u('site.lists');
             }

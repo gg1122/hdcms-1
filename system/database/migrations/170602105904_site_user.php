@@ -1,13 +1,16 @@
 <?php namespace system\database\migrations;
+
 use houdunwang\database\build\Migration;
 use houdunwang\database\build\Blueprint;
 
-class site_user extends Migration {
+class site_user extends Migration
+{
     //执行
-	public function up() {if(Schema::tableExists('site_user')){
-      return;
-    }
-		$sql = <<<sql
+    public function up()
+    {
+        if ( ! Schema::tableExists('site_user')) {
+            $sql
+                = <<<sql
 CREATE TABLE `hd_site_user` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `uid` int(10) unsigned NOT NULL COMMENT '用户id',
@@ -20,10 +23,12 @@ CREATE TABLE `hd_site_user` (
   KEY `siteid` (`siteid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='站点管理员';
 sql;
-		Db::execute( $sql );
+            Db::execute($sql);
+        }
     }
 
     //回滚
-    public function down() {
+    public function down()
+    {
     }
 }

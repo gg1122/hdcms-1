@@ -89,7 +89,7 @@ class Message extends Model
     }
 
     /**
-     * 发送手机短信
+     * 发送邮件信息
      *
      * @param $data
      *
@@ -98,8 +98,7 @@ class Message extends Model
     public static function sendMailMessage($data)
     {
         $res = Mail::send($data['mail'], $data['mail'], $data['title'], function () use ($data) {
-            return View::instance()->with(['title' => $data['title'], 'content' => $data['data']])
-                       ->fetch('resource/view/email.html');
+            return View::instance()->with(['title' => $data['title'], 'content' => $data['data']])->fetch('resource/view/email');
         });
         if ($res['errcode'] == 0) {
             $data['ip']       = Request::ip();

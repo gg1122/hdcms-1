@@ -36,8 +36,8 @@
         })
     </script>
 </head>
-<body>
-<div class="hdcms-login" hd-cloak="">
+<body class="hdcms-login">
+<div hd-cloak="">
     <div class="container logo">
         <div style="background: url('/resource/images/logo.png') no-repeat; background-size: contain;height: 60px;"></div>
     </div>
@@ -65,7 +65,7 @@
                             <span class="help-block">{{$errors['password']}}</span>
                         </if>
                     </div>
-                    <if value="v('config.site.enable_code')==1">
+                    <if value="v('config.register.enable_login_code')==1">
                         <div class="form-group">
                             <label>验证码</label>
                             <div class="input-group">

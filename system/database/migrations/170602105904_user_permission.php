@@ -1,13 +1,16 @@
 <?php namespace system\database\migrations;
+
 use houdunwang\database\build\Migration;
 use houdunwang\database\build\Blueprint;
 
-class user_permission extends Migration {
+class user_permission extends Migration
+{
     //执行
-	public function up() {if(Schema::tableExists('user_permission')){
-      return;
-    }
-		$sql = <<<sql
+    public function up()
+    {
+        if ( ! Schema::tableExists('user_permission')) {
+            $sql
+                = <<<sql
 CREATE TABLE `hd_user_permission` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `uid` int(10) unsigned NOT NULL,
@@ -20,10 +23,12 @@ CREATE TABLE `hd_user_permission` (
   KEY `type` (`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户权限分配';
 sql;
-		Db::execute( $sql );
+            Db::execute($sql);
+        }
     }
 
     //回滚
-    public function down() {
+    public function down()
+    {
     }
 }

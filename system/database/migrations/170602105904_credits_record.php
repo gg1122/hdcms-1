@@ -3,13 +3,14 @@
 use houdunwang\database\build\Migration;
 use houdunwang\database\build\Blueprint;
 
-class credits_record extends Migration {
-	//执行
-	public function up() {
-		if ( Schema::tableExists( 'credits_record' ) ) {
-			return;
-		}
-		$sql = <<<sql
+class credits_record extends Migration
+{
+    //执行
+    public function up()
+    {
+        if ( ! Schema::tableExists('credits_record')) {
+            $sql
+                = <<<sql
 CREATE TABLE `hd_credits_record` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `siteid` int(10) unsigned NOT NULL COMMENT '站点编号',
@@ -26,10 +27,12 @@ CREATE TABLE `hd_credits_record` (
   KEY `operator` (`operator`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='积分变动记录';
 sql;
-		Db::execute( $sql );
-	}
+            Db::execute($sql);
+        }
+    }
 
-	//回滚
-	public function down() {
-	}
+    //回滚
+    public function down()
+    {
+    }
 }

@@ -3,13 +3,14 @@
 use houdunwang\database\build\Migration;
 use houdunwang\database\build\Blueprint;
 
-class balance extends Migration {
-	//执行
-	public function up() {
-		if ( Schema::tableExists( 'balance' ) ) {
-			return;
-		}
-		$sql = <<<sql
+class balance extends Migration
+{
+    //执行
+    public function up()
+    {
+        if ( ! Schema::tableExists('balance')) {
+            $sql
+                = <<<sql
 CREATE TABLE `hd_balance` (
   `bid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `siteid` int(10) unsigned NOT NULL COMMENT '站点编号',
@@ -25,10 +26,12 @@ CREATE TABLE `hd_balance` (
   KEY `uid` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='会员余额充值';
 sql;
-		Db::execute( $sql );
-	}
+            Db::execute($sql);
+        }
+    }
 
-	//回滚
-	public function down() {
-	}
+    //回滚
+    public function down()
+    {
+    }
 }

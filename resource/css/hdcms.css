@@ -318,11 +318,6 @@ body {
 .hdcms-login {
   background-image: url('../images/bg-sky.jpg');
   background-size: cover;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
 }
 .hdcms-login .logo {
   margin-top: 100px;

@@ -1,13 +1,16 @@
 <?php namespace system\database\migrations;
+
 use houdunwang\database\build\Migration;
 use houdunwang\database\build\Blueprint;
 
-class navigate extends Migration {
+class navigate extends Migration
+{
     //执行
-	public function up() {if(Schema::tableExists('navigate')){
-      return;
-    }
-		$sql = <<<sql
+    public function up()
+    {
+        if ( ! Schema::tableExists('navigate')) {
+            $sql
+                = <<<sql
 CREATE TABLE `hd_navigate` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `siteid` int(10) unsigned NOT NULL COMMENT '站点编号',
@@ -24,12 +27,14 @@ CREATE TABLE `hd_navigate` (
   `groups` varchar(500) NOT NULL DEFAULT '' COMMENT '菜单使用的会员组',
   PRIMARY KEY (`id`),
   KEY `siteid` (`siteid`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='导航菜单管理表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='导航菜单管理表';
 sql;
-		Db::execute( $sql );
+            Db::execute($sql);
+        }
     }
 
     //回滚
-    public function down() {
+    public function down()
+    {
     }
 }

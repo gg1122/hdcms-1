@@ -1,13 +1,16 @@
 <?php namespace system\database\migrations;
+
 use houdunwang\database\build\Migration;
 use houdunwang\database\build\Blueprint;
 
-class user_group extends Migration {
+class user_group extends Migration
+{
     //执行
-	public function up() {if(Schema::tableExists('user_group')){
-      return;
-    }
-		$sql = <<<sql
+    public function up()
+    {
+        if ( ! Schema::tableExists('user_group')) {
+            $sql
+                = <<<sql
 CREATE TABLE `hd_user_group` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL DEFAULT '' COMMENT '组名',
@@ -21,10 +24,12 @@ CREATE TABLE `hd_user_group` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='会员组';
 sql;
-		Db::execute( $sql );
+            Db::execute($sql);
+        }
     }
 
     //回滚
-    public function down() {
+    public function down()
+    {
     }
 }
