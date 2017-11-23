@@ -5,12 +5,12 @@
     <title>HDCMS 数据库配置</title>
     <include file="resource/view/hdjs"/>
 </head>
-<body style="background: #33b2e2">
-<div style="width:1100px;margin: 0px auto;padding-top: 100px;">
+<body style="background: url(/resource/images/system_bg.jpg);background-size: 100% 100%;height: 100vh;">
+<div style="width:1100px;margin: 0px auto 50px;padding-top: 50px;">
     <div style="background: url(/resource/images/logo.png) no-repeat;background-size:contain;height:80px;"></div>
     <br/>
     <div class="panel panel-default">
-        <nav class="navbar navbar-default alert-info" style="border-radius: 0px;">
+        <nav class="navbar navbar-default" style="border-radius: 0px;">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#"><strong>HDCMS 百分百开源免费,可用于任意商业项目!</strong>
@@ -86,8 +86,6 @@
     </div>
     <div class="text-center" style="color:#ffffff;"> ©2010 - 2019 hdcms.com Inc.</div>
 </div>
-</body>
-</html>
 <script>
     function post(event) {
         event.preventDefault();
@@ -102,3 +100,5 @@
         });
     }
 </script>
+</body>
+</html>

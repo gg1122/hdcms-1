@@ -219,8 +219,8 @@ body {
 */
 .system {
   font-size: 14px !important;
-  background: url('../images/bg.jpg');
-  background-size: cover;
+  background: url('../images/system_bg.jpg');
+  background-size: 100% 100%;
   height: 100vh;
 }
 .system table {
@@ -310,14 +310,22 @@ body {
   left: 45%;
   display: none;
 }
+.timer-loader:not(:required) {
+  border: 6px solid #fff !important;
+}
+.timer-loader:not(:required):after,
+.timer-loader:not(:required):before {
+  background: #fff !important;
+}
 /*
 |--------------------------------------------------------------------------
 | 后台登录与注册样式
 |--------------------------------------------------------------------------
 */
 .hdcms-login {
-  background-image: url('../images/bg-sky.jpg');
-  background-size: cover;
+  background-image: url('../images/register.jpg');
+  background-size: 100% 100%;
+  height: 100vh;
 }
 .hdcms-login .logo {
   margin-top: 100px;

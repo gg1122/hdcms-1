@@ -49,8 +49,8 @@ class Config extends Common
                 'path' => 'attachment',
                 'mold' => 'local',
             ],
-            'http'                => ['rewrite' => 1,],
-            'app'                 => ['debug' => 1,],
+            'http'                => ['rewrite' => 0],
+            'app'                 => ['debug' => 0],
             'aliyun'              => [
                 'accessId'  => '',
                 'accessKey' => '',
@@ -80,8 +80,8 @@ class Config extends Common
             //开启注册
             'is_open'              => 1,
             'audit'                => 0,
-            'enable_register_code' => 1,
-            'enable_login_code'    => 1,
+            'enable_register_code' => 0,
+            'enable_login_code'    => 0,
             'groupid'              => 1,
         ], $this['register'] ? json_decode($this['register'], true) : []);
         v('config.register', $this->config['register']);

@@ -72,7 +72,7 @@
                         <a href="http://www.houdunwang.com/article11-54-42-3.html">常见问题</a>
                     </li>
                     <li>
-                        <a href="http://www.houdunwang.com/article11-49-42-3.html">开源产品</a>
+                        <a href="http://www.houdunwang.com/article11-213-42-3.html">开源优势</a>
                     </li>
                 </ul>
             </div>

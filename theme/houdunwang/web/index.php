@@ -127,6 +127,22 @@
     </div>
     <!--开班信息结束-->
 </div>
+
+<!--后盾优势banner-->
+<a href="/article11-193-42-3.html" style="display: block;width: 1200px;margin: 0 auto;margin-top: 10px;">
+	<img src="http://bbs.houdunwang.com/data/attachment/album/201711/22/122030by2ii21yqzif99cf.jpg" usemap="#Map" border="0" />
+	<map name="Map" id="Map">
+	  <area shape="rect" coords="895,-7,963,128" href="http://www.hdcms.com/" target="_blank" />
+	  <area shape="rect" coords="964,-7,1041,128" href="http://www.hdphp.com/" target="_blank" />
+	  <area shape="rect" coords="1042,-7,1116,129" href="http://hdjs.hdphp.com" target="_blank" />
+	  <area shape="rect" coords="1117,-7,1192,129" href="http://www.houdunren.com/" target="_blank" />
+	  <area shape="rect" coords="-8,2,892,127" href="/article11-213-42-3.html" />
+	</map>
+
+</a>
+
+<!--后盾优势banner结束-->
+
 <!--学员风采区域-->
 <div id="stuStyle">
     <!--风采展示区域-->

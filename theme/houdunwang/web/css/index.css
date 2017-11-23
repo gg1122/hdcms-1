@@ -1,7 +1,9 @@
 body {
     background: #f4f5f6 !important;
 }
-
+area{
+	outline: none;
+}
 #slideArea {
     width: 1200px;
     height: 335px;
@@ -1046,7 +1048,10 @@ div#notice div.noticearea div.kaixue div.pics div.smallimg ul li {
     float: left;
     margin: 5px;
     text-align: center;
-    border: solid 1px #dcdcdc
+    border: solid 1px #dcdcdc;
+    overflow: hidden;
+    width: 202px;
+    height: 204px;
 }
 
 div#notice div.noticearea div.kaixue div.pics div.smallimg ul li img {

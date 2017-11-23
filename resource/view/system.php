@@ -6,10 +6,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-    <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/resource/css/hdcms.css">
-    <link rel="stylesheet" href="/resource/hdjs/dist/hdjs.css">
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css?version={{HDCMS_VERSION}}" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version={{HDCMS_VERSION}}" rel="stylesheet">
+    <link rel="stylesheet" href="/resource/css/hdcms.css?version={{HDCMS_VERSION}}">
+    <link rel="stylesheet" href="/resource/hdjs/dist/hdjs.css?version={{HDCMS_VERSION}}">
     <script>
         //HDJS组件需要的配置
         window.hdjs = {
@@ -37,7 +37,7 @@
     </script>
     <script src="{{root_url()}}/resource/hdjs/dist/static/requirejs/require.js?version={{HDCMS_VERSION}}"></script>
     <script src="{{root_url()}}/resource/hdjs/dist/static/requirejs/config.js?version={{HDCMS_VERSION}}"></script>
-    <link href="{{root_url()}}/resource/css/hdcms.css" rel="stylesheet">
+    <link href="{{root_url()}}/resource/css/hdcms.css?version={{HDCMS_VERSION}}" rel="stylesheet">
     <script>
         require(['hdjs'], function () {
             //为异步请求设置CSRF令牌

@@ -51,7 +51,11 @@
                     </div>
                 </div>
                 <textarea name="data" hidden="hidden" v-html="field"></textarea>
-                <button class="btn btn-success col-sm-offset-2">重新与云平台绑定</button>
+                <div class="btn-group col-sm-offset-2">
+                    <button class="btn btn-success">重新与云平台绑定</button>
+                    <a href="http://hdcms.hdcms.com/?m=ucenter&action=controller/entry/login" target="_blank" class="btn btn-default">注册云帐号</a>
+                </div>
+
             </div>
         </div>
     </form>

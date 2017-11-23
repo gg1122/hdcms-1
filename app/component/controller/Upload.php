@@ -48,7 +48,7 @@ class Upload extends Common
                 'uid'        => v(Request::post('user_type').'.info.uid'),
                 'siteid'     => siteid(),
                 'name'       => $file[0]['name'],
-                'module'     => Request::get("m"),
+                'module'     => Request::get("m", ''),
                 'filename'   => $file[0]['filename'],
                 'path'       => $file[0]['path'],
                 'extension'  => strtolower($file[0]['ext']),

@@ -37,10 +37,10 @@
                 </tag>
             </div>
             <!--最新视频区域-->
-            <div class="newvideo">
+            <!--<div class="newvideo">
                 <div class="headarea">
                     <h3>最新视频教程</h3>
-                    <!--<a href="lesson.html">更多</a>-->
+                    <a href="lesson.html">更多</a>
                 </div>
                 <div class="conarea">
                     <ul>
@@ -52,7 +52,7 @@
 
                     </ul>
                 </div>
-            </div>
+            </div>-->
             <!--最新视频区域结束-->
             <!--学员项目展示区域-->
             <div class="show">

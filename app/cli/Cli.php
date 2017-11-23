@@ -25,6 +25,7 @@ class Cli extends Base
             'theme/hdcms',
             'theme/hdphp',
             'theme/houdunwang',
+            'node_modules',
             'tests',
             '.git',
             'addons',
