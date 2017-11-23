@@ -212,6 +212,13 @@ body {
   font-size: 14px;
   margin-bottom: 50px;
 }
+.timer-loader:not(:required) {
+  border: 6px solid #ddd !important;
+}
+.timer-loader:not(:required):after,
+.timer-loader:not(:required):before {
+  background: #aaa !important;
+}
 /*
 |--------------------------------------------------------------------------
 | 后台系统管理平台样式
@@ -311,11 +318,11 @@ body {
   display: none;
 }
 .timer-loader:not(:required) {
-  border: 6px solid #fff !important;
+  border: 6px solid #999 !important;
 }
 .timer-loader:not(:required):after,
 .timer-loader:not(:required):before {
-  background: #fff !important;
+  background: #666 !important;
 }
 /*
 |--------------------------------------------------------------------------

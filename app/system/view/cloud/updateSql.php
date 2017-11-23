@@ -35,7 +35,7 @@
                     upgrade:function(){
                         var This = this;
                         //执行更新
-                        $.post("{{__URL__}}", function (json) {
+                        $.post("{!! __URL__ !!}", function (json) {
                             This.data = json;
                             if (json.valid == 1) {
                                 location.href = "{!! u('upgrade',['action'=>'finish']) !!}";

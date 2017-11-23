@@ -42,6 +42,9 @@ class Cloud extends Common
     public static function getHost()
     {
         $accounts = Db::table('cloud')->first();
+        if (in_array($_SERVER['SERVER_NAME'], ['test.hdcms.com'])) {
+            self::$host = 'http://hdcms.hdcms.com';
+        }
 
         return self::$host."?secret={$accounts['secret']}&uid={$accounts['uid']}&secret={$accounts['secret']}&m=store&action=controller";
     }
@@ -75,6 +78,7 @@ class Cloud extends Common
             $model['uid']      = $res['uid'];
             $model['username'] = $data['username'];
             $model['secret']   = $data['secret'];
+            $model['webbam']   = $data['secret'];
             $model['status']   = 1;
             $model->save();
         }
@@ -196,7 +200,9 @@ class Cloud extends Common
                 Dir::move('upgrade/hdcms', '.');
                 break;
             }
-            Dir::delFile('upgrade');
+            Dir::delFile('upgrade/hdcms.zip');
+            //复制的更新列表文件
+            Dir::delFile('upgrade_files.php');
         }
 
         return $res;

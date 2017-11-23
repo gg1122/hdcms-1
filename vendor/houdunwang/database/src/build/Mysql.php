@@ -76,6 +76,7 @@ class Mysql
      */
     public function addIndex($table, $field = [])
     {
+        $table = Config::get('database.prefix').$table;
         $field = is_array($field) ? $field : [$field];
         $name  = implode('_', $field);
         $field = implode('`,`', $field);
@@ -94,7 +95,8 @@ class Mysql
      */
     public function addUnique($table, $field)
     {
-        $sql = "ALTER TABLE `{$table}` ADD "." {UNIQUE} (`{$field}`) ";
+        $table = Config::get('database.prefix').$table;
+        $sql   = "ALTER TABLE `{$table}` ADD "." {UNIQUE} (`{$field}`) ";
 
         return Db::execute($sql);
     }

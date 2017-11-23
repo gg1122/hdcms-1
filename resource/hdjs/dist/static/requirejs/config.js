@@ -6,7 +6,7 @@ window.hdjs = Object.assign({
     node_modules: '', base: '/node_modules/hdjs/', uploader: '', filesLists: '', hdjs: ''
 }, window.hdjs);
 require.config({
-    urlArgs: 'version=1.2.88',
+    urlArgs: 'version=1.2.90',
     baseUrl: window.hdjs.base,
     paths: {
         hdjs: 'dist/hdjs',
@@ -25,7 +25,7 @@ require.config({
         flowchart: "dist/static/editor.md/lib/flowchart.min",
         jqueryflowchart: "dist/static/editor.md/lib/jquery.flowchart.min",
         sequenceDiagram: "dist/static/editor.md/lib/sequence-diagram.min",
-        katex: "//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min",
+        katex: "https://cdn.bootcss.com/KaTeX/0.1.1/katex.min",
         codemirror: "https://cdn.bootcss.com/codemirror/5.31.0/codemirror",
         editormd: "dist/static/editor.md/lib/../editormd.amd",
         util: "dist/static/util/component",

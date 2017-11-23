@@ -10,6 +10,7 @@
  * '-------------------------------------------------------------------*/
 
 use houdunwang\cli\Cli;
+use houdunwang\request\Request;
 use system\model\Cloud as CloudModel;
 use Curl;
 
@@ -62,13 +63,11 @@ class Cloud extends Admin
     /**
      * 更新HDCMS
      *
-     * @param \system\model\Cloud $CloudModel
-     *
      * @return array|mixed|string
      */
-    public function upgrade(CloudModel $CloudModel)
+    public function upgrade()
     {
-        switch (q('get.action')) {
+        switch (Request::get('action')) {
             case 'download':
                 return view('download');
             case 'downloadFile':

@@ -37,4 +37,16 @@ class Attachment extends Model
 
     //时间操作,需要表中存在created_at,updated_at字段
     protected $timestamps = true;
+
+    /**
+     * 删除开发者插件与模板
+     *
+     * @return mixed
+     */
+    public static function delUserModuleTemplate()
+    {
+        return self::where('uid', v('member.info.uid'))
+                   ->where('module', 'store')
+                   ->whereIn('data', ['__USER_MODULE__', '__USER_TEMPALTE__'])->delete();
+    }
 }

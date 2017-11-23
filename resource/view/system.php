@@ -37,7 +37,7 @@
     </script>
     <script src="{{root_url()}}/resource/hdjs/dist/static/requirejs/require.js?version={{HDCMS_VERSION}}"></script>
     <script src="{{root_url()}}/resource/hdjs/dist/static/requirejs/config.js?version={{HDCMS_VERSION}}"></script>
-    <link href="{{root_url()}}/resource/css/hdcms.css?version={{HDCMS_VERSION}}" rel="stylesheet">
+    <link href="{{root_url()}}/resource/css/system.css?version={{HDCMS_VERSION}}" rel="stylesheet">
     <script>
         require(['hdjs'], function () {
             //为异步请求设置CSRF令牌
