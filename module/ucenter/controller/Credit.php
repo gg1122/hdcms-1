@@ -41,7 +41,6 @@ class Credit extends Auth
         $income = CreditsRecord::where('num', '>', 0)->where('uid', v('member.info.uid'))->where('credittype', q('get.type'))->sum('num');
         //支出
         $expend = CreditsRecord::where('num', '<', 0)->where('uid', v('member.info.uid'))->where('credittype', q('get.type'))->sum('num');
-
         return View::make($this->template.'/credit_lists', compact('data', 'income', 'expend'));
     }
 }

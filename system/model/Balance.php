@@ -53,9 +53,9 @@ class Balance extends Model
     {
         $data = [
             'tid'        => Cart::getOrderId(),//定单号
-            'goods_name' => '会员充值',//商品名称
+            'goods_name' => "会员余额充值 {$fee} 元",//商品名称
             'fee'        => $fee,//充值金额
-            'data'       => '会员余额充值',
+            'data'       => '会员余额充值 {$fee} 元',
             'status'     => 0,
             'createtime' => time(),
             'uid'        => v('member.info.uid'),

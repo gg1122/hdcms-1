@@ -21,13 +21,17 @@ class WeChat extends Controller
      */
     public function pay()
     {
-        $pay = Db::table('pay')->where('tid', Request::get('tid'))->first();
+        $pay = Pay::where('tid', Request::get('tid'))->first();
         if (empty($pay)) {
             return message('定单不存在', url('member.index', [], 'ucenter'), 'info');
         }
         if ($pay['status'] == 1) {
             return message('定单已经支付', url('member.index', [], 'ucenter'), 'info');
         }
+        //修改支付类型
+        $pay['type'] = 'wechat';
+        $pay->save();
+        //发起支付
         $data['total_fee']    = $pay['fee'] * 1;//支付金额单位分
         $data['body']         = $pay['body'];//商品描述
         $data['attach']       = $pay['attach'];//附加数据

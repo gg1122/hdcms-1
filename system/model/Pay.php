@@ -41,6 +41,7 @@ class Pay extends Common
             ['card_fee', 0, 'string', self::EMPTY_AUTO, self::MODEL_INSERT],
             ['attach', '', 'string', self::EMPTY_AUTO, self::MODEL_INSERT],
             ['body', '', 'string', self::EMPTY_AUTO, self::MODEL_INSERT],
+            ['type', '', 'string', self::EMPTY_AUTO, self::MODEL_INSERT],
         ];
 
     /**
@@ -56,6 +57,26 @@ class Pay extends Common
     }
 
     /**
+     * 获取支付中文描述
+     *
+     * @return string
+     */
+    public function payTitle()
+    {
+        $msg = '';
+        switch ($this['type']) {
+            case 'wechat':
+                $msg = '微信支付';
+                break;
+            case 'alipay':
+                $msg = '支付宝';
+                break;
+        }
+
+        return $msg;
+    }
+
+    /**
      * 创建系统定单记录
      *
      * @param array $param 参数
@@ -66,12 +87,8 @@ class Pay extends Common
     {
         if ( ! v('module.name') || ! v('member.info.uid') || empty($param['goods_name']) || empty($param['fee'])
              || empty($param['body'])
-             || empty($param['type'])
              || empty($param['tid'])) {
             return '支付参数错误,请重新提交';
-        }
-        if ( ! in_array($param['type'], ['alipay', 'wechat'])) {
-            return '支付类型错误';
         }
         if ($pay = Db::table('pay')->where('tid', $param['tid'])->first()) {
             if ($pay['status'] == 1) {

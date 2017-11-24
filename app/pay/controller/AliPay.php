@@ -2,6 +2,7 @@
 
 use houdunwang\route\Controller;
 use Request;
+use system\model\Pay;
 
 /**
  * 支付宝支付处理
@@ -20,13 +21,17 @@ class AliPay extends Controller
      */
     public function pay()
     {
-        $pay = Db::table('pay')->where('tid', Request::get('tid'))->first();
+        $pay = Pay::where('tid', Request::get('tid'))->first();
         if (empty($pay)) {
             return message('定单不存在', url('member.index', [], 'ucenter'), 'info');
         }
         if ($pay['status'] == 1) {
             return message('定单已经支付', url('member.index', [], 'ucenter'), 'info');
         }
+        //修改支付类型
+        $pay['type'] = 'alipay';
+        $pay->save();
+        //发起支付
         Config::set('alipay.return_url', web_url()."/alipay/sync/{$pay['module']}/".SITEID);
         Config::set('alipay.notify_url', web_url()."/alipay/async/{$pay['module']}/".SITEID);
         $data = [

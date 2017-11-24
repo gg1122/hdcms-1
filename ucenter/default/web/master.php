@@ -73,7 +73,7 @@
                     </div>
                     <!--会员中心结束-->
                     <!--账号管理开始-->
-                    <?php $MemberMenu = \system\model\Menu::moduleMenus('member',v('member.info.group_id')); ?>
+                    <?php $MemberMenu = \system\model\Menu::moduleMenus('member', v('member.info.group_id')); ?>
                     <foreach from="$MemberMenu" value="$v">
                         <div class="AccountManagementBox">
                             <div class="AccountManagement">
@@ -90,6 +90,25 @@
                             </ul>
                         </div>
                     </foreach>
+                    <div class="AccountManagementBox">
+                        <div class="AccountManagement">
+                            <a href="">资产中心</a>
+                        </div>
+                        <ul>
+                            <li>
+                                <a href="{!! url('pay.lists',[],'ucenter') !!}">支付记录</a>
+                            </li>
+                            <li>
+                                <a href="{!! url('credit.lists',['type'=>'credit1'],'ucenter') !!}">会员积分</a>
+                            </li>
+                            <li>
+                                <a href="{!! url('credit.lists',['type'=>'credit2'],'ucenter') !!}">我的余额</a>
+                            </li>
+                            <li>
+                                <a href="{!! url('account.balance',[],'ucenter') !!}">余额充值</a>
+                            </li>
+                        </ul>
+                    </div>
                     <div class="AccountManagementBox">
                         <div class="AccountManagement">
                             <a href="">我的资料</a>
@@ -129,7 +148,7 @@
             </div>
             <!--左侧部分结束-->
             <!--右侧部分开始-->
-            <div class="BodyRight" >
+            <div class="BodyRight">
                 <div hd-cloak="">
                     <blade name="content"/>
                 </div>

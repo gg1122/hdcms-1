@@ -10,7 +10,7 @@
 
 namespace module\ucenter\controller;
 
-use Cart;
+use houdunwang\request\Request;
 use system\model\Balance;
 use system\model\Pay;
 
@@ -42,15 +42,27 @@ class Account extends Auth
                 'goods_name' => '会员余额充值',
                 'body'       => '会员余额充值',
             ];
-            $res  = $pay->weChat($data);
+            $res  = $pay->make($data);
             //生成支付记录后跳转到支付选择页面
             if ($res === true) {
-                return $this->view($this->template.'/pay', ['data' => $pay]);
+                return url('account.pay', ['tid' => $model['tid']], 'ucenter');
             }
 
             return message($res, url('member.index', [], 'ucenter'), 'info');
         }
 
         return View::make($this->template.'/balance');
+    }
+
+    /**
+     * 显示支付页面
+     *
+     * @return string
+     */
+    public function pay()
+    {
+        $pay = Pay::where('tid', Request::get('tid'))->first();
+
+        return $this->view($this->template.'/pay', ['data' => $pay]);
     }
 }
