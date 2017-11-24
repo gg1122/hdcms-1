@@ -62,7 +62,7 @@
     <?php }?>
     <div class="col-xs-offset-1">
         <ul class="pagination ">
-            {{$data->links()}}
+            {!!$data->links()!!}
         </ul>
     </div>
 </block>

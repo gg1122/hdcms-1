@@ -6,6 +6,12 @@
             <div class="panel-heading">修改会员资料</div>
             <div class="panel-body">
                 <div class="form-group">
+                    <label class="col-sm-2 control-label">会员编号</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" disabled value="{{v('member.info.uid')}}">
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="col-sm-2 control-label">昵称</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="nickname" value="{{$user['nickname']}}">

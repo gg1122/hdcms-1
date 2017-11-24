@@ -49,7 +49,7 @@
                         <th>金额</th>
                         <th>商品</th>
                         <th>状态</th>
-                        <th>支付时间</th>
+                        <th width="150">支付时间</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -71,10 +71,8 @@
             </div>
         </div>
     <?php } ?>
-    <div class="col-xs-offset-1">
-        <ul class="pagination ">
-            {{$data->links()}}
-        </ul>
-    </div>
+    <ul class="pagination ">
+        {!! $data->links() !!}
+    </ul>
 </block>
 <line action="uc.quick_menu"/>

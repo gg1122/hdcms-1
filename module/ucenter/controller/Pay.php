@@ -31,12 +31,11 @@ class Pay extends Auth
         if ($timerange = Request::get('timerange')) {
             //有筛选时间的
             $timerange = explode('至', $timerange);
-            $data      = Model::where('uid', v('member.info.uid'))
-                              ->where('siteid', SITEID)
+            $data      = Model::where('uid', v('member.info.uid'))->where('siteid', SITEID)
                               ->where('updated_at', '>=', $timerange[0])
-                              ->where('updated_at', '<=', $timerange[1])->paginate(10);
+                              ->where('updated_at', '<=', $timerange[1])->orderBy('pid','DESC')->paginate(10);
         } else {
-            $data = Model::where('uid', v('member.info.uid'))->where('siteid', SITEID)->paginate(8);
+            $data = Model::where('uid', v('member.info.uid'))->where('siteid', SITEID)->orderBy('pid','DESC')->paginate(8);
         }
 
         return View::make($this->template.'/pay_lists', compact('data'));
