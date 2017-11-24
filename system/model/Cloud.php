@@ -1,7 +1,7 @@
 <?php namespace system\model;
 
-use Curl;
-use Dir;
+use houdunwang\curl\Curl;
+use houdunwang\dir\Dir;
 
 /**
  * 后盾云
@@ -297,37 +297,36 @@ class Cloud extends Common
     /**
      * 下载应用
      *
-     * @param $type 应用类型模块或模板
-     * @param $id   应用在云编号
+     * @param $type     应用类型模块或模板
+     * @param $name     应用标识
      *
      * @return array|mixed
      */
-    public static function downloadApp($type, $id)
+    public static function downloadApp($type, $name)
     {
-        //获取模块信息
-        $app = Curl::get(self::getHost()."/cloud/getLastAppById&type={$type}&id={$id}");
-        $app = json_decode($app, true);
-
-        if ($app['valid'] == 0) {
-            return $app;
-        }
         //安装前检测
         switch ($type) {
             case 'module':
-                if (Modules::where('name', $app['name'])->get()) {
+                if (Modules::where('name', $name)->get()) {
                     return ['valid' => 0, 'message' => '应用不允许重复安装'];
                 }
-                if (is_dir("addons/{$app['name']}") && ! is_file("addons/{$app['name']}/cloud.php")) {
+                if (is_dir("addons/{$name}") && ! is_file("addons/{$name}/cloud.php")) {
                     return ['valid' => 0, 'message' => '已经存在本地开发的同名模块'];
                 }
                 break;
             case 'template':
-                if (is_dir("theme/{$app['name']}") && ! is_file("addons/{$app['name']}/cloud.php")) {
+                if (is_dir("theme/{$name}") && ! is_file("addons/{$name}/cloud.php")) {
                     return ['valid' => 0, 'message' => '同名模板已经存在'];
                 }
                 break;
         }
-        \houdunwang\dir\Dir::create('addons');
+        //获取模块信息
+        $app = Curl::get(self::getHost()."/cloud/getLastAppByName&type={$type}&name={$name}");
+        $app = json_decode($app, true);
+        if ($app['valid'] == 0) {
+            return $app;
+        }
+        Dir::create('addons');
         //文件保存
         switch ($type) {
             case 'module':

@@ -103,7 +103,7 @@
                     },
                     //安装模块
                     install: function (module) {
-                        $.post("{!! u('install',['type'=>$_GET['type']]) !!}&id=" + module.id, function (json) {
+                        $.post("{!! u('install',['type'=>$_GET['type']]) !!}&module=" + module.name, function (json) {
                             if (json.valid == 0) {
                                 hdjs.message(json.message, '', 'warning', 5);
                             } else {

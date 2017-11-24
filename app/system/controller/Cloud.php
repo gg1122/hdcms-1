@@ -12,7 +12,6 @@
 use houdunwang\cli\Cli;
 use houdunwang\request\Request;
 use system\model\Cloud as CloudModel;
-use Curl;
 
 /**
  * 云帐号管理
