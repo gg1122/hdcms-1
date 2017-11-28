@@ -18,7 +18,9 @@ CREATE TABLE `hd_member_auth` (
   `qq` varchar(300) NOT NULL DEFAULT '',
   `wechat` varchar(300) NOT NULL DEFAULT '',
   `weibo` varchar(300) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `siteid` (`siteid`),
+  KEY `uid` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='第三方帐号登录数据';
 sql;
             Db::execute($sql);

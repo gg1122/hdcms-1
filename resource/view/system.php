@@ -9,7 +9,7 @@
     <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css?version={{HDCMS_VERSION}}" rel="stylesheet">
     <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version={{HDCMS_VERSION}}" rel="stylesheet">
     <link rel="stylesheet" href="/resource/css/hdcms.css?version={{HDCMS_VERSION}}">
-    <link rel="stylesheet" href="/resource/hdjs/dist/hdjs.css?version={{HDCMS_VERSION}}">
+    <link rel="stylesheet" href="/resource/hdjs/dist/static/css/hdjs.css?version={{HDCMS_VERSION}}">
     <script>
         //HDJS组件需要的配置
         window.hdjs = {
@@ -50,10 +50,7 @@
     </script>
 </head>
 <body class="system">
-<div hd-loading="">
-    <span class="timer-loader">Loading…</span>
-</div>
-<div hd-cloak="">
+<div>
     <div class="container-fluid admin-top">
         <!--导航-->
         <nav class="navbar navbar-inverse">

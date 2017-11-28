@@ -150,12 +150,14 @@ class Database extends Admin
     /**
      * 执行数据填充
      *
+     * @param \system\model\Modules $model
+     *
      * @return mixed|string
      */
-    public function makeSeed()
+    public function makeSeed(Modules $model)
     {
-        if (Cli::call("hd seed:make") === false) {
-            return message(Cli::getError(), '', 'error');
+        if ($model->seedsMake($this->module) === false) {
+            return message($model->getError(), '', 'error');
         }
 
         return message('数据填充扫行完毕');

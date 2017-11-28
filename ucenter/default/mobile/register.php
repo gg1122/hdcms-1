@@ -11,12 +11,12 @@
             <form method="post" class="form-horizontal" role="form" onsubmit="post(event)">
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <input type="text" class="form-control input-lg" name="username" placeholder="{{$placeholder}}">
+                        <input type="text" class="form-control input-lg" required name="username" placeholder="{{$placeholder}}">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <input type="password" name="password" class="form-control input-lg" placeholder="请输入不少于5位的密码" required="required"/>
+                        <input type="password" name="password"  class="form-control input-lg" placeholder="请输入不少于5位的密码" required="required"/>
                     </div>
                 </div>
                 <div class="form-group">

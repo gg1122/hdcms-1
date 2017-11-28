@@ -76,7 +76,7 @@
                             </div>
                             <script>
                                 require(['hdjs'], function (hdjs) {
-                                    hdjs.city.render({
+                                    hdjs.city({
                                         //省份标签
                                         province: document.querySelector('[name="resideprovince"]'),
                                         //城市标签

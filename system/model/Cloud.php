@@ -278,7 +278,7 @@ class Cloud extends Common
             Dir::delFile($file);
             //执行数据迁移
             if ((new Modules())->migrateMake($name) === false) {
-                return ['message' => '模块数据表更新失败', 'valid' => 0,];
+                return ['message' => '执行模块数据迁移失败', 'valid' => 0,];
             }
             //初始化模块数据
             (new Modules())->initModuleData($name);
@@ -304,6 +304,9 @@ class Cloud extends Common
      */
     public static function downloadApp($type, $name)
     {
+        if (empty($type) || empty($name)) {
+            return ['valid' => 0, 'message' => '应用标识或类型错误'];
+        }
         //安装前检测
         switch ($type) {
             case 'module':

@@ -50,6 +50,7 @@
                         <th>商品</th>
                         <th>状态</th>
                         <th width="150">支付时间</th>
+                        <th width="60">操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -61,9 +62,22 @@
                             <td>{{$d['fee']}}</td>
                             <td>{{$d['goods_name']}}</td>
                             <td>
-                                {!! $d['status']==1?'已支付':'未支付'!!}
+                                <if value="$d['status']==1">
+                                    <span class="label label-success">已支付</span>
+                                    <else/>
+                                    <span class="label label-default">未支付</span>
+                                </if>
                             </td>
                             <td>{{$d['updated_at']}}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <if value="$d['status']==1">
+                                        <button type="button" disabled class="btn btn-default btn-sm">支付</button>
+                                        <else/>
+                                        <a href="{!! url('account.pay', ['tid' => $d['tid']], 'ucenter') !!}" class="btn btn-default btn-sm">支付</a>
+                                    </if>
+                                </div>
+                            </td>
                         </tr>
                     </foreach>
                     </tbody>

@@ -5,7 +5,6 @@
     <title>会员中心</title>
     <include file="resource/view/member"/>
     <link rel="stylesheet" type="text/css" href="{!! UCENTER_TEMPLATE_URL !!}/static/css/index.css"/>
-    <link rel="stylesheet" href="/resource/hdjs/dist/hdjs.css?version={{HDCMS_VERSION}}">
 </head>
 <body>
 <div class="NavBox">
@@ -32,7 +31,7 @@
                     <div class="HeaerTop">
                         <!--左侧头像开始-->
                         <div class="portrait">
-                            <a href=""><img src="{{icon(v('member.info.icon'))}}"/></a>
+                            <a href="{!! url('my.info',[],'ucenter') !!}"><img src="{{icon(v('member.info.icon'))}}"/></a>
                         </div>
                         <!--左侧头像结束-->
                         <!--右侧文字部分开始-->
@@ -96,7 +95,7 @@
                         </div>
                         <ul>
                             <li>
-                                <a href="{!! url('pay.lists',[],'ucenter') !!}">支付记录</a>
+                                <a href="{!! url('pay.lists',[],'ucenter') !!}">商品订单</a>
                             </li>
                             <li>
                                 <a href="{!! url('credit.lists',['type'=>'credit1'],'ucenter') !!}">会员积分</a>
@@ -149,13 +148,7 @@
             <!--左侧部分结束-->
             <!--右侧部分开始-->
             <div class="BodyRight">
-                <div hd-cloak="">
                     <blade name="content"/>
-                </div>
-                <div hd-loading="">
-                    <span class="timer-loader"></span>
-                    <script>require(['hdjs']);</script>
-                </div>
             </div>
             <!--右侧部分结束-->
         </div>

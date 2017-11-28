@@ -117,7 +117,7 @@
 
 <script>
     require(['hdjs'], function (hdjs) {
-        hdjs.datetimepicker('#datetimepicker').datetimepicker({
+        hdjs.datetimepicker('#datetimepicker',{
             format: 'Y-m-d',
             timepicker: false
         });

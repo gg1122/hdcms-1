@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{!! UCENTER_TEMPLATE_URL !!}/static/css/login.css"/>
 </head>
 <body>
-<div class="container" hd-cloak="">
+<div class="container">
     <if value="v('site.setting.login.type') eq 0">
         <h1 style="margin-top: 100px;">登录暂时关闭</h1>
     </if>
@@ -18,13 +18,13 @@
         <form class="form-horizontal" role="form" onsubmit="post(event)">
             <div class="form-group">
                 <div class="col-sm-12">
-                    <input type="text" class="form-control input-lg" name="username" placeholder="{!! $placeholder !!}"/>
+                    <input type="text" class="form-control input-lg" name="username" placeholder="{!! $placeholder !!}" required="required"/>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
                     <div class="input-group input-group-lg">
-                        <input type="password" class="form-control" name="password" placeholder="请输入密码"/>
+                        <input type="password" class="form-control" name="password" placeholder="请输入密码" required="required"/>
                         <span class="input-group-btn">
                             <a class="btn btn-default" href="{!! url('entry.forgetpwd') !!}">忘记密码？</a>
                         </span>
@@ -69,10 +69,6 @@
         <a href="http://www.hdphp.com" target="_blank">HDPHP</a>构建
         <a href="{!! web_url() !!}">返回首页</a>
     </p>
-</div>
-<div hd-loading="">
-    <span class="timer-loader"></span>
-    <script>require(['hdjs']);</script>
 </div>
 </body>
 </html>

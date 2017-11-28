@@ -110,6 +110,11 @@
         <textarea name="data" v-html="nav" hidden></textarea>
         <button type="submit" class="btn btn-default">保存修改</button>
     </form>
+    <script>
+        require(['hdjs'],function(hdjs){
+            hdjs.bootstrapswitch('.bootstrap-switch');
+        })
+    </script>
     <script type="text/ecmascript">
         require(['hdjs', 'resource/js/hdcms.js','resource/js/link.js', 'vue'], function (hdjs, hdcms, link,Vue) {
             var vm = new Vue({

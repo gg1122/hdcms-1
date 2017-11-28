@@ -33,7 +33,8 @@ CREATE TABLE `hd_attachment` (
   KEY `data` (`data`),
   KEY `extension` (`extension`),
   KEY `hash` (`status`),
-  KEY `siteid` (`siteid`)
+  KEY `siteid` (`siteid`),
+  KEY `module` (`module`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='附件';
 sql;
             Db::execute($sql);

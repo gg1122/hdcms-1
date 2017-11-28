@@ -24,7 +24,6 @@
     <script src="{!! root_url() !!}/resource/hdjs/dist/static/requirejs/require.js?version={{HDCMS_VERSION}}"></script>
     <script src="{!! root_url() !!}/resource/hdjs/dist/static/requirejs/config.js?version={{HDCMS_VERSION}}"></script>
     <link href="/resource/css/hdcms.css?version={{HDCMS_VERSION}}" rel="stylesheet">
-    <link rel="stylesheet" href="/resource/hdjs/dist/hdjs.css">
     <script>
         require(['hdjs'], function () {
             //为异步请求设置CSRF令牌
@@ -37,7 +36,7 @@
     </script>
 </head>
 <body class="hdcms-login">
-<div hd-cloak="">
+<div>
     <div class="container logo">
         <div style="background: url('/resource/images/logo.png') no-repeat; background-size: contain;height: 60px;"></div>
     </div>
@@ -108,8 +107,5 @@
         })
     }
 </script>
-<div hd-loading="">
-    <span class="timer-loader">Loading…</span>
-</div>
 </body>
 </html>

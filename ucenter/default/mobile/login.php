@@ -11,13 +11,13 @@
             <form class="form-horizontal" role="form" onsubmit="post(event)">
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <input type="text" class="form-control input-lg" name="username" placeholder="{{$placeholder}}"/>
+                        <input type="text" class="form-control input-lg" name="username" placeholder="{{$placeholder}}" required="required"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
                         <div class="input-group input-group-lg">
-                            <input type="password" class="form-control" name="password" placeholder="请输入密码"/>
+                            <input type="password" class="form-control" name="password" placeholder="请输入密码" required="required"/>
                             <span class="input-group-btn">
                             <a class="btn btn-default" href="{!! url('entry.forgetpwd') !!}">忘记密码？</a>
                         </span>

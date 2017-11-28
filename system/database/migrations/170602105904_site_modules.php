@@ -17,7 +17,7 @@ CREATE TABLE `hd_site_modules` (
   `module` varchar(45) DEFAULT NULL COMMENT '模块名称',
   PRIMARY KEY (`id`),
   KEY `siteid` (`siteid`)
-) ENGINE=InnoDB AUTO_INCREMENT=215 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='站点扩展模块';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='站点扩展模块';
 sql;
             Db::execute($sql);
         }

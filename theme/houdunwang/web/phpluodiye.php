@@ -464,6 +464,47 @@
 
 					</div>
 				</li>
+                <li>
+                    <p class="title">5.理论实践综合开发</p>
+                    <ul>
+
+                        <li>抛弃js之css3 transition动画大法</li>
+                        <li>时下网页特效开发</li>
+                        <li>实战网页布局</li>
+                        <li>天猫首页图片折叠效果开发</li>
+                        <li>拖拽效果开发</li>
+                        <li>返回顶部效果制作</li>
+                        <li>仿百度tab切换页制作</li>
+                        <li>JQuery焦点图效果、顶部下拉、导航条、放大镜、显隐效果开发</li>
+                        <li>微信小程序开发</li>
+                        <li>前端实战之瀑布流</li>
+                        <li>看你有多色小游戏（基于HTML5）</li>
+                        <li>天猫前端首页开发</li>
+                        <li>基于CSS3的立体幻灯片效果</li>
+                        <li>仿迅雷看看实战开发</li>
+                        <li>手风琴效果实战开发</li>
+                        <li>图片放大效果</li>
+                        <li>图片转动立体效果</li>
+                        <li>商城放大镜效果</li>
+                        <li>顶部滑动下拉广告</li>
+                        <li>随机切换相册</li>
+                        <li>对联广告</li>
+                        <li>豆瓣前端首页开发</li>
+                        <li>圆形导航效果开发</li>
+                        <li>前端面试热点之 JS this对象详解</li>
+                        <li>Gulp.js自动化构建工具</li>
+                        <li>Chart.js图表插件视频教程</li>
+                        <li>网站上线运营实战</li>
+                        <li>handlebars视频教程</li>
+                        <li>Dreamweaver cs5视频教程</li>
+
+
+
+                    </ul>
+                    <div class="bot">
+                        实战说明一切
+                    </div>
+                </li>
 			</ul>
 			<!--第一阶段结束-->
 
@@ -605,6 +646,42 @@
 					</div>
 				</li>
 
+                <li>
+                    <p class="title">6.综合开发
+
+                    </p>
+                    <ul>
+                        <li>thinkphp博客开发</li>
+                        <li>Thinkphp5系列之Auth打造网站完整权限管理系统</li>
+                        <li>新浪微博授权登录API使用</li>
+                        <li>php核心编程思想之组件化开发</li>
+                        <li>网站会员注册之发送邮件验证码实战讲解</li>
+                        <li>钉钉群机器人实战开发教程</li>
+                        <li>百度地图和高德地图的API视频教程</li>
+                        <li>极验验证码教程</li>
+                        <li>ecshop二次开发</li>
+                        <li>微信公众号支付视频</li>
+                        <li>美团网站开发</li>
+                        <li>基于HDPHP的问答系统开发</li>
+                        <li>PHP类库开发</li>
+                        <li>单例模式</li>
+                        <li>文章上下篇切换效果</li>
+                        <li>RBAC权限验证</li>
+                        <li>QQ接口接入网站</li>
+                        <li>nginx服务器视频教程</li>
+                        <li>discuz讲解</li>
+                        <li>Yii2.0框架开发实战</li>
+                        <li>smarty开发</li>
+                        <li>Sphinx&Coreseek中文分词</li>
+                        <li>PHPCMS网站模板开发</li>
+                        <li>北京土特产网实战DEDE织梦后台开发</li>
+
+                    </ul>
+                    <div class="bot">
+                        综合开发
+                    </div>
+                </li>
+
 			</ul>
 			<!--第二阶段结束-->
 
@@ -693,6 +770,27 @@
 
 					</div>
 				</li>
+                <li>
+                    <p class="title">4. 综合开发
+
+                    </p>
+                    <ul>
+                        <li>移动端滑动轮播图效果开发</li>
+                        <li>利用swiper框架快速实现移动端轮播图</li>
+                        <li>移动端淘宝首页开发实战</li>
+                        <li>元素居中的N种玩法</li>
+                        <li>RequireJs开发</li>
+                        <li>AngularJS开发</li>
+                        <li>Flexible框架实战开发移动端淘宝网站</li>
+                        <li>移动端淘宝首页开发实战</li>
+                        <li>bootstrap基础与实战开发</li>
+                        <li>移动端微场景开发课程(swiper框架)</li>
+
+                    </ul>
+                    <div class="bot">
+                        综合开发
+                    </div>
+                </li>
 
 			</ul>
 			<!--第三阶段结束-->

@@ -12,10 +12,12 @@ namespace app\site\controller;
 
 use Request;
 use houdunwang\route\Controller;
+use system\model\CreditsRecord;
 use system\model\Menu;
 use system\model\Modules;
 use system\model\ModulesBindings;
 use system\model\Site;
+use system\model\SiteSetting;
 
 /**
  * 网站入口管理
@@ -48,9 +50,11 @@ class Entry extends Controller
                     return call_user_func_array([new $class, $do['do']], []);
                 }
             }
+
             //没有模块执行时，执行文章模块
             return $this->articleModuleHome();
         }
+
         return u('system.site.lists');
     }
 

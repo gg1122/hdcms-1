@@ -30,7 +30,7 @@ area{
 }
 
 #slideArea .NewsBox .NewS {
-    width: 214px;
+    width: 170px;
     height: 335px;
     float: left;
     background: #FFFFFF;
@@ -183,7 +183,7 @@ area{
 
 #slideArea div.lession {
     float: right;
-    width: 250px;
+    width: 238px;
     height: 335px;
     padding: 0px 10px 0px 10px;
     border: 1px solid #dcdcdc;
@@ -345,7 +345,7 @@ area{
 
 #stuStyle .eduinfo {
     float: right;
-    width: 250px;
+    width: 226px;
     height: 435px;
     padding: 0px 10px 0px 10px;
     border: 1px solid #dcdcdc;
@@ -502,10 +502,10 @@ div#product .productarea .productbtn {
 }
 
 #stupro .probody li {
-    width: 278px;
+    width: 273px;
     float: left;
     margin-left: 10px;
-    margin-right: 10px;
+    /*margin-right: 10px;*/
     margin-bottom: 10px;
     position: relative;
     padding: 6px;
@@ -578,6 +578,30 @@ div#product .productarea .productbtn {
     -webkit-box-orient: vertical;
 }
 
+/*校园活动*/
+#stupro .probody.school li {
+    width: 273px;
+    margin-left: 10px;
+    margin-right: 0px;
+}
+
+#stupro .probody.school li a {
+    width: 100%;
+}
+
+#stupro .probody.school li a img {
+    max-width: 278px;
+    position: absolute;
+    height: auto;
+}
+
+#stupro .probody.school li a {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+/*校园活动结束*/
+
+
 #team {
     width: 100%;
     min-width: 1200px;
@@ -619,7 +643,7 @@ color: #424c6e;
 
 #team .teamarea .member li {
     float: left;
-    width: 260px;
+    width: 267px;
     overflow: hidden;
     border: solid 1px #dcdcdc;
     margin: 10px;
@@ -656,8 +680,8 @@ color: #424c6e;
     line-height: 20px;
     color: #55555f;
     padding: 0px 10px;
-    width: 100%;
-    text-align: center;
+    width: 93%;
+    /*text-align: center;*/
     margin: 0px auto;
 }
 
@@ -804,8 +828,9 @@ color: #424c6e;
 
 #clients .clientarea ul {
     float: left;
-    width: 1200px;
+    /*width: 1200px;*/
     margin-top: 20px;
+    margin-left: 28px;
 }
 
 #clients .clientarea ul li {

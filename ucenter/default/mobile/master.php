@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{!! UCENTER_TEMPLATE_URL !!}/css/common.css">
 </head>
 <body>
-<div hd-cloak="">
+<div>
     <widget name="header">
         <div class="hd-mobile-header-container">
             <div class="hd-mobile-header">
@@ -40,10 +40,6 @@
         </p>
     </widget>
     <blade name="content"/>
-</div>
-<div hd-loading="">
-    <span class="timer-loader"></span>
-    <script>require(['hdjs']);</script>
 </div>
 </body>
 </html>

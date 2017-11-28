@@ -784,6 +784,28 @@ class Modules extends Common
     }
 
     /**
+     * 执行数据填充
+     *
+     * @param string $name 模块标识
+     *
+     * @return bool
+     */
+    public function seedsMake($name)
+    {
+        Cli::setPath([
+            'migration' => "addons/{$name}/database/migrations",
+            'seed'      => "addons/{$name}/database/seeds",
+        ]);
+        if (Cli::call("hd seed:make") === false) {
+            $this->setError(Cli::getError());
+
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * 重置数据迁移
      *
      * @param string $name 模块标识

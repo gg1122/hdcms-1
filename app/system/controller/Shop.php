@@ -99,6 +99,6 @@ class Shop extends Admin
      */
     public function install()
     {
-        return Cloud::downloadApp(Request::get('type'), Request::get('name'));
+        return Cloud::downloadApp(Request::get('type'), Request::get('module'));
     }
 }

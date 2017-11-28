@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{!! UCENTER_TEMPLATE_URL !!}/static/css/register.css"/>
 </head>
 <body>
-<div class="container" hd-cloak>
+<div class="container" >
     <if value="v('site.setting.register.type') eq 0">
         <h1 style="margin-top: 100px;">网站暂时关闭注册</h1>
     </if>
@@ -18,7 +18,7 @@
         <form method="post" class="form-horizontal" role="form" onsubmit="post(event)">
             <div class="form-group">
                 <div class="col-sm-12">
-                    <input type="text" class="form-control input-lg" name="username" placeholder="{!! $placeholder !!}">
+                    <input type="text" class="form-control input-lg" name="username" placeholder="{!! $placeholder !!}" required="required">
                 </div>
             </div>
             <div class="form-group">
@@ -137,10 +137,6 @@
         <a href="http://www.hdphp.com" target="_blank">HDPHP</a>构建
         <a href="{!! web_url() !!}">返回首页</a>
     </p>
-</div>
-<div hd-loading="">
-    <span class="timer-loader"></span>
-    <script>require(['hdjs']);</script>
 </div>
 </body>
 </html>

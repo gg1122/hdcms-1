@@ -59,7 +59,7 @@
     <style>
         .thumbnail img {
             border: solid 1px #ddd;
-            height: 200px;
+            height: 150px;
             width: 100%;
             display: block;
         }
@@ -68,7 +68,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
             height: 40px;
-            font-size: 14px;
+            font-size: 12px;
             margin-top: 6px;
         }
     </style>

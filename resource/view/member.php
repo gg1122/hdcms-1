@@ -4,7 +4,7 @@
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css?version={{HDCMS_VERSION}}" rel="stylesheet">
 <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version={{HDCMS_VERSION}}" rel="stylesheet">
-<link rel="stylesheet" href="/resource/hdjs/dist/hdjs.css?version={{HDCMS_VERSION}}">
+<link rel="stylesheet" href="/resource/hdjs/dist/static/css/hdjs.css?version={{HDCMS_VERSION}}">
 <script>
     //HDJS组件需要的配置
     window.hdjs = {
@@ -40,13 +40,3 @@
 </script>
 <script src="/resource/hdjs/dist/static/requirejs/require.js?version={{HDCMS_VERSION}}"></script>
 <script src="/resource/hdjs/dist/static/requirejs/config.js?version={{HDCMS_VERSION}}"></script>
-<script>
-    require(['hdjs'], function () {
-        //为异步请求设置CSRF令牌
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-    })
-</script>

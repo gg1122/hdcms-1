@@ -114,11 +114,11 @@ trait Field
     {
         $this->fields[] = [
             'field' => 'created_at',
-            'sql'   => "created_at MEDIUMTEXT ",
+            'sql'   => "created_at DATETIME NOT NULL",
         ];
         $this->fields[] = [
             'field' => 'updated_at',
-            'sql'   => "updated_at MEDIUMTEXT ",
+            'sql'   => "updated_at DATETIME NOT NULL",
         ];
     }
 

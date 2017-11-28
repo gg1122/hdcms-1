@@ -1,7 +1,7 @@
 <extend file='UCENTER_MASTER_FILE'/>
 <block name="content">
     <link rel="stylesheet" href="{!! UCENTER_TEMPLATE_URL !!}/css/home.css">
-    <div class="ucenter" hd-cloak="">
+    <div class="ucenter" >
         <div>
             <div class="header" style="background-image: url(resource/images/bg.jpg)">
                 <div class="col-xs-3 ico">

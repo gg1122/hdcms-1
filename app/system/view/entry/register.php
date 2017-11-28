@@ -36,7 +36,7 @@
     </script>
 </head>
 <body class="hdcms-login">
-<div hd-cloak="">
+<div>
     <div class="container logo" style="width:800px;">
         <div style="background: url('/resource/images/logo.png') no-repeat; background-size: contain;height: 60px;"></div>
     </div>
@@ -94,9 +94,6 @@
             })
         }
     </script>
-</div>
-<div hd-loading="">
-    <span class="timer-loader">Loading…</span>
 </div>
 </body>
 </html>

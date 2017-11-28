@@ -92,7 +92,7 @@ class VaAction
     //最大长度验证
     public function maxlen($name, $value, $params)
     {
-        $len = mb_strlen(strip_tags(str_replace("<br>", "", $value)), 'utf-8');
+        $len = mb_strlen(trim($value), 'utf-8');
         if ($len <= $params) {
             return true;
         }
@@ -101,7 +101,7 @@ class VaAction
     //最小长度验证
     public function minlen($name, $value, $params)
     {
-        $len = mb_strlen(strip_tags(str_replace("<br>", "", $value)), 'utf-8');
+        $len = mb_strlen(trim($value), 'utf-8');
         if ($len >= $params) {
             return true;
         }

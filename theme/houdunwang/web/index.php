@@ -5,7 +5,6 @@
     <title>后盾网_PHP培训_PHP视频教程_北京PHP培训_后盾网有实力做后盾!全国PHP实战培训,全程实战,抵制肤浅内容</title>
     <link rel="stylesheet" type="text/css" href="{{ARTICLE_URL}}/css/common.css?version={{HDCMS_VERSION}}"/>
     <link rel="stylesheet" type="text/css" href="{{ARTICLE_URL}}/css/index.css?version={{HDCMS_VERSION}}"/>
-    <link rel="stylesheet" type="text/css" href="http://www.houdunwang.com/resource/hdjs/dist/hdjs.css?version=1.2.62"/>
     <meta name="keywords" content="北京php培训,php视频教程,php培训,php基础视频,php实例视频,lamp视频教程"/>
     <meta name="description" content="后盾网顶尖PHP培训，最专业的网站开发php培训，小班化授课，全程实战！业内顶级北京php培训讲师亲自授课，千余课时php独家视频教程免费下载，数百G原创视频资源，实力不容造假！抢座热线：400-682-3231"/>
     <!--swiper-->
@@ -211,28 +210,6 @@
 					</tag>
 				</span>
     </div>
-    <style>
-        #stupro .probody.school li {
-            width: 278px;
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-
-        #stupro .probody.school li a {
-            width: 100%;
-        }
-
-        #stupro .probody.school li a img {
-            max-width: 278px;
-            position: absolute;
-            height: auto;
-        }
-
-        #stupro .probody.school li a {
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-    </style>
     <ul class="probody school">
         <tag action="article.lists" row="8" cid="38" titlelen="34">
             <li>

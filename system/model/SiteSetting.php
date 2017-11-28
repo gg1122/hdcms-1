@@ -32,4 +32,22 @@ class SiteSetting extends Common
             ['welcome', '', 'string', self::EMPTY_AUTO, self::MODEL_INSERT],
             ['default_message', '', 'string', self::EMPTY_AUTO, self::MODEL_INSERT],
         ];
+
+    /**
+     * 获取站点可用的积分类型
+     *
+     * @return array
+     */
+    public static function creditLists()
+    {
+        $data = [];
+        foreach (v('site.setting.creditnames') as $name => $v) {
+            if ($v['status'] == 1) {
+                $v['name']   = $name;
+                $data[$name] = $v;
+            }
+        }
+
+        return $data;
+    }
 }
