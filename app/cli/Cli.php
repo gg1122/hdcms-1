@@ -104,7 +104,7 @@ class Cli extends Base
     public function upgrade($oldVersion = '')
     {
         $this->version('upgrade');
-        exec("git tag -l", $tags);p($tags);die;
+        exec("git tag -l", $tags);
         $newVersion = array_pop($tags);
         $oldVersion = $oldVersion ?: array_pop($tags);
         exec("git diff $oldVersion $newVersion --name-status ", $files);
