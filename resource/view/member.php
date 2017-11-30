@@ -22,7 +22,8 @@
         module: "<?php echo v('module.name')?>",
         //用于上传等组件使用标识当前是后台用户
         user_type: 'member',
-        is_wechat: '<?php echo \houdunwang\request\Request::isWeChat() ? 1 : 0;?>'
+        is_wechat: '<?php echo \houdunwang\request\Request::isWeChat() ? 1 : 0;?>',
+        is_mobile: '<?php echo \houdunwang\request\Request::isMobile() ? 1 : 0;?>'
     }
     window.user = {
         uid: "{{ v('member.info.uid')}}",

@@ -7,7 +7,7 @@
 //     node_modules: '', base: '/node_modules/hdjs/', uploader: '', filesLists: '', hdjs: ''
 // }, window.hdjs);
 require.config({
-    urlArgs: 'version=1.2.93',
+    urlArgs: 'version=1.2.95',
     baseUrl: window.hdjs.base,
     paths: {
         hdjs: 'dist/static/hdjs',
@@ -86,7 +86,7 @@ require([
     'jquery',
     'https://cdn.bootcss.com/axios/0.17.1/axios.min.js',
     'lodash',
-    'bootstrap',
+    'bootstrap'
 ], function ($, axios, _) {
     window.$ = window.jQuery = $;
     window._ = _;
@@ -109,6 +109,6 @@ require([
             }
         });
     } else {
-        console.error('CSRF token not found');
+        // console.error('CSRF token not found');
     }
 })

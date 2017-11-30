@@ -285,8 +285,6 @@ class Cloud extends Common
             //更新数据表模块编译版本
             $data = ['version' => $app['zip']['version'], 'build' => $app['zip']['build']];
             Modules::where('name', $name)->update($data);
-            //更新模块安装数量
-            Curl::post(self::getHost()."/cloud/updateModuleInstallNum", $app);
 
             return ['message' => '模块更新完毕', 'config' => $app, 'valid' => 1,];
         } else {

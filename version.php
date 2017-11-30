@@ -1,7 +1,7 @@
 <?php return array (
-  'version' => 'v2.0.3',
-  'build' => '20171129005820',
-  'logs' => '更新hdjs新版',
-  'type' => 'full',
+  'version' => 'v2.0.5',
+  'build' => '20171129010103',
+  'logs' => '更新版本',
+  'type' => 'upgrade',
   'explain' => '',
 );
