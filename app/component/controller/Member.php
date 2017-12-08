@@ -67,6 +67,9 @@ class Member
                 case 'email':
                     $db->where('email', 'like', "%{$name}%");
                     break;
+                case 'nickname':
+                    $db->where('nickname', 'like', "%{$name}%");
+                    break;
             }
             return $db->get();
         }

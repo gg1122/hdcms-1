@@ -24,6 +24,9 @@
             <label class="radio-inline">
                 <input type="radio" v-model="type" value="email"> 邮箱
             </label>
+            <label class="radio-inline">
+                <input type="radio" v-model="type" value="nickname"> 昵称
+            </label>
         </div>
     </div>
     <table class="table table-hover">

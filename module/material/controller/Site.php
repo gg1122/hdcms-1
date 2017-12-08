@@ -168,7 +168,6 @@ class Site extends HdController
                             file_put_contents($pic, $imgContent);
                             $v['content']['news_item'][$n]['pic'] = $pic;
                         }
-                        die;
                         $model             = new Material();
                         $model['media_id'] = $v['media_id'];
                         $model['type']     = 'news';
@@ -176,14 +175,11 @@ class Site extends HdController
                         $model['data']     = json_encode($data, JSON_UNESCAPED_UNICODE);
                         $model->save();
                     }
-                    die;
                 }
             }
             $end = $pos + $result['item_count'];
-
             return message("准备同步[{$pos} ~ {$end}]图文消息", url('site/syncNews', ['pos' => $end]), 'success', 2);
         }
-
         return message('准备同步图文消息', url('site/syncNews', ['pos' => 0]), 'success', 2);
     }
 
@@ -191,6 +187,7 @@ class Site extends HdController
      * 添加或修改图文消息
      *
      * @return mixed|string
+     * @throws \Exception
      */
     public function postNews()
     {
