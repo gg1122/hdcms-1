@@ -95,13 +95,12 @@ class Site extends HdController
      */
     public function news()
     {
-        $data = Db::table('material')->where('siteid', SITEID)->where('type', 'news')->orderBy('id', 'DESC')->get();
-        foreach ((array)$data as $k => $v) {
+        $data = Material::where('siteid', SITEID)->where('type', 'news')->orderBy('id', 'DESC')->paginate(10);
+        foreach ($data as $k => $v) {
             $data[$k]['data'] = json_decode($v['data'], true);
         }
-        View::with('data', json_encode($data, JSON_UNESCAPED_UNICODE));
 
-        return view($this->template.'/news.php');
+        return $this->view($this->template.'/news.php', compact('data'));
     }
 
     /**
@@ -133,6 +132,7 @@ class Site extends HdController
      * 同步图文消息
      *
      * @return mixed|string
+     * @throws \Exception
      */
     public function syncNews()
     {
@@ -147,32 +147,36 @@ class Site extends HdController
                 "count"  => 10,
             ];
             $result = WeChat::instance('material')->lists($param);
+            Dir::create(Config::get('upload.path'));
             if (isset($result['errcode'])) {
-                return message('同步图文消息失败'.$result['errmsg'], site_url('site/news'), 'error');
+                return message('同步图文消息失败, '.$result['errmsg'], url('site/news'), 'error');
             } else {
                 if (empty($result['item'])) {
                     return message('全部同步完毕', url('site/news'), 'success');
                 }
                 //创建上传目录
-                Dir::create(Config::get('upload.path').'/'.date('Y/m/d'));
                 foreach ($result['item'] as $k => $v) {
                     $field = Material::where('media_id', $v['media_id'])->where('siteid', SITEID)->first();
                     if (empty($field)) {
                         //保存缩略图
                         foreach ($v['content']['news_item'] as $n => $m) {
                             $imgContent = WeChat::instance('material')->getMaterial($m['thumb_media_id']);
-                            $pic        = Config::get('upload.path').'/'.date('Y/m/d').'/'.time().mt_rand(0, 999).'.jpg';
+                            if (isset($imgContent['errcode']) && $imgContent['errcode']) {
+                                return message('同步图文消息失败, '.$imgContent['errmsg'], url('site/news'), 'error');
+                            }
+                            $pic = Config::get('upload.path')."/{$v['media_id']}_{$m['thumb_media_id']}.jpg";
                             file_put_contents($pic, $imgContent);
                             $v['content']['news_item'][$n]['pic'] = $pic;
                         }
-                        $model = new Material();
-                        //本地不存在时添加到数据库
+                        die;
+                        $model             = new Material();
                         $model['media_id'] = $v['media_id'];
                         $model['type']     = 'news';
                         $data              = ['articles' => $v['content']['news_item']];
                         $model['data']     = json_encode($data, JSON_UNESCAPED_UNICODE);
                         $model->save();
                     }
+                    die;
                 }
             }
             $end = $pos + $result['item_count'];
@@ -287,8 +291,7 @@ str;
      */
     public function users()
     {
-        $user = Db::table('member')
-                  ->join('member_auth', 'member.uid', '=', 'member_auth.uid')
+        $user = Db::table('member')->join('member_auth', 'member.uid', '=', 'member_auth.uid')
                   ->where('member_auth.wechat', '<>', '')
                   ->where('member.siteid', siteid())->get();
 

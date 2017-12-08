@@ -14,8 +14,9 @@
                 <i class="fa fa-mixcloud"></i> <span>会员中心</span>
             </a>
             <div class="TopMenu">
-                <a href="{{__ROOT__}}">网站首页</a>
-                <a href="http://www.houdunwang.com">猎人训练</a>
+                <a href="{{__ROOT__}}"> <i class="fa fa-home"></i> 网站首页</a>
+                <a href="{{url('message.lists',[],'ucenter')}}"> <i class="fa fa-rss-square"></i> 消息中心</a>
+                <a href="http://www.houdunwang.com"> <i class="fa fa-github"></i> 猎人训练</a>
             </div>
         </div>
     </div>
@@ -33,12 +34,6 @@
                         <div class="portrait">
                             <a href="{!! url('my.info',[],'ucenter') !!}"><img src="{{icon(v('member.info.icon'))}}"/></a>
                         </div>
-                        <!--左侧头像结束-->
-                        <!--右侧文字部分开始-->
-                        <!--<div class="name">-->
-                        <!--<p>欢迎你，<span>二嘎子</span></p>-->
-                        <!--</div>-->
-                        <!--右侧文字部分结束-->
                     </div>
                     <!--蓝色背景active-->
                     <div class="HeaerBottom">
@@ -98,10 +93,7 @@
                                 <a href="{!! url('pay.lists',[],'ucenter') !!}">商品订单</a>
                             </li>
                             <li>
-                                <a href="{!! url('credit.lists',['type'=>'credit1'],'ucenter') !!}">会员积分</a>
-                            </li>
-                            <li>
-                                <a href="{!! url('credit.lists',['type'=>'credit2'],'ucenter') !!}">我的余额</a>
+                                <a href="{!! url('credit.lists',['type'=>'credit1'],'ucenter') !!}">积分余额</a>
                             </li>
                             <li>
                                 <a href="{!! url('account.balance',[],'ucenter') !!}">余额充值</a>

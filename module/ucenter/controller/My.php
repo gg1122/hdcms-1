@@ -37,6 +37,7 @@ class My extends Auth
             }
         }
         View::with('user', v('member.info'));
+
         return $this->view($this->template.'/my_info');
     }
 

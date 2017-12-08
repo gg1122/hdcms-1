@@ -64,24 +64,36 @@ function cache($name, $value = '[get]', $expire = 0, $field = [], $siteid = 0)
  * @param string $message 日志内容
  *
  * @return bool
+ * @throws \Exception
  */
 function record($message)
 {
-    $data['uid']         = v('user.info.uid');
-    $data['content']     = $message;
-    $data['record_time'] = time();
-    $data['url']         = __URL__;
-    if (MODULE == 'system') {
-        //系统应用管理
-        $data['system_module'] = 1;
-        $data['siteid']        = Request::get('siteid') ?: 0;
-    } else {
-        //站点管理时记录站点编号
-        $data['system_module'] = 0;
-        $data['siteid']        = SITEID;
+    $data['uid']           = v('user.info.uid');
+    $data['content']       = $message;
+    $data['url']           = __URL__;
+    $data['system_module'] = MODULE == 'system' ? 1 : 0;
+
+    return (new \system\model\Log())->save($data);
+}
+
+/**
+ * 会员中心通知
+ *
+ * @param $data
+ *
+ * @return bool
+ * @throws \Exception
+ */
+function notification($data)
+{
+    if ($uid = v('member.info.uid')) {
+        $model       = new \system\model\Notification();
+        $data['uid'] = $uid;
+
+        return $model->save($data);
     }
 
-    return Db::table('log')->insert($data);
+    return false;
 }
 
 /**

@@ -8,17 +8,17 @@
  * | Copyright (c) 2012-2019, www.houdunwang.com. All Rights Reserved.
  * '-------------------------------------------------------------------*/
 
-namespace houdunwang\wechat\build\customservice;
+namespace houdunwang\wechat\build\js;
 
 use houdunwang\wechat\build\Base;
 
 /**
- * 客服接口
+ * JSSDK处理
  * Class App
  *
  * @package houdunwang\wechat\build
  */
 class App extends Base
 {
-    use CustomManage, CustomMessage;
+    use Basic;
 }

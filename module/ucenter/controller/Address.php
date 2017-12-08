@@ -39,7 +39,8 @@ class Address extends Auth
     /**
      * 设置地址
      *
-     * @return mixed
+     * @return mixed|string
+     * @throws \Exception
      */
     public function post()
     {

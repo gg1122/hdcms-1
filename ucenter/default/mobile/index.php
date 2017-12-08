@@ -80,6 +80,10 @@
                 <i class="fa fa-film"></i>
                 地址管理 <i class="fa fa-angle-right pull-right"></i>
             </a>
+            <a href="{!! __ROOT__ !!}" class="list-group-item">
+                <i class="fa fa-home"></i>
+                网站首页 <i class="fa fa-angle-right pull-right"></i>
+            </a>
             <a href="{!! url('entry/out') !!}" class="list-group-item">
                 <i class="fa fa-external-link"></i>
                 退出系统 <i class="fa fa-angle-right pull-right"></i>

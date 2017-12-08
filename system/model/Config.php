@@ -68,6 +68,7 @@ class Config extends Common
         C::set('http', array_merge(C::get('http'), $this->config['site']['http']));
         C::set('aliyun', array_merge(C::get('aliyun'), $this->config['site']['aliyun']));
         C::set('oss', array_merge(C::get('oss'), $this->config['site']['oss']));
+        C::set('upload.path', C::get('upload.path').'/'.date('Y/m/d'));
         v('config.site', $this->config['site']);
     }
 

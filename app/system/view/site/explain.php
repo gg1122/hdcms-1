@@ -75,11 +75,9 @@
     <script>
         //复制链接
         require(['hdjs'], function (hdjs) {
-            var clipboard = hdjs.clipboard('.copy')
-            clipboard.on('success', function (e) {
+            var clipboard = hdjs.clipboard('.copy', {},function (e) {
                 hdjs.notify('复制成功');
-                e.clearSelection();
-            });
+            })
         })
     </script>
     <script>
@@ -88,13 +86,13 @@
             require(['hdjs'], function (hdjs) {
                 axios.get("?s=system/site/connect&siteid={{SITEID}}", {params: {}}).then(function (response) {
                     if (_.isObject(response.data)) {
-                        if (response.valid) {
-                            hdjs.message(response.message, '', 'success');
+                        if (response.data.valid) {
+                            hdjs.message(response.data.message, '', 'success');
                         } else {
-                            hdjs.message(response.message, '', 'error');
+                            hdjs.message(response.data.message, '', 'error');
                         }
                     } else {
-                        hdjs.message(response.data, '', 'info');
+                        hdjs.message(response.data.data, '', 'info');
                     }
                 }).catch(function (error) {
                     console.log(error);

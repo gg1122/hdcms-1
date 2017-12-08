@@ -1,6 +1,7 @@
 <?php namespace app\component\controller;
 
 use houdunwang\request\Request;
+
 /**
  * 用户
  * Class User

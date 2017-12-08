@@ -213,6 +213,7 @@ class Site extends Common
      * @param int $siteId 站点编号
      *
      * @return bool
+     * @throws \Exception
      */
     public function InitializationSiteTableData($siteId)
     {
@@ -225,11 +226,11 @@ class Site extends Common
         $SiteSetting['siteid']      = $siteId;
         $SiteSetting['quickmenu']   = 1;
         $SiteSetting['creditnames'] = json_encode([
-            'credit1' => ['title' => '积分', 'status' => 1],
-            'credit2' => ['title' => '余额', 'status' => 1],
-            'credit3' => ['title' => '', 'status' => 0],
-            'credit4' => ['title' => '', 'status' => 0],
-            'credit5' => ['title' => '', 'status' => 0],
+            'credit1' => ['title' => '积分', 'status' => 1,'unit'=>'个'],
+            'credit2' => ['title' => '余额', 'status' => 1,'unit'=>'元'],
+            'credit3' => ['title' => '', 'status' => 0,'unit'=>'个'],
+            'credit4' => ['title' => '', 'status' => 0,'unit'=>'个'],
+            'credit5' => ['title' => '', 'status' => 0,'unit'=>'个'],
         ], JSON_UNESCAPED_UNICODE);
         //注册设置
         $SiteSetting['register'] = [

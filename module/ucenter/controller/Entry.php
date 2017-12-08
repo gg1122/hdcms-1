@@ -177,6 +177,14 @@ class Entry extends HdController
         return $this->view($this->template.'/login', ['url' => $this->fromUrl]);
     }
 
+    /**
+     * 微信登录
+     *
+     * @param \system\model\Member $member
+     *
+     * @return mixed|string
+     * @throws \Exception
+     */
     public function wechatLogin(Member $member)
     {
         $res = $member->weChatLogin();
@@ -208,6 +216,6 @@ class Entry extends HdController
     {
         Session::del('member_uid');
 
-        return $this->redirect();
+        return __ROOT__;
     }
 }

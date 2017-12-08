@@ -299,11 +299,11 @@ class Model implements ArrayAccess, Iterator
         $this->autoFilter();
         //自动完成
         $this->autoOperation();
-        $this->original = array_merge($this->data, $this->original);
         //自动验证
         if ( ! $this->autoValidate()) {
             return false;
         }
+        $this->original = array_merge($this->data, $this->original);
         //创建添加数据
         $this->create();
         //更新条件检测

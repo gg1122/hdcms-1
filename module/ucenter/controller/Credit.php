@@ -12,6 +12,7 @@ namespace module\ucenter\controller;
 
 use houdunwang\request\Request;
 use system\model\CreditsRecord;
+use system\model\SiteSetting;
 
 /**
  * 会员积分余额管理
@@ -35,12 +36,14 @@ class Credit extends Auth
                                       ->where('createtime', '>=', strtotime($timerange[0]))
                                       ->where('createtime', '<=', strtotime($timerange[1]))->paginate(10);
         } else {
-            $data = CreditsRecord::where('uid', v('member.info.uid'))->where('credittype', q('get.type'))->paginate(8);
+            $data = CreditsRecord::where('uid', v('member.info.uid'))->where('credittype', q('get.type'))->paginate(20);
         }
         //收入
         $income = CreditsRecord::where('num', '>', 0)->where('uid', v('member.info.uid'))->where('credittype', q('get.type'))->sum('num');
         //支出
         $expend = CreditsRecord::where('num', '<', 0)->where('uid', v('member.info.uid'))->where('credittype', q('get.type'))->sum('num');
-        return View::make($this->template.'/credit_lists', compact('data', 'income', 'expend'));
+        //积分列表
+        $credits = SiteSetting::creditLists();
+        return View::make($this->template.'/credit_lists', compact('data', 'income', 'expend', 'credits'));
     }
 }

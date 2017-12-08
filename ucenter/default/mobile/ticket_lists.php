@@ -44,7 +44,7 @@
                 </div>
                 <div class="convert">
                     <if value="$_GET['status']==1">
-                        <a href="{!! url('ticket/employ')}}&tid={{$d['tid']}}&type={{$_GET['type'] !!}">立即使用</a>
+                        <a href="{!! url('ticket/employ') !!}&tid={{$d['tid']}}&type={{$_GET['type'] !!}">立即使用</a>
                     </if>
                     <if value="$_GET['status']==2">
                         <a href="javascript:;">已经使用</a>

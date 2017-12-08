@@ -14,7 +14,8 @@ class Tag
     public function header($attr)
     {
         if (Request::isMobile()) {
-            $url = isset($attr['url']) ? $attr['url'] : url('member.index', [], 'ucenter');
+            $url = v('module.name') == 'ucenter' ? url('member.index', [], 'ucenter') : (__HISTORY__ ?: __ROOT__);
+            $url = isset($attr['url']) ? $attr['url'] : $url;
             $php
                  = <<<str
 <div class="container">

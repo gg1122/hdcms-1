@@ -163,27 +163,22 @@ class Base extends Error
     public function setAccessToken($force = false)
     {
         static $accessToken;
-        //缓存文件
-        $file = $this->cacheDir.'/'.md5($this->appid.$this->appsecret).'.php';
         if ( ! $accessToken) {
-            if ($force === false && is_file($file) && filemtime($file) + 7000 > time()) {
-                //缓存有效
-                $data = include $file;
-            } else {
-                $url  = $this->apiUrl
-                        .'/cgi-bin/token?grant_type=client_credential&appid='
-                        .$this->appid.'&secret='.$this->appsecret;
+            $cacheName = $this->appid.$this->appsecret.'_wechat_access_token_';
+            $data      = Cache::get($cacheName);
+            if ($force === true || ! $data) {
+                $url  = $this->apiUrl.'/cgi-bin/token?grant_type=client_credential&appid='.$this->appid.'&secret='.$this->appsecret;
                 $data = json_decode(Curl::get($url), true);
                 //获取失败
                 if (isset($data['errmsg'])) {
                     throw new \Exception($data['errmsg']);
                 }
                 //缓存access_token
-                Dir::create($this->cacheDir);
-                file_put_contents($file, '<?php return '.var_export($data, true).';?>');
+                Cache::set($cacheName, $data, 7000);
             }
             $accessToken = $data['access_token'];
         }
+
         $this->accessToken = $accessToken;
     }
 

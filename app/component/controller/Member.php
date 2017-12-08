@@ -43,4 +43,34 @@ class Member
 
         return view();
     }
+
+    /**
+     * 获取微信粉丝
+     *
+     * @return mixed
+     */
+    public function wechat()
+    {
+        if (IS_POST) {
+            $siteid = Request::get('siteid', SITEID);
+            //搜索词
+            $name = Request::post('name');
+            $db   = Db::table('member')
+                      ->join('member_auth', 'member.uid', '=', 'member_auth.uid')
+                      ->join('member_group', 'member.group_id', '=', 'member_group.id')
+                      ->where('member_auth.wechat', '<>', '')->where('member.siteid', $siteid)->limit(20);
+            $db->field('member.uid,email,mobile,group_id,member_group.title group_title,member.created_at,member.nickname,member.realname');
+            switch (Request::post('type')) {
+                case 'mobile':
+                    $db->where('mobile', 'like', "%{$name}%");
+                    break;
+                case 'email':
+                    $db->where('email', 'like', "%{$name}%");
+                    break;
+            }
+            return $db->get();
+        }
+
+        return view();
+    }
 }

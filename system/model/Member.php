@@ -324,7 +324,8 @@ class Member extends Common
     /**
      * 微信登录
      *
-     * @return bool
+     * @return bool|string
+     * @throws \Exception
      */
     public function weChatLogin()
     {
@@ -357,7 +358,8 @@ class Member extends Common
      *
      * @param $data
      *
-     * @return array|bool
+     * @return array
+     * @throws \Exception
      */
     public static function register($data)
     {

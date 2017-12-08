@@ -22,12 +22,12 @@ trait Sign
 {
     /**
      * 生成签名,支付或红包等使用
-     *
-     * @param $data
+     * @param        $data
+     * @param string $action 动作md5/sha1
      *
      * @return string
      */
-    public function makeSign($data)
+    public function makeSign($data, $action = 'md5')
     {
         //签名步骤一：按字典序排序参数
         ksort($data);
@@ -35,7 +35,7 @@ trait Sign
         //签名步骤二：在string后加入KEY
         $string = $string."&key=".Config::get('wechat.key');
         //签名步骤三：MD5加密
-        $string = md5($string);
+        $string = $action($string);
         //签名步骤四：所有字符转为大写
         $result = strtoupper($string);
 

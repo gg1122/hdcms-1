@@ -1,5 +1,13 @@
 <extend file='UCENTER_MASTER_FILE'/>
 <block name="content">
+    <ul class="nav nav-tabs" role="tablist">
+        <foreach from="$credits" value="$c">
+            <li class="{{$c['name']==$_GET['type']?'active':''}}">
+                <a href="/?m=ucenter&action=controller/credit/lists&type={{$c['name']}}">{{$c['title']}}</a>
+            </li>
+        </foreach>
+    </ul>
+
     <div class="panel panel-default form-horizontal">
         <div class="panel-heading">
             筛选
@@ -24,15 +32,14 @@
                                 }
                             });
                         });
-
                     </script>
                 </div>
             </div>
         </div>
     </div>
     <div class="alert alert-success">
-        支出: {{$expend?:0}} 元 &nbsp;&nbsp;&nbsp;
-        收入: {{$income?:0}} 元
+        支出: {{$expend?:0}} {{$credits[$_GET['type']]['unit']}} &nbsp;&nbsp;&nbsp;
+        收入: {{$income?:0}} {{$credits[$_GET['type']]['unit']}}
     </div>
     <?php if ( ! $data->toArray()) { ?>
         <div class="alert alert-info">
