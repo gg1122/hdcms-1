@@ -97,6 +97,38 @@ area{
 
 /*贾轮播图结束*/
 
+
+/*swiper轮播图*/
+.swiper-pagination-bullet{
+	border-radius: 0;
+	width: 20px;
+	height: 5px;
+}
+.pagination {
+  position: absolute;
+  z-index: 20;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+.swiper-pagination-switch {
+  display: inline-block;
+  width: 20px;
+  height: 6px;
+  background: #000;
+  margin: 0 5px;
+  opacity: 0.2;
+  cursor: pointer;
+}
+.swiper-active-switch {
+  background: #007aff;
+  opacity: 0.8;
+}
+/*swiper轮播图结束*/
+
+
+
+
 #slideArea .topone img {
     float: left;
     width: 213px;

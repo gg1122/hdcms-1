@@ -46,32 +46,8 @@
             <!--<div class="swiper-button-prev"></div>-->
             <!--<div class="swiper-button-next"></div>-->
         </div>
-        <style>
-            .swiper-container {
-                width: 700px;
-                height: 300px;
-            }
-            .swiper-pagination-bullet{
-            	border-radius: 0;
-            	width: 20px;
-            	height: 5px;
-            }
-        </style>
+
         <script>
-//          require(['hdjs'], function (hdjs) {
-//              var mySwiper = new Swiper('.swiper-container', {
-//                  loop: true,
-//                  // 如果需要分页器
-//                  pagination: '.swiper-pagination',
-//                  //点击分页器可以切换图片
-//                  paginationClickable :true,
-//                  // 如果需要前进后退按钮
-////                  nextButton: '.swiper-button-next',
-////                  prevButton: '.swiper-button-prev',
-//              })
-//          })
-
-
 			var mySwiper = new Swiper('.swiper-container', {
                     loop: true,
                     // 如果需要分页器
@@ -85,29 +61,7 @@
                 })
         </script>
         <style type="text/css">
-			.pagination {
-			  position: absolute;
-			  z-index: 20;
-			  bottom: 0px;
-			  width: 100%;
-			  text-align: center;
-			}
-			.swiper-pagination-switch {
-			  display: inline-block;
-			  width: 20px;
-			  height: 6px;
-			  /*border-radius: 8px;*/
-			  background: #000;
-			  margin: 0 5px;
-			  opacity: 0.2;
-			 /* border: 1px solid rgba(255,255,255,0.5);*/
-				
-			  cursor: pointer;
-			}
-			.swiper-active-switch {
-			  background: #007aff;
-			  opacity: 0.8;
-			}
+
 		</style>
         <!--轮播图结束-->
     </div>
@@ -137,10 +91,16 @@
 	  <area shape="rect" coords="1117,-7,1192,129" href="http://www.houdunren.com/" target="_blank" />
 	  <area shape="rect" coords="-8,2,892,127" href="/article11-213-42-3.html" />
 	</map>
-
 </a>
-
 <!--后盾优势banner结束-->
+
+<!-- react native -->
+<a href="http://www.houdunren.com/notes18_3.html" target="_blank" style="display:block;width:1200px;height:130px;margin:0 auto;">
+    <img src="http://bbs.houdunwang.com/data/attachment/album/201712/11/110911mq5g0q7azdjqqo8q.jpg">
+</a>
+<!-- react native end -->
+
+
 
 <!--学员风采区域-->
 <div id="stuStyle">
