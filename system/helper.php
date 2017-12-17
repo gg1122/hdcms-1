@@ -103,8 +103,6 @@ function notification($data)
  * 在创建模块时自定义的权限需要指定权限标识
  *
  * @param string $permission 权限标识
- *
- * @return bool
  */
 function auth($permission = '')
 {

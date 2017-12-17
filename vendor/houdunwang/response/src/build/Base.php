@@ -45,6 +45,8 @@ class Base
     }
 
     /**
+     * 获取响应内容
+     *
      * @return mixed
      */
     public function getContent()
@@ -53,7 +55,7 @@ class Base
             return json_encode($this->content, JSON_UNESCAPED_UNICODE);
         }
 
-        return strval($this->content);
+        return is_numeric($this->content) ? strval($this->content) : $this->content;
     }
 
     /**

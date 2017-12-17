@@ -78,7 +78,7 @@ class Modules extends Common
     {
         $name = Request::get('m');
         if (empty($name)) {
-            return;
+            return true;
         }
         /**
          * 初始化模块数据
@@ -86,7 +86,7 @@ class Modules extends Common
          */
         $module = Db::table('modules')->where('name', $name)->first();
         if (empty($module)) {
-            return;
+            return false;
         }
         $module['path'] = ($module['is_system'] ? "module/" : "addons/").$name;
         v('module', $module);
@@ -119,6 +119,8 @@ class Modules extends Common
         }
         v('module_config', self::getModuleConfig());
         self::defindConst();
+
+        return true;
     }
 
     /**
