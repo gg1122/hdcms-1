@@ -131,6 +131,8 @@ class Modules extends Common
         define('MODULE_PATH', v('module.path'));
         define("MODULE_TEMPLATE_PATH", v('module.path')."/template");
         define("MODULE_TEMPLATE_URL", root_url().'/'.v('module.path')."/template");
+        define("WIDGET_TEMPLATE_PATH", v('module.path')."/widget/template");
+        define("WIDGETE_TEMPLATE_URL", root_url().'/'.v('module.path')."/widget/template");
         //会员中心默认风格
         define('UCENTER_TEMPLATE_PATH', 'ucenter/'.v('site.info.ucenter_template').'/'.(Request::isMobile() ? 'mobile' : 'web'));
         define('UCENTER_TEMPLATE_URL', root_url().'/'.UCENTER_TEMPLATE_PATH);
@@ -679,7 +681,7 @@ class Modules extends Common
             return '模块已经存在,请更改模块标识';
         }
         //创建目录创建安全文件
-        foreach (['controller', 'template', 'service/template', 'model', 'system', 'system/template'] as $d) {
+        foreach (['controller', 'template', 'api', 'service/template', 'model', 'system', 'system/template', 'widget/template'] as $d) {
             if ( ! Dir::create("{$dir}/{$d}")) {
                 return '模块目录创建失败,请修改addons目录的权限';
             }
@@ -827,6 +829,28 @@ class Modules extends Common
         }
 
         return true;
+    }
+
+    /**
+     * 迁移回滚
+     *
+     * @param string $name 模块标识
+     *
+     * @return mixed
+     */
+    public function migrateRollback($name)
+    {
+        $data = glob("addons/{$name}/database/migrations/*");
+        rsort($data);
+        foreach ($data as $file) {
+            $info = pathinfo($file);
+            require $file;
+            $namespace = "addons\\{$name}\\database\migrations";
+            $class     = $namespace.'\\'.substr($info['basename'], 13, -4);
+            (new $class)->down();
+
+            return Db::table('migrations')->where('migration', $info['basename'])->delete();
+        }
     }
 
 

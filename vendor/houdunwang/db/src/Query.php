@@ -325,15 +325,13 @@ class Query implements \ArrayAccess, \Iterator
      *
      * @param int $row     每页显示数量
      * @param int $pageNum 页面数量
-     * @param int $count   总数
      *
      * @return mixed
      */
-    public function paginate($row, $pageNum = 8, $count = -1)
+    public function paginate($row, $pageNum = 8)
     {
-        $obj   = unserialize(serialize($this));
-        $count = is_string($count) ? $obj->count($count) : ($count == -1 ? $obj->count() : $count);
-        Page::row($row)->pageNum($pageNum)->make($count);
+        $obj = unserialize(serialize($this));
+        Page::row($row)->pageNum($pageNum)->make($obj->count('*', false));
         $res = $this->limit(Page::limit())->get();
         $this->data($res ?: []);
 
@@ -707,10 +705,15 @@ class Query implements \ArrayAccess, \Iterator
         return $this;
     }
 
-    public function count($field = '*')
+    public function count($field = '*', $group = true)
     {
         $this->build->bindExpression('field', "count($field) AS m");
-        $data = $this->first();
+        if ($group == true) {
+            $data = $this->first();
+        } else {
+            $sql  = "SELECT count(*) as m from(".$this->build->select().") as hdcount";
+            $data = array_pop($this->query($sql, $this->build->getSelectParams()));
+        }
 
         return intval($data ? $data['m'] : 0);
     }

@@ -77,10 +77,11 @@ class Base
      *
      * @param string $url
      * @param array  $args
+     * @param bool   $merge
      *
      * @return $this
      */
-    public function redirect($url = '', $args = [])
+    public function redirect($url = '', $args = [], $merge = false)
     {
         if ( ! empty($url)) {
             switch ($url) {
@@ -91,7 +92,7 @@ class Base
                     $this->setContent(Request::web());
                     break;
                 default:
-                    $this->controller($url, $args);
+                    $this->controller($url, $args, $merge);
             }
         }
 
@@ -117,10 +118,11 @@ class Base
      *
      * @param       $path
      * @param array $args
+     * @param bool  $merge
      *
-     * @return mixed|string
+     * @return $this
      */
-    public function controller($path, $args = [])
+    public function controller($path, $args = [], $merge = false)
     {
         if (preg_match('@^http@i', $path)) {
             $url = $path;
@@ -149,6 +151,9 @@ class Base
         }
         //添加参数
         if ( ! empty($args)) {
+            if ($merge) {
+                $args = array_merge($_GET ?: [], $args);
+            }
             $url .= '&'.http_build_query($args);
         }
         $this->setContent($url);

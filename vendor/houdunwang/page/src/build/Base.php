@@ -230,9 +230,7 @@ class Base
                    ."' class='pre'>{$this->desc['pre']}</a></li>";
         }
 
-        return $this->totalPage
-            ? "<li class='disabled'><span>{$this->desc['pre']}</span></li>"
-            : '';
+        return $this->totalPage ? "<li class='disabled'><span>{$this->desc['pre']}</span></li>" : '';
     }
 
     //下一页
@@ -241,6 +239,7 @@ class Base
         $next = $this->desc['next'];
         if ($this->selfPage < $this->totalPage) {
             $num = $this->selfPage + 1;
+
             return "<li><a page='{$num}' href='".$this->getUrl($num)."' class='next'>{$next}</a></li>";
         }
 
