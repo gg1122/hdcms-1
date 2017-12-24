@@ -22,21 +22,26 @@ trait Field
     //字段集
     protected $fields = [];
 
+    //创建表时索引设置
+    protected $keys;
+
     protected function current()
     {
         return count($this->fields) - 1;
     }
 
-    public function index($field)
+    public function index()
     {
-        $this->fields[$this->current()]['index'] = $field;
+        $field        = $this->fields[$this->current()]['field'];
+        $this->keys[] = "KEY `{$field}` (`{$field}`)";
 
         return $this;
     }
 
-    public function unique($field)
+    public function unique()
     {
-        $this->fields[$this->current()]['unique'] = $field;
+        $field        = $this->fields[$this->current()]['field'];
+        $this->keys[] = "UNIQUE KEY `{$field}` (`{$field}`)";
 
         return $this;
     }

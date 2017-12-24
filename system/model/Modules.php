@@ -21,6 +21,7 @@ use app\system\controller\part\Subscribe;
 use app\system\controller\part\Tag;
 use houdunwang\cli\Cli;
 use houdunwang\container\Container;
+use houdunwang\db\Db;
 use houdunwang\dir\Dir;
 use Request;
 
@@ -844,12 +845,13 @@ class Modules extends Common
         rsort($data);
         foreach ($data as $file) {
             $info = pathinfo($file);
-            require $file;
-            $namespace = "addons\\{$name}\\database\migrations";
-            $class     = $namespace.'\\'.substr($info['basename'], 13, -4);
-            (new $class)->down();
-
-            return Db::table('migrations')->where('migration', $info['basename'])->delete();
+            if (Db::table('migrations')->where('migration', $info['basename'])->get()) {
+                require $file;
+                $namespace = "addons\\{$name}\\database\migrations";
+                $class     = $namespace.'\\'.substr($info['basename'], 13, -4);
+                (new $class)->down();
+                return Db::table('migrations')->where('migration', $info['basename'])->delete();
+            }
         }
     }
 

@@ -15,6 +15,16 @@ function siteid()
 }
 
 /**
+ * 会员编号
+ *
+ * @return array|mixed|null|string
+ */
+function memberuid()
+{
+    return v('member.info.uid');
+}
+
+/**
  * 头像
  *
  * @param        $file
@@ -224,8 +234,7 @@ function controller_action()
     $method     = array_pop($info);
     array_push($info, ucfirst(array_pop($info)));
     $module = Db::table('modules')->where('name', $moduleName)->first();
-    $class  = ($module['is_system'] ? 'module' : 'addons').'\\'.$moduleName.'\\controller\\'
-              .implode('\\', $info);
+    $class  = ($module['is_system'] ? 'module' : 'addons').'\\'.$moduleName.'\\controller\\'.implode('\\', $info);
 
     return call_user_func_array([new $class, $method], $args);
 }

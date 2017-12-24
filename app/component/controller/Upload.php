@@ -25,6 +25,7 @@ class Upload extends Common
      * @param \system\model\Attachment $attachment
      *
      * @return array
+     * @throws \Exception
      */
     public function uploader(Attachment $attachment)
     {
@@ -95,7 +96,7 @@ class Upload extends Common
             }
         }
 
-        return ['data' => $data, 'page' => $Res->links()];
+        return ['data' => $data, 'page' => $Res->links()->show()];
     }
 
     /**

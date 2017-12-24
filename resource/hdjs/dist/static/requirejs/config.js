@@ -13,7 +13,8 @@ require.config({
         hdjs: 'dist/static/hdjs',
         css: 'dist/static/requirejs/css.min',
         domReady: 'dist/static/requirejs/domReady',
-        vue: 'https://cdn.bootcss.com/vue/2.4.2/vue',
+        vue: 'https://cdn.bootcss.com/vue/2.5.9/vue',
+        scroll: 'https://cdn.bootcss.com/jquery-scrollTo/2.1.2/jquery.scrollTo.min',
         Aliplayer: 'http://g.alicdn.com/de/prismplayer/2.0.1/aliplayer-min',
         //微信JSSDK
         jweixin: 'http://res.wx.qq.com/open/js/jweixin-1.2.0',

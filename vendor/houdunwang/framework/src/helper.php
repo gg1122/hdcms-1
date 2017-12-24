@@ -135,16 +135,18 @@ if ( ! function_exists('time_diff')) {
         $dt  = new \Carbon\Carbon($time);
         $now = \Carbon\Carbon::now();
         $num = $dt->diffInSeconds($now);
-        if ($num < 60) {
-            $unit = '秒';
+        if ($num < 20) {
+            return '刚刚';
+        } elseif ($num < 60) {
+            $unit = '秒前';
         } elseif ($num < 3600) {
             $unit = '分钟';
             $num  = $num / 60;
         } else if ($num < (24 * 3600)) {
-            $unit = '小时';
+            $unit = '小时前';
             $num  = $num / 3600;
         } else {
-            $unit = '天';
+            $unit = '天前';
             $num  = $num / (24 * 3600);
         }
 

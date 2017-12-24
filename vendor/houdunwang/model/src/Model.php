@@ -193,8 +193,28 @@ class Model implements ArrayAccess, Iterator
     public function setData(array $data)
     {
         $this->data = $data;
+        $this->getFormatAttribute();
 
         return $this;
+    }
+
+    /**
+     * 用于读取数据成功时的对字段的处理后返回
+     *
+     * @param $field
+     *
+     * @return mixed
+     */
+    protected function getFormatAttribute()
+    {
+        foreach ($this->data as $name => $val) {
+            $method = "get".ucfirst($name)."AtAttribute";
+            if (method_exists($this, $method)) {
+                $this->data[$name] = $this->$method($val);
+            }
+        }
+
+        return $this->data;
     }
 
     /**
@@ -450,7 +470,6 @@ class Model implements ArrayAccess, Iterator
                     }
             }
         }
-
         return $result;
     }
 }

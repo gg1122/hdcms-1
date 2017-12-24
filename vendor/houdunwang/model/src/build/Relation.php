@@ -63,8 +63,7 @@ trait Relation
         //父表
         $instance  = new $class();
         $parentKey = $parentKey ?: $instance->getPk();
-        $localKey  = $localKey
-            ?: $instance->getTable().'_'.$instance->getPk();
+        $localKey  = $localKey ?: $instance->getTable().'_'.$instance->getPk();
 
         return $instance->where($parentKey, $this[$localKey])->first();
     }

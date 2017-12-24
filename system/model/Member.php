@@ -83,6 +83,18 @@ class Member extends Common
         ];
 
     /**
+     * 头像后处理
+     *
+     * @param $val
+     *
+     * @return string
+     */
+    public function getIconAtAttribute($val)
+    {
+        return icon($val);
+    }
+
+    /**
      * 手机号检测
      *
      * @param $field

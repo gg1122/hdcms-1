@@ -330,8 +330,9 @@ class Query implements \ArrayAccess, \Iterator
      */
     public function paginate($row, $pageNum = 8)
     {
-        $obj = unserialize(serialize($this));
-        Page::row($row)->pageNum($pageNum)->make($obj->count('*', false));
+        $obj   = unserialize(serialize($this));
+        $total = $obj->count();
+        Page::row($row)->pageNum($pageNum)->make($total);
         $res = $this->limit(Page::limit())->get();
         $this->data($res ?: []);
 
@@ -345,7 +346,7 @@ class Query implements \ArrayAccess, \Iterator
      */
     public function links()
     {
-        return Page::show();
+        return new Page();
     }
 
     /**
@@ -705,17 +706,23 @@ class Query implements \ArrayAccess, \Iterator
         return $this;
     }
 
-    public function count($field = '*', $group = true)
+    /**
+     * 统计
+     *
+     * @param string $field
+     *
+     * @return int
+     */
+    public function count($field = '*')
     {
         $this->build->bindExpression('field', "count($field) AS m");
-        if ($group == true) {
-            $data = $this->first();
-        } else {
-            $sql  = "SELECT count(*) as m from(".$this->build->select().") as hdcount";
-            $data = array_pop($this->query($sql, $this->build->getSelectParams()));
+        $data  = $this->get();
+        $count = 0;
+        foreach ($data as $v) {
+            $count += $v['m'];
         }
 
-        return intval($data ? $data['m'] : 0);
+        return $count;
     }
 
     public function max($field)
