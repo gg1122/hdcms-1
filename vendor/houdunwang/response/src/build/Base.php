@@ -127,8 +127,7 @@ class Base
         if (preg_match('@^http@i', $path)) {
             $url = $path;
         } else {
-            $url        = Config::get('http.rewrite') ? root_url()
-                : root_url().'/'.basename($_SERVER['SCRIPT_FILENAME']);
+            $url        = Config::get('http.rewrite') ? root_url() : root_url().'/'.basename($_SERVER['SCRIPT_FILENAME']);
             $path       = str_replace('.', '/', $path);
             $controller = Route::getController();
             if (empty($controller)) {
@@ -192,7 +191,7 @@ class Base
             header('location:'.$content);
         }
 
-        return $content;
+        return $content ?: '';
     }
 
     /**
@@ -200,11 +199,15 @@ class Base
      *
      * @return mixed
      */
-    public function _404()
+    public function _404($return = false)
     {
         $this->sendHttpStatus(404);
-        if (RUN_MODE == 'HTTP' && is_file(Config::get('app._404'))) {
-            return View::make(Config::get('app._404'));
+        if (RUN_MODE == 'HTTP') {
+            if ($return) {
+                return View::make(Config::get('app._404'));
+            } else {
+                die(View::make(Config::get('app._404')));
+            }
         }
     }
 

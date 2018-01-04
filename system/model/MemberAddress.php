@@ -16,7 +16,7 @@ class MemberAddress extends Common
             ['id', 'validateId', '地址不属于这个用户', self::NOT_EMPTY_VALIDATE, self::MODEL_UPDATE],
             ['siteid', 'required', '站点编号不能为空', self::MUST_VALIDATE, self::MODEL_BOTH],
             ['uid', 'required', '会员编号不能为空', self::MUST_VALIDATE, self::MODEL_BOTH],
-            ['username', 'required', '姓名不能为空23', self::MUST_VALIDATE, self::MODEL_BOTH],
+            ['username', 'required', '姓名不能为空', self::MUST_VALIDATE, self::MODEL_BOTH],
             ['mobile', 'required', '电话格式错误', self::MUST_VALIDATE, self::MODEL_BOTH],
             ['zipcode', 'required', '邮编格式错误', self::MUST_VALIDATE, self::MODEL_BOTH],
             ['province', 'required', '省份不能为空', self::MUST_VALIDATE, self::MODEL_BOTH],

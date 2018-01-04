@@ -17,7 +17,7 @@
 }
 .edui-default .edui-popup-content {
   border-radius: 0 !important;
-  height: 115px !important;
+  /*height: 115px !important;*/
   box-shadow: none !important;
 }
 .edui-default .edui-for-insertcode .edui-listitem-label {

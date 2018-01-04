@@ -123,17 +123,15 @@
                 <ul class="nav nav-pills pull-right">
                     <if value="q('session.system.login')=='hdcms'">
                         <li>
-                            <a href="?s=system/site/lists" class="tile <if value='ACTION==" lists"'>active
-                    </if>
-                    ">
-                    <i class="fa fa-sitemap fa-2x"></i>网站管理
-                    </a>
-                    </li>
-                    <li>
-                        <a href="?s=system/manage/menu" class="tile <if value='ACTION==" menu"'>active</if>">
-                        <i class="fa fa-support fa-2x"></i>系统设置
-                        </a>
-                    </li>
+                            <a href="?s=system/site/lists" class="tile ">
+                                <i class="fa fa-sitemap fa-2x"></i>网站管理
+                            </a>
+                        </li>
+                        <li>
+                            <a href="?s=system/manage/menu" class="tile ">
+                                <i class="fa fa-support fa-2x"></i>系统设置
+                            </a>
+                        </li>
                     </if>
                     <li>
                         <a href="?s=system/entry/quit" class="tile">

@@ -25,6 +25,7 @@ trait ArrayIterator
     {
         $this->original[$key] = $value;
         $this->data[$key]     = $value;
+        $this->fields[$key]   = $value;
     }
 
     /**
@@ -34,7 +35,7 @@ trait ArrayIterator
      */
     public function offsetGet($key)
     {
-        return isset($this->data[$key]) ? $this->data[$key] : null;
+        return isset($this->fields[$key]) ? $this->fields[$key] : null;
     }
 
     /**
@@ -58,6 +59,9 @@ trait ArrayIterator
         if (isset($this->data[$key])) {
             unset($this->data[$key]);
         }
+        if (isset($this->fields[$key])) {
+            unset($this->fields[$key]);
+        }
     }
 
     /**
@@ -73,7 +77,7 @@ trait ArrayIterator
      */
     public function current()
     {
-        return current($this->data);
+        return current($this->fields);
     }
 
     /**
@@ -81,7 +85,7 @@ trait ArrayIterator
      */
     public function next()
     {
-        return next($this->data);
+        return next($this->fields);
     }
 
     /**
@@ -89,7 +93,7 @@ trait ArrayIterator
      */
     public function key()
     {
-        return key($this->data);
+        return key($this->fields);
     }
 
     /**
@@ -97,6 +101,6 @@ trait ArrayIterator
      */
     public function valid()
     {
-        return current($this->data);
+        return current($this->fields);
     }
 }

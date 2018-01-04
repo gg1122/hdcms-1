@@ -135,7 +135,7 @@
                     <input class="form-control input-lg" id="searchMenu" type="text" placeholder="输入菜单名称可快速查找">
                 </div>
                 <script>
-                    require(['hdjs', 'resource/js/site_menu.js'], function (hdjs, menu) {
+                    require(['hdjs', '/resource/js/site_menu.js'], function (hdjs, menu) {
                         //当前点击样式
                         menu.changeCurrentLinkStyle();
                         //菜单搜索
@@ -143,7 +143,7 @@
                             menu.search(this);
                         });
                     })
-                    require(['hdjs', 'resource/js/site_footer_quickmenu.js'], function (hdjs, menu) {
+                    require(['hdjs', '/resource/js/site_footer_quickmenu.js'], function (hdjs, menu) {
                         //后台底部快捷导航
                         menu.quickmenu();
                     })

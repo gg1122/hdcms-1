@@ -80,38 +80,38 @@
                 methods: {
                     //创建新表迁移文件
                     createMigrate: function () {
-                        hdjs.submit({url: "{!! u('createMigrate',[name=>$_GET['name']]) !!}", successUrl: ''})
+                        hdjs.submit({url: "{!! u('createMigrate',['name'=>$_GET['name']]) !!}", successUrl: ''})
                     },
                     //创建字段迁移文件
                     fieldMigrate: function () {
-                        hdjs.submit({url: "{!! u('fieldMigrate',[name=>$_GET['name']]) !!}", successUrl: ''})
+                        hdjs.submit({url: "{!! u('fieldMigrate',['name'=>$_GET['name']]) !!}", successUrl: ''})
                     },
                     makeMigrate: function () {
                         hdjs.confirm('确定执行迁移文件吗?',function() {
-                            hdjs.submit({url: "{!! u('makeMigrate',[name=>$_GET['name']]) !!}", successUrl: ''})
+                            hdjs.submit({url: "{!! u('makeMigrate',['name'=>$_GET['name']]) !!}", successUrl: ''})
                         })
                     },
                     resetMigrate: function () {
                         hdjs.confirm('确定执行迁移重置吗?',function() {
-                            hdjs.submit({url: "{!! u('resetMigrate',[name=>$_GET['name']]) !!}", successUrl: ''})
+                            hdjs.submit({url: "{!! u('resetMigrate',['name'=>$_GET['name']]) !!}", successUrl: ''})
                         })
                     },
                     resetRollback: function () {
                         hdjs.confirm('确定执行迁移会滚吗?',function(){
-                        hdjs.submit({url: "{!! u('rollbackMigrate',[name=>$_GET['name']]) !!}", successUrl: ''})
+                        hdjs.submit({url: "{!! u('rollbackMigrate',['name'=>$_GET['name']]) !!}", successUrl: ''})
                         })
                     },
                     createSeed: function () {
-                        hdjs.submit({url: "{!! u('createSeed',[name=>$_GET['name']]) !!}", successUrl: ''})
+                        hdjs.submit({url: "{!! u('createSeed',['name'=>$_GET['name']]) !!}", successUrl: ''})
                     },
                     makeSeed: function () {
                         hdjs.confirm('确定执行数据填充吗?',function() {
-                            hdjs.submit({url: "{!! u('makeSeed',[name=>$_GET['name']]) !!}", successUrl: ''})
+                            hdjs.submit({url: "{!! u('makeSeed',['name'=>$_GET['name']]) !!}", successUrl: ''})
                         });
                     },
                     resetSeed: function () {
                         hdjs.confirm('确定执行填充重置吗?',function() {
-                            hdjs.submit({url: "{!! u('resetSeed',[name=>$_GET['name']]) !!}", successUrl: ''})
+                            hdjs.submit({url: "{!! u('resetSeed',['name'=>$_GET['name']]) !!}", successUrl: ''})
                         });
                     }
                 }

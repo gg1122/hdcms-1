@@ -154,7 +154,7 @@ trait Field
         return $this;
     }
 
-    public function decimal($field, $len, $de)
+    public function decimal($field, $len=10, $de=2)
     {
         $this->fields[] = [
             'field' => $field,

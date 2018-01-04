@@ -168,14 +168,8 @@ function url($action, $args = [], $module = '', $merge = false)
     if ($mt = \houdunwang\request\Request::get('mt')) {
         $args['mt'] = $mt;
     }
-    if (isset($_GET['m'])) {
-        unset($_GET['m']);
-    }
-    if (isset($_GET['action'])) {
-        unset($_GET['action']);
-    }
 
-    return u(__ROOT__."/?m=".$module."&action=".implode('/', $info), $args, $merge);
+    return u(web_url()."/?m=".$module."&action=".implode('/', $info), $args, $merge);
 }
 
 /**

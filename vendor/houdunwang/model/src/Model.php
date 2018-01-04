@@ -19,6 +19,7 @@ use houdunwang\model\build\Auto;
 use houdunwang\model\build\Filter;
 use houdunwang\model\build\Relation;
 use houdunwang\model\build\Validate;
+use houdunwang\response\Response;
 use Iterator;
 
 class Model implements ArrayAccess, Iterator
@@ -71,6 +72,8 @@ class Model implements ArrayAccess, Iterator
     protected $denyFill = [];
     //模型数据
     protected $data = [];
+    //读取字段
+    protected $fields = [];
     //构建数据
     protected $original = [];
     //数据库连接
@@ -86,29 +89,24 @@ class Model implements ArrayAccess, Iterator
     //数据库驱动
     protected $db;
 
-    public function __construct($data = [])
+    public function __construct()
     {
         if ($this->table) {
-            $this->init($data);
+            $this->init();
         }
     }
 
     /**
      * 初始化模型数据
      *
-     * @param array $data
-     *
      * @return $this
      */
-    protected function init(array $data = [])
+    protected function init()
     {
         $this->setTable($this->table);
         $this->setDb(Db::table($this->table));
         $this->db->setModel($this);
         $this->setPk($this->db->getPrimaryKey());
-        if ( ! empty($data)) {
-            $this->create($data);
-        }
 
         return $this;
     }
@@ -192,8 +190,10 @@ class Model implements ArrayAccess, Iterator
      */
     public function setData(array $data)
     {
-        $this->data = $data;
+        $this->data   = array_merge($this->data, $data);
+        $this->fields = $this->data;
         $this->getFormatAttribute();
+
 
         return $this;
     }
@@ -207,14 +207,17 @@ class Model implements ArrayAccess, Iterator
      */
     protected function getFormatAttribute()
     {
-        foreach ($this->data as $name => $val) {
-            $method = "get".ucfirst($name)."AtAttribute";
+        foreach ($this->fields as $name => $val) {
+            $n      = preg_replace_callback('/_([a-z]+)/', function ($v) {
+                return strtoupper($v[1]);
+            }, $name);
+            $method = "get".ucfirst($n)."AtAttribute";
             if (method_exists($this, $method)) {
-                $this->data[$name] = $this->$method($val);
+                $this->fields[$name] = $this->$method($val);
             }
         }
 
-        return $this->data;
+        return $this->fields;
     }
 
     /**
@@ -224,7 +227,14 @@ class Model implements ArrayAccess, Iterator
      */
     final public function toArray()
     {
-        return $this->data;
+        $data = $this->data;
+        foreach ($data as $k => $v) {
+            if (is_object($v) && method_exists($v, 'toArray')) {
+                $data[$k] = $v->toArray();
+            }
+        }
+
+        return $data;
     }
 
     /**
@@ -259,13 +269,14 @@ class Model implements ArrayAccess, Iterator
      *
      * @return $this
      */
-    final private function create()
+    final private function formatFields()
     {
-        //更新时设置主键
+        //更新时设置
         if ($this->action() == self::MODEL_UPDATE) {
             $this->original[$this->pk] = $this->data[$this->pk];
+//            $this->original            = array_merge($this->data, $this->original);
         }
-        //修改时间
+        //字段时间
         if ($this->timestamps === true) {
             $this->original['updated_at'] = Carbon::now(new \DateTimeZone('PRC'));
             //更新时间设置
@@ -319,13 +330,15 @@ class Model implements ArrayAccess, Iterator
         $this->autoFilter();
         //自动完成
         $this->autoOperation();
-        //创建添加数据
-        $this->create();
+        //处理时期字段
+        $this->formatFields();
+        if ($this->action() == self::MODEL_UPDATE) {
+            $this->original = array_merge($this->data, $this->original);
+        }
         //自动验证
         if ( ! $this->autoValidate()) {
             return false;
         }
-        $this->original = array_merge($this->data, $this->original);
         //更新条件检测
         $res = null;
         switch ($this->action()) {
@@ -343,6 +356,23 @@ class Model implements ArrayAccess, Iterator
                 break;
         }
         $this->original = [];
+
+        return $res ? $this : false;
+    }
+
+    /**
+     * 找不到时显示404页面
+     *
+     * @param int $id 主键
+     *
+     * @return mixed
+     */
+    final static public function findOrFail($id)
+    {
+        $res = self::find($id);
+        if (empty($res)) {
+            die(Response::_404());
+        }
 
         return $res;
     }
@@ -393,8 +423,8 @@ class Model implements ArrayAccess, Iterator
      */
     public function __get($name)
     {
-        if (isset($this->data[$name])) {
-            return $this->data[$name];
+        if (isset($this->fields[$name])) {
+            return $this->fields[$name];
         }
         //关键方法获取
         if (method_exists($this, $name)) {
@@ -470,6 +500,7 @@ class Model implements ArrayAccess, Iterator
                     }
             }
         }
+
         return $result;
     }
 }
