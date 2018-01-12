@@ -22,7 +22,7 @@
     <div class="right">
         <div class="heying36">
             <img src="{{ARTICLE_URL}}/images/topbanner.jpg" class="topbanner"/>
-            <h3 class="toptitle">只有在后盾网可以获得如此深厚的师生情</h3>
+            <h3 class="toptitle">只有在后盾人可以获得如此深厚的师生情</h3>
         </div>
 
         <!--就业数据-->
@@ -45,7 +45,7 @@
             </tag>
 
         </table>
-        <h3 class="jq">唯一毕业学员送锦旗的机构 这是发自内心的感谢！胜过一切广告，只有后盾网能做到!</h3>
+        <h3 class="jq">唯一毕业学员送锦旗的机构 这是发自内心的感谢！胜过一切广告，只有后盾人能做到!</h3>
         <img src="{{ARTICLE_URL}}/images/jinqi/1.jpg" style="display: block;width: 100%;"/>
         <img src="{{ARTICLE_URL}}/images/jinqi/2.jpg" style="display: block;width: 100%;"/>
         <img src="{{ARTICLE_URL}}/images/jinqi/3.jpg" style="display: block;width: 100%;"/>

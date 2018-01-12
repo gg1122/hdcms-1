@@ -7,7 +7,7 @@
         <div class="alert alert-success">
             必须将 <a href="http://houdunren.hdcms.com/?s=site/setting/aliyun&siteid=18&mark=feature&mi=103&mt="> 阿里云基本设置</a> 配置正确才可以使用阿里云短信
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-default" v-if="false">
             <div class="panel-heading">短信通知设置</div>
             <div class="panel-body">
                 <div class="form-group">
@@ -40,18 +40,21 @@
             <div class="panel-heading">短信验证码</div>
             <div class="panel-body">
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">sign</label>
+                    <label class="col-sm-2 control-label">短信签名</label>
                     <div class="col-sm-10">
                         <input class="form-control" v-model="field.aliyun.code.sign">
-                        <span class="help-block">短信签名</span>
+                        <span class="help-block">
+                            请登录阿里云 "短信服务 > 签名管理" 查看
+                        </span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">template</label>
+                    <label class="col-sm-2 control-label">短信模板</label>
                     <div class="col-sm-10">
                         <input class="form-control" v-model="field.aliyun.code.template">
                         <span class="help-block">
-                            验证码短信模板，模板中必须存在 code(验证码) 与 product(站点名称） 变量，建议使用阿里云默认的模板即可。
+                            验证码短信模板，模板中必须存在 code(验证码) 与 product(站点名称）变量。 <br>
+                            使用阿里云默认的模板即可，请登录阿里云 "短信服务 > 模板管理" 查看模板  "身份验证验证码" 模板CODE为 "SMS_12840367" 。
                         </span>
                     </div>
                 </div>
@@ -64,7 +67,7 @@
                                 <button class="btn btn-default" type="button" @click="aliyunCodeTest">发送</button>
                             </span>
                         </div>
-                        <span class="help-block">保存配置后发送验证码进行测试</span>
+                        <span class="help-block">测试当前阿里云是否配置正确</span>
                     </div>
                 </div>
             </div>

@@ -40,6 +40,7 @@ class Setting extends Admin
      * @param \system\model\Site $SiteModel
      *
      * @return mixed|string
+     * @throws \Exception
      */
     public function config(Site $SiteModel)
     {
@@ -61,6 +62,7 @@ class Setting extends Admin
      * @param \system\model\Site $SiteModel
      *
      * @return mixed|string
+     * @throws \Exception
      */
     public function credit(Site $SiteModel)
     {
@@ -88,6 +90,7 @@ class Setting extends Admin
      * @param \system\model\Site $siteModel
      *
      * @return mixed|string
+     * @throws \Exception
      */
     public function tactics(Site $siteModel)
     {
@@ -108,6 +111,7 @@ class Setting extends Admin
      * @param \system\model\Site $siteModel
      *
      * @return mixed|string
+     * @throws \Exception
      */
     public function register(Site $siteModel)
     {
@@ -127,10 +131,10 @@ class Setting extends Admin
 
     /**
      * 邮件通知设置
-     *
      * @param \system\model\Site $siteModel
      *
      * @return mixed|string
+     * @throws \Exception
      */
     public function mail(Site $siteModel)
     {
@@ -164,6 +168,7 @@ class Setting extends Admin
      * @param \system\model\Site $siteModel
      *
      * @return mixed|string
+     * @throws \Exception
      */
     public function mobile(Site $siteModel)
     {
@@ -194,12 +199,6 @@ class Setting extends Admin
             'user'     => $post['aliyun']['code']['test_mobile'],
         ];
 
-        $config = [
-            'sign'     => '后盾网',
-            'template' => 'SMS_12840367',
-            'user'     => '18513599160',
-        ];
-
         return $message->sendCode($config, 60);
     }
 
@@ -210,6 +209,7 @@ class Setting extends Admin
      * @param \system\model\SiteWeChat $WeChatModel
      *
      * @return mixed|string
+     * @throws \Exception
      */
     public function wepay(Site $SiteModel, SiteWeChat $WeChatModel)
     {
@@ -234,6 +234,7 @@ class Setting extends Admin
      * @param \system\model\Site $SiteModel
      *
      * @return mixed|string
+     * @throws \Exception
      */
     public function alipay(Site $SiteModel)
     {
@@ -256,6 +257,7 @@ class Setting extends Admin
      * @param \system\model\Site $SiteModel
      *
      * @return mixed|string
+     * @throws \Exception
      */
     public function aliyun(Site $SiteModel)
     {

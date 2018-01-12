@@ -2,11 +2,11 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>后盾网_PHP培训_PHP视频教程_北京PHP培训_后盾网有实力做后盾!全国PHP实战培训,全程实战,抵制肤浅内容-</title>
+    <title>后盾人_PHP培训_PHP视频教程_北京PHP培训_后盾人有实力做后盾!全国PHP实战培训,全程实战,抵制肤浅内容-</title>
     <link rel="stylesheet" type="text/css" href="{{ARTICLE_URL}}/css/common.css?version={{HDCMS_VERSION}}"/>
     <link rel="stylesheet" type="text/css" href="{{ARTICLE_URL}}/css/index.css?version={{HDCMS_VERSION}}"/>
     <meta name="keywords" content="北京php培训,php视频教程,php培训,php基础视频,php实例视频,lamp视频教程"/>
-    <meta name="description" content="后盾网顶尖PHP培训，最专业的网站开发php培训，小班化授课，全程实战！业内顶级北京php培训讲师亲自授课，千余课时php独家视频教程免费下载，数百G原创视频资源，实力不容造假！抢座热线：400-682-3231"/>
+    <meta name="description" content="后盾人顶尖PHP培训，最专业的网站开发php培训，小班化授课，全程实战！业内顶级北京php培训讲师亲自授课，千余课时php独家视频教程免费下载，数百G原创视频资源，实力不容造假！抢座热线：400-682-3231"/>
     <!--swiper-->
     <link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/2.7.6/idangerous.swiper.min.css">
     <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
@@ -233,7 +233,7 @@
 <div id="video">
     <div class="videoarea">
         <h2>视频教程</h2>
-        <p class='detail'>课程库中包含了大量制作精良的课程，你可以在这里浏览到后盾网所有课程，并且根据需求，按照技术分类进行检索</p>
+        <p class='detail'>课程库中包含了大量制作精良的课程，你可以在这里浏览到后盾人所有课程，并且根据需求，按照技术分类进行检索</p>
         <a href="http://www.houdunren.com" target="_blank" class='btn'>查看全部课程</a>
         <img src="{{ARTICLE_URL}}/images/pc.jpg"/>
     </div>

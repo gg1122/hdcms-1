@@ -164,7 +164,7 @@
                     <h3 class="panel-title">扩展字段</h3>
                 </div>
                 <div class="panel-body">
-                    {{$extField}}
+                    {!!$extField!!}
                 </div>
             </div>
         </if>

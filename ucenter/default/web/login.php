@@ -64,7 +64,7 @@
         </script>
     </if>
     <p class="remind">
-        <a href="http://www.houdunwang.com">后盾网</a>国内唯一拥有开源产品的培训机构! 基于
+        <a href="http://www.houdunwang.com">后盾人</a>国内唯一拥有开源产品的培训机构! 基于
         <a href="http://www.hdcms.com" target="_blank">HDCMS</a> &
         <a href="http://www.hdphp.com" target="_blank">HDPHP</a>构建
         <a href="{!! web_url() !!}">返回首页</a>

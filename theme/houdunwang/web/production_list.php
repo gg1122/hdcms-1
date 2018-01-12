@@ -54,7 +54,24 @@
 										<h3><a href="">Photoshop人像后期处理基础课程</a></h3>
 										<div class="row">
 											<span>主讲人：孙老师</span>
-											<a href="">后盾网特级讲师</a>
+											<a href="">后盾人特级讲师</a>
+										</div>
+									</div>
+								</div> 
+							</li>
+							<li>
+								<div class="ListContent">
+									<a href="">
+										<img src="./img/ce.jpg" alt="" />
+										<div class="SmallTitle">
+											<span>已更新完成&nbsp;共5课时</span>
+										</div>
+									</a>
+									<div class="ListBottom">
+										<h3><a href="">Photoshop人像后期处理基础课程</a></h3>
+										<div class="row">
+											<span>主讲人：孙老师</span>
+											<a href="">后盾人特级讲师</a>
 										</div>
 									</div>
 								</div>
@@ -71,7 +88,7 @@
 										<h3><a href="">Photoshop人像后期处理基础课程</a></h3>
 										<div class="row">
 											<span>主讲人：孙老师</span>
-											<a href="">后盾网特级讲师</a>
+											<a href="">后盾人特级讲师</a>
 										</div>
 									</div>
 								</div>
@@ -88,7 +105,7 @@
 										<h3><a href="">Photoshop人像后期处理基础课程</a></h3>
 										<div class="row">
 											<span>主讲人：孙老师</span>
-											<a href="">后盾网特级讲师</a>
+											<a href="">后盾人特级讲师</a>
 										</div>
 									</div>
 								</div>
@@ -105,7 +122,7 @@
 										<h3><a href="">Photoshop人像后期处理基础课程</a></h3>
 										<div class="row">
 											<span>主讲人：孙老师</span>
-											<a href="">后盾网特级讲师</a>
+											<a href="">后盾人特级讲师</a>
 										</div>
 									</div>
 								</div>
@@ -122,7 +139,7 @@
 										<h3><a href="">Photoshop人像后期处理基础课程</a></h3>
 										<div class="row">
 											<span>主讲人：孙老师</span>
-											<a href="">后盾网特级讲师</a>
+											<a href="">后盾人特级讲师</a>
 										</div>
 									</div>
 								</div>
@@ -139,7 +156,7 @@
 										<h3><a href="">Photoshop人像后期处理基础课程</a></h3>
 										<div class="row">
 											<span>主讲人：孙老师</span>
-											<a href="">后盾网特级讲师</a>
+											<a href="">后盾人特级讲师</a>
 										</div>
 									</div>
 								</div>
@@ -156,24 +173,7 @@
 										<h3><a href="">Photoshop人像后期处理基础课程</a></h3>
 										<div class="row">
 											<span>主讲人：孙老师</span>
-											<a href="">后盾网特级讲师</a>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="ListContent">
-									<a href="">
-										<img src="./img/ce.jpg" alt="" />
-										<div class="SmallTitle">
-											<span>已更新完成&nbsp;共5课时</span>
-										</div>
-									</a>
-									<div class="ListBottom">
-										<h3><a href="">Photoshop人像后期处理基础课程</a></h3>
-										<div class="row">
-											<span>主讲人：孙老师</span>
-											<a href="">后盾网特级讲师</a>
+											<a href="">后盾人特级讲师</a>
 										</div>
 									</div>
 								</div>

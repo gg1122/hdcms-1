@@ -20,7 +20,7 @@
 		<!--设备判断结束-->
 
 		<meta charset="UTF-8">
-		<title>后盾网高薪PHP培训,七年品质,值得信赖! PHP培训|PHP视频教程|北京php培训|上海php培训</title>
+		<title>后盾人高薪PHP培训,七年品质,值得信赖! PHP培训|PHP视频教程|北京php培训|上海php培训</title>
 		<link rel="stylesheet" type="text/css" href="{{ARTICLE_URL}}/phpluodiye/index.css" />
 		<script src="{{ARTICLE_URL}}/phpluodiye/js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="{{ARTICLE_URL}}/phpluodiye/js/jquery.easing.1.3.min.js" type="text/javascript" charset="utf-8"></script>
@@ -58,7 +58,7 @@
 		<!--暑期优惠活动
 		<div id="sq">
 			<p class="shuqititle">鸡年大吉！史上力度最大的学习优惠！</p>
-			<p class="shuqi">好消息！2017年1月16日-26日报名参加后盾网PHP高薪精英班可以享受以下优惠：</p>
+			<p class="shuqi">好消息！2017年1月16日-26日报名参加后盾人PHP高薪精英班可以享受以下优惠：</p>
 			<p class="shuqi"> 1、单人报名<span>报销来校火车票</span>（硬座、硬卧），<span>包住宿(省近3000元)！</span></p>
 			<p class="shuqi"> 2、双人报名每人可享受<span>800元</span>现金优惠，<span>包住宿(省近3000元)！</span></p>
 			<p class="shuqi">  3、三人报名，每人赠送<span>ipad mini2</span>一部，<span>包住宿(省近3000元)！</span></p>
@@ -72,7 +72,7 @@
 
 		<div id="douhao" class="wuhuixuanze" style="width: 885px;">
 			<p class="dou1"></p>
-			<p class="title">他们选择了<span>后盾网</span>，获得了<span>月薪10000+</span></p>
+			<p class="title">他们选择了<span>后盾人</span>，获得了<span>月薪10000+</span></p>
 			<p class="dou2"></p>
 		</div>
 
@@ -102,7 +102,7 @@
 			<p class="title">2017PHP界<span>权威</span>全面更新<span>火爆高薪</span>知识点</p>
 			<p class="dou2"></p>
 		</div>
-		<p class="description">在原有业界超前沿的课程体系外，2017年后盾网php培训又新加了<strong>微信小程序、APP开发、Angular、微信开发、HTML5/CSS3</strong>等行业超火爆的高薪课程
+		<p class="description">在原有业界超前沿的课程体系外，2017年后盾人php培训又新加了<strong>微信小程序、APP开发、Angular、微信开发、HTML5/CSS3</strong>等行业超火爆的高薪课程
 			<br /> “前端开发、PHP开发、大数据、HTML5、APP开发……”后盾毕业学员都能胜任。
 		</p>
 		<p class="description red">我们不烧钱做铺天盖地的广告,把更多的资金和精力投入到企业需要的课程研发中,保障学员100%高薪就业！</p>
@@ -312,7 +312,7 @@
 		<!--php薪资结束-->
 
 		<!--薪资展示-->
-		<h2 class="title" id="hongbang">每5个月薪过万的PHP程序员至少一个来自后盾网</h2>
+		<h2 class="title" id="hongbang">每5个月薪过万的PHP程序员至少一个来自后盾人</h2>
 		<ul class='xinzibox'>
 			<li class="one">
 				<p>姓名</p>
@@ -1677,7 +1677,7 @@
 			<p class="title"><span>真实</span>反馈!<span>拒绝</span>伪装!</p>
 			<p class="dou2"></p>
 		</div>
-		<p class="description">所有截图均来自后盾网毕业学员真实聊天记录！
+		<p class="description">所有截图均来自后盾人毕业学员真实聊天记录！
 			<br /> 我们学员薪水高,你说我吹,我说我没吹,你说不吹也是一种吹.好吧,你赢了!
 		</p>
 
@@ -1754,11 +1754,11 @@
 			</div>
 			<div class="right">
 				<p class="title" style="background: #5FAD40;">2.薪酬高</p>
-				<p class="description">据报道，计算机相关专业大学应届毕业生就业起薪大约3000-4000元，后盾网培训毕业的学员普遍年薪在10万元以上。</p>
+				<p class="description">据报道，计算机相关专业大学应届毕业生就业起薪大约3000-4000元，后盾人培训毕业的学员普遍年薪在10万元以上。</p>
 			</div>
 			<div class="right">
 				<p class="title" style="background: #ECB051;margin-bottom: 40px;">3.就业面广</p>
-				<p class="description">后盾网PHP高薪就业班学员一般就职于高新科技企业，技术含量高，工作环境舒适。学员毕业后也可以创办自己的网络公司、网络工作室，也可以到各地政府、高校、事业单位等相关部门就职。</p>
+				<p class="description">后盾人PHP高薪就业班学员一般就职于高新科技企业，技术含量高，工作环境舒适。学员毕业后也可以创办自己的网络公司、网络工作室，也可以到各地政府、高校、事业单位等相关部门就职。</p>
 			</div>
 		</div>
 		<!--需求量大结束-->
@@ -1788,11 +1788,11 @@
 					</li>
 					<li style="background: #F85B3C;">
 						<h3>讲师团队</h3>
-						<p>后盾网拥有业界超顶级的讲师团队，我们所有讲师均有8年以上一线开发经验和教学经验，选讲师，我们不将就！</p>
+						<p>后盾人拥有业界超顶级的讲师团队，我们所有讲师均有8年以上一线开发经验和教学经验，选讲师，我们不将就！</p>
 					</li>
 					<li style="background: #12AC33;">
 						<h3>教学特色</h3>
-						<p>后盾网始终坚持小班化教学，讲师能照顾到每一位学员，拒绝大锅饭。所有课程均以实战贯穿始终，让学员掌握真功夫。</p>
+						<p>后盾人始终坚持小班化教学，讲师能照顾到每一位学员，拒绝大锅饭。所有课程均以实战贯穿始终，让学员掌握真功夫。</p>
 					</li>
 					<li style="background: #FC5E6E;">
 						<h3>无忧就业</h3>
@@ -3227,7 +3227,7 @@
 						<br /> 11. 解决命令行不能输入中文BUG
 						<br /> 12. 复制表结构与表数据
 					</td>
-					<td width="316">通过本章节实例授课内容（当然后盾网所有内都是实例贯穿）要求学生掌握数据库的基本使用，对数据库与数据表等Mysql有很好的理解，数据库创建、数据表创建等知识，虽然这很简单，但是也很重要。</td>
+					<td width="316">通过本章节实例授课内容（当然后盾人所有内都是实例贯穿）要求学生掌握数据库的基本使用，对数据库与数据表等Mysql有很好的理解，数据库创建、数据表创建等知识，虽然这很简单，但是也很重要。</td>
 				</tr>
 				<tr>
 					<td width="166" align="center">数据类型</td>
@@ -4455,7 +4455,7 @@
 
 		<!--底部-->
 		<div id="bottom">
-			<p class="title">后盾网 你高薪路上超坚强的后盾</p>
+			<p class="title">后盾人 你高薪路上超坚强的后盾</p>
 			<p class="title">告别碌碌无为！ 青春从此起航！</p>
 			<a href="http://tb.53kf.com/webCompany.php?arg=9003998&style=1" target="_blank" class="contact">火爆抢座</a>
 			<img src="{{ARTICLE_URL}}/phpluodiye/images/biecuoguo.jpg" class="biecuoguo" />

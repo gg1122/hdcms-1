@@ -22,7 +22,7 @@
 				<div class="left">
 					<p class="title">{{$hdcms['title']}}</p>
 					<dl>
-						<dt>项目介绍 &nbsp;&nbsp;<span style="color:#f00;">后盾网学员全部独立开发</span></dt>
+						<dt>项目介绍 &nbsp;&nbsp;<span style="color:#f00;">后盾人学员全部独立开发</span></dt>
 						<dd>
 							<table>
 								<tr>

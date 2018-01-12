@@ -517,7 +517,11 @@ class Base
                 $arr[$name] = $value;
             }
         }
+        $build = '';
+        foreach ((array)$arr as $k => $v) {
+            $build .= $k.'='.$v.'&';
+        }
 
-        return http_build_query($arr);
+        return trim($build, '&');
     }
 }

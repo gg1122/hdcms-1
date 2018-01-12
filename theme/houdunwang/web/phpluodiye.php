@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8" />
-		<title>后盾网高薪PHP培训,七年品质,值得信赖! PHP培训|PHP视频教程|北京php培训|上海php培训</title>
+		<title>后盾人高薪PHP培训,七年品质,值得信赖! PHP培训|PHP视频教程|北京php培训|上海php培训</title>
 		<link rel="stylesheet" type="text/css" href="{{ARTICLE_URL}}/phpluodiye/css/hdphp.css" />
 		<link rel="stylesheet" type="text/css" href="{{ARTICLE_URL}}/css/common.css" />
 		<script src="{{ARTICLE_URL}}/phpluodiye/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
@@ -50,7 +50,7 @@
 			<div class="authorityCenter">
 				<div class="Htitle">
 					<p>2017PHP界权威全面更新火爆高薪知识点</p>
-					<span>在原有业界超前沿的课程体系外，2017年后盾网php培训又新增了APP开发、Vue.js、微信开发、HTML5/CSS3，最新Laravel、Thinkphp实战、Composer、Git、阿里云、SPA应用等行业最新技术。</span>
+					<span>在原有业界超前沿的课程体系外，2017年后盾人php培训又新增了APP开发、Vue.js、微信开发、HTML5/CSS3，最新Laravel、Thinkphp实战、Composer、Git、阿里云、SPA应用等行业最新技术。</span>
 					<span>超火爆的高薪课程“微信开发、PHP开发、大数据、 HTML5、APP开发、跨端开发、企业内部系统......”后盾毕业学员都能胜任。</span>
 				</div>
 				<ul>
@@ -97,8 +97,8 @@
 		<div class="select pad">
 			<div class="selectCenter">
 				<div class="Htitle">
-					<p>他们选择了后盾网，获得了月薪10000+</p>
-					<span>每5个月薪过万的PHP程序员至少一个来自后盾网</span>
+					<p>他们选择了后盾人，获得了月薪10000+</p>
+					<span>每5个月薪过万的PHP程序员至少一个来自后盾人</span>
 				</div>
 
 				<!--轮播图开始-->
@@ -286,7 +286,7 @@
 		<div class="feedback pad">
 			<div class="Htitle">
 				<p>真实反馈！拒绝伪装</p>
-				<span>所有截图均来自后盾网毕业学员真实聊天记录！我们学员薪水高，你说我吹，我说我没吹，你说不吹也是一种吹。好吧，你赢了！</span>
+				<span>所有截图均来自后盾人毕业学员真实聊天记录！我们学员薪水高，你说我吹，我说我没吹，你说不吹也是一种吹。好吧，你赢了！</span>
 			</div>
 			<div class="feedbackList">
 				<div class="in exhibition_hall">
@@ -1068,7 +1068,7 @@
 
 		<!--底部开始-->
 		<div class="bottom pad">
-			<p class="title">后盾网 你高薪路上超坚强的后盾</p>
+			<p class="title">后盾人 你高薪路上超坚强的后盾</p>
 			<p>告别碌碌无为！青春从此起航！</p>
 			<p>I WANT YOU </p>
 			<a href="http://tb.53kf.com/webCompany.php?arg=9003998&style=1" target="_blank" class="Hbtn">火爆抢座</a>

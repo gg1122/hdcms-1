@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>顶级课程-后盾网</title>
+		<title>顶级课程-后盾人</title>
 		<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
 		<link rel="stylesheet" type="text/css" href="{{ARTICLE_URL}}/mphpluodiye/libs/base.css"/>
 		<link rel="stylesheet" type="text/css" href="{{ARTICLE_URL}}/mphpluodiye/libs/style.css"/>
@@ -654,7 +654,7 @@ WEB前端开发阶段</li>
 			
 			<!--底部-->
 			<div class="bg">
-				<h2>后盾网 你高薪路上超坚强的后盾
+				<h2>后盾人 你高薪路上超坚强的后盾
 				<br />告别碌碌无为！青春从此起航！
 				<br />I  WANT  YOU 
 				</h2>

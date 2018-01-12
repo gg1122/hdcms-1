@@ -5,7 +5,7 @@
     <link type="text/css" rel="stylesheet" href="{{ARTICLE_URL}}/vip/css/index.css?version={{HDCMS_VERSION}}"/>
     <script type="text/javascript" src="{{ARTICLE_URL}}/vip/js/jquery-1.7.2.js"></script>
     <script type="text/javascript" src="{{ARTICLE_URL}}/vip/js/index.js"></script>
-    <title>后盾网 VIP视频展示 www.houdunwang.com</title>
+    <title>后盾人 VIP视频展示 www.houdunwang.com</title>
 </head>
 <body>
 
@@ -27,7 +27,7 @@
 
 <div id="header">
     <div class='hd_box'>
-        <h1>后盾网 <span>VIP</span>视频展示 <span></span></h1>
+        <h1>后盾人 <span>VIP</span>视频展示 <span></span></h1>
         <div class='nav'>
 
         </div>
@@ -46,7 +46,7 @@
             <a href="javascript:void(0);"><img width=418 height=518 src="{{ARTICLE_URL}}/vip/project/ifeng.png"></a>
         </div>
         <div class='describe'>
-            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾网原创视频，凤凰网首页制作视频教程(前端实战)</a></strong></p>
+            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾人原创视频，凤凰网首页制作视频教程(前端实战)</a></strong></p>
             <P><span>课时：</span>24课时</P>
             <P><span>知识点：</span>本套教程是在学习了html、div+css、javascript基础知识以后的一个实际应用。在这个课程中，我们会把凤凰网的首页完整的编写出来,并兼容各浏览器。在录制课程的时候，考虑到了有的同学并不会javascript，所以javascript部分，我们把它放到了最后，因此就算你只会，html,div+css的知识也能学习本课程。你会学习到，css样式复用，合理分布html代码结构,原生javascript的应用。
             </P>
@@ -58,7 +58,7 @@
             <a href="javascript:void(0);"><img width=418 height=518 src="{{ARTICLE_URL}}/vip/project/tuan800.png"></a>
         </div>
         <div class='describe'>
-            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾网原创视频，团800首页制作视频教程(前端实战)</a></strong></p>
+            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾人原创视频，团800首页制作视频教程(前端实战)</a></strong></p>
             <P><span>课时：</span>43课时</P>
             <P><span>知识点：</span>本套教程从零开始，逐步深入讲解了中国最大团购导航网站团800首页的开发过程，内容涵盖了html、div+css、javascript、jquery、切图、seo优化等知识点，页面兼容IE6-IE9版本、火狐浏览器等主流浏览器。整套教程思路讲解清晰，代码编写规范，是新手必看前端实战开发课程！
             </P>
@@ -70,7 +70,7 @@
             <a href="javascript:void(0);"><img width=418 height=518 src="{{ARTICLE_URL}}/vip/project/hdphp.jpg"></a>
         </div>
         <div class='describe'>
-            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾网原创视频，框架开发视频教程(PHP实战)</a></strong></p>
+            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾人原创视频，框架开发视频教程(PHP实战)</a></strong></p>
             <P><span>课时：</span>30课时</P>
             <P><span>知识点：</span>本套教程由业界金牌讲师向军录制，详细全面讲解了PHP框架的开发流程，独家讲解了基于面向对象开发、MVC高性能PHP开发、异常错误处理、自定义错误处理机制，知识点比较难需要有一定php基础的同学，并能开发出属于自己的PHP框架。</P>
         </div>
@@ -81,7 +81,7 @@
             <a href="javascript:void(0);"><img width=418 height=518 src="{{ARTICLE_URL}}/vip/project/js.png"></a>
         </div>
         <div class='describe'>
-            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾网原创视频，javascript高级运动框架视频教程(前端实战)</a></strong></p>
+            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾人原创视频，javascript高级运动框架视频教程(前端实战)</a></strong></p>
             <P><span>课时：</span>12课时</P>
             <P><span>知识点：</span>本季视频教程，由浅入深的讲解了js动画原理，从零开始构建动画库，能让你从底层理解动画的本质。并且通过我们写的动画库实现轮播器、动画导航等实例效果，最后通过讲解一个网页游戏来让大家对动画的本质以及应用有一个质的飞跃。学习完本季视频教程，网页当中的任何炫目的动画效果都不在话下，都能够轻松的实现。
             </P>
@@ -93,7 +93,7 @@
             <a href="javascript:void(0);"><img width=418 height=518 src="{{ARTICLE_URL}}/vip/project/weibo.png"></a>
         </div>
         <div class='describe'>
-            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾网原创视频，微博项目开发视频教程(PHP实战)</a></strong></p>
+            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾人原创视频，微博项目开发视频教程(PHP实战)</a></strong></p>
             <P><span>课时：</span>更新中</P>
             <P><span>知识点：</span>MAC OS X 系统下基于ThinkPHP框架的微博项目开发，功能模块涵盖：注册与登录，个人信息设置，发布，转发，收藏与删除微博，好友好注、用户一微博搜索、私信、消息推送等；项目开发过程中不紧会用到ThinkPHP框架的各种功能特性，而且会引用多种流行常用前端插件，如jQuery
                 Validate、Uploadify等。项目后期会使用Memcache 结合 Ajax
@@ -107,7 +107,7 @@
             <a href="javascript:void(0);"><img width=418 height=518 src="{{ARTICLE_URL}}/vip/project/since.png"></a>
         </div>
         <div class='describe'>
-            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾网原创视频&nbsp;，since1984首页制作视频教程&nbsp; (前端实战)</a></strong></p>
+            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾人原创视频&nbsp;，since1984首页制作视频教程&nbsp; (前端实战)</a></strong></p>
             <P><span>课时：</span>11课时</P>
             <P><span>知识点：</span>本套教程是在学习了html、div+css、javascript基础知识以后的一个实际应用。在课程中会书写四个javascript特效，包括，伸缩展开菜单，滑动动画，遮罩，瀑布流，我们会用jquery(javascript框架)来书写它。在学习本课程时，你需要掌握一些javascript的基础知识。
             </P>
@@ -119,7 +119,7 @@
             <a href="javascript:void(0);"><img width=418 height=518 src="{{ARTICLE_URL}}/vip/project/mall.png"></a>
         </div>
         <div class='describe'>
-            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾网原创视频，仿京东商城（基于HDPHP框架开发，适合提高）视频教程(PHP实战)</a></strong></p>
+            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾人原创视频，仿京东商城（基于HDPHP框架开发，适合提高）视频教程(PHP实战)</a></strong></p>
             <P><span>课时：</span>105课时</P>
             <P><span>知识点：</span>本套教程主要针对有PHP基础并且对HDPHP框架有些基础了解的同学，主要讲解在线商城的开发、涉及到商品类型、规格参数、购物车、订单、广告、分类栏目等的开发。该教程从制作一个完整的网站说起，包括绘制ER图、创建数据库模型等，并会详细讲解如何使用开源插件来提高开发进度和布局界面，以及URL路由控制、权限验证、数据缓存等高级技术。
             </P>
@@ -131,7 +131,7 @@
             <a href="javascript:void(0);"><img width=418 height=518 src="{{ARTICLE_URL}}/vip/project/hdjob.png"></a>
         </div>
         <div class='describe'>
-            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾网原创视频，hdjob二次开发视频教程(PHP实战)</a></strong></p>
+            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾人原创视频，hdjob二次开发视频教程(PHP实战)</a></strong></p>
             <P><span>课时：</span>30课时</P>
             <P><span>知识点：</span>本套教程是在了解到后盾招聘系统的使用之后，对系统进行模板定制、功能添加等。通过自定义模板可以制作出漂亮的前台各界面，二次开发可以使有其他功能需求 的用户开发出自己的功能。教程主要讲解：系统标签使用，前台各界面定制（例如：企业中心、个人简历），自定义标签，数据库结构讲解，功能模块添加，缓存控
                 制……在高级讲解中我们会讲解系统的一些核心功能是如何实现的，以及如何扩展系统现有的核心功能。</P>
@@ -143,7 +143,7 @@
             <a href="javascript:void(0);"><img width=418 height=518 src="{{ARTICLE_URL}}/vip/project/hdinfo.png"></a>
         </div>
         <div class='describe'>
-            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾网原创视频，HDinfo后盾分类信息系统二次开发视频教程(PHP实战)</a></strong></p>
+            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾人原创视频，HDinfo后盾分类信息系统二次开发视频教程(PHP实战)</a></strong></p>
             <P><span>课时：</span>25课时</P>
             <P><span>知识点：</span>本套教程是在了解到后盾招聘系统的使用之后，对系统进行模板定制、功能添加等。通过自定义模板可以制作出漂亮的前台各界面，二次开发可以使有其他功能需求 的用户开发出自己的功能。教程主要讲解：系统标签使用，前台各界面定制（例如：企业中心、个人简历），自定义标签，数据库结构讲解，功能模块添加，缓存控
                 制……在高级讲解中我们会讲解系统的一些核心功能是如何实现的，以及如何扩展系统现有的核心功能。</P>
@@ -156,7 +156,7 @@
             <a href="javascript:void(0);"><img width=418 height=518 src="{{ARTICLE_URL}}/vip/project/hao123.png"></a>
         </div>
         <div class='describe'>
-            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾网原创视频，hao123首页制作视频教程(前端实战)</a></strong></p>
+            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾人原创视频，hao123首页制作视频教程(前端实战)</a></strong></p>
             <P><span>课时：</span>15课时</P>
             <P><span>知识点：</span>本套教程是在学习了html、div+css基础知识以后的一个实际应用。在这个课程中，我们会把hao123的首页完整的编写出来,并兼容各浏览器。我们会讲解在书写html结构时，如何区分网页的各个区块，在调整浏览器兼容情况时，我们会运用到CSS Hacker技术进行处理，这些都是你将能学习到的知识。
             </P>
@@ -170,7 +170,7 @@
             <a href="javascript:void(0);"><img width=418 height=518 src="{{ARTICLE_URL}}/vip/project/360buy.png"></a>
         </div>
         <div class='describe'>
-            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾网原创视频，京东网首页制作视频教程(前端实战)</a></strong></p>
+            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾人原创视频，京东网首页制作视频教程(前端实战)</a></strong></p>
             <P><span>课时：</span>35课时</P>
             <P><span>知识点：</span>本套教程是在学习了html、div+css、javascript基础知识以后的一个实际应用。在课程中会书写四个javascript特效，包括，伸缩展开菜单，滑动动画，遮罩，瀑布流，我们会用jquery(javascript框架)来书写它。在学习本课程时，你需要掌握一些javascript的基础知识。
             </P>
@@ -183,7 +183,7 @@
             <a href="javascript:void(0);"><img width=418 height=518 src="{{ARTICLE_URL}}/vip/project/wannengfangzhan.png"></a>
         </div>
         <div class='describe'>
-            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾网原创视频，DEDECMS万能仿站视频教程&nbsp; (二次开发)</a></strong></p>
+            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾人原创视频，DEDECMS万能仿站视频教程&nbsp; (二次开发)</a></strong></p>
             <P><span>课时：</span>32课时</P>
             <P><span>知识点：</span>织梦（DEDECMS）万能仿站课程，从零开始，详细、系统的讲解了整套织梦万能仿站技术，内容涵盖了理论讲解、实践演示、实战操作等方面。本套教程包含两个实战案例，讲解通俗易懂，深入浅出，适合各层次水平的学员学习。目前网站建设行业，一个普通的企业站一般报价要在3000元以上，而
                 学习完本套教程，可以实现网站的快速搭建，让效果最优化的同时，能极速压缩开发周期。做一个像样的网站要多久？一年?半年？三个月？NO NO NO!掌握本套教程技术，半天足矣。</P>
@@ -195,7 +195,7 @@
             <a href="javascript:void(0);"><img width=418 height=518 src="{{ARTICLE_URL}}/vip/project/ecshop.png"></a>
         </div>
         <div class='describe'>
-            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾网原创视频，ecshop二次开发视频教程(二次开发)</a></strong></p>
+            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾人原创视频，ecshop二次开发视频教程(二次开发)</a></strong></p>
             <P><span>课时：</span>42课时</P>
             <P><span>知识点：</span>Ecshop是目前国内最受欢迎的网店系统，已成功为数以万计的企业和个人用户提供完美网上开店解决方案。本课程主要讲解Ecshop二次开发流程，如何 利用它建立出独立的商城系统，并根据客户的需求在Ecshop的原有功能基础上进行功能定制。在高级开发课程中还会讲到Ecshop的多接口登录（例
                 如：QQ、新浪微博）等功能</P>
@@ -208,7 +208,7 @@
             <a href="javascript:void(0);"><img width=418 height=518 src="{{ARTICLE_URL}}/vip/project/wenda.png"></a>
         </div>
         <div class='describe'>
-            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾网原创视频，问答系统（基于thinkphp）</a></strong></p>
+            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾人原创视频，问答系统（基于thinkphp）</a></strong></p>
             <P><span>课时：</span>40课时</P>
             <P><span>知识点：</span> 本套教程为留言本开发教程，基于thinkphp框架，分别讲解了数据库的设计与建立、thinkphp使用、面向对象开发思想、异步操作等技术，本套教程可以带大家进行快速开发入门，适合有php基础但无开发经验的同学学习。</P>
         </div>
@@ -220,7 +220,7 @@
             <a href="javascript:void(0);"><img width=418 height=518 src="{{ARTICLE_URL}}/vip/project/wannengfangzhan1.png"></a>
         </div>
         <div class='describe'>
-            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾网原创视频，网站上线运营实战视频教程(二次开发)</a></strong></p>
+            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾人原创视频，网站上线运营实战视频教程(二次开发)</a></strong></p>
             <P><span>课时：</span>9课时</P>
             <P><span>知识点：</span>网站做好之后，如何上线运营往往会困扰很多人。本套教程能帮大家很好的解决这个问题，讲师拥有多年网站运营经验，从实战角度出发，详细全面的讲解了域名选 购、服务器、vps、虚拟主机选购、织梦网站搬家、网站后期维护、网站SEO优化等最新实用技术，并从域名注册开始，对每一步都进行了实战演示，含金量极高。
             </P>
@@ -232,7 +232,7 @@
             <a href="javascript:void(0);"><img width=418 height=518 src="{{ARTICLE_URL}}/vip/project/shop.png"></a>
         </div>
         <div class='describe'>
-            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾网原创视频，商城（基于过程开发，适合新手）视频教程(PHP实战)</a></strong></p>
+            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾人原创视频，商城（基于过程开发，适合新手）视频教程(PHP实战)</a></strong></p>
             <P><span>课时：</span>79课时</P>
             <P><span>知识点：</span>本套视频为后盾商城系统开发教程，后盾商城基于面向过程技术开发，以面向过程流程进行开发，可以将php开发基本功打的更牢些，详细系统的讲解了PHP网站项目开发技术，让大家对网站流程有清晰完整的认识，适合有php基础但无开发经验的同学学习。</P>
         </div>
@@ -243,7 +243,7 @@
             <a href="javascript:void(0);"><img width=418 height=518 src="{{ARTICLE_URL}}/vip/project/tutechan.jpg"></a>
         </div>
         <div class='describe'>
-            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾网原创视频，北京土特产网视频教程(二次开发)</a></strong></p>
+            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾人原创视频，北京土特产网视频教程(二次开发)</a></strong></p>
             <P><span>课时：</span>46课时</P>
             <P><span>知识点：</span>本套教程由国内业界顶级讲师向军老师录制，是目前市面上唯一一套真正从零开始的网站整站开发建设视频。本套教程全程实战操作，先后讲解了切图、html、 div+css、织梦（dedecms）程序使用、织梦高级应用、织梦模版开发等含金量极高的知识点，授课的同时穿插讲解了讲师的大量经验与工作技巧。看
                 完本套教程可以熟练、深入的掌握织梦网站建设技术，从容应对工作中的复杂要求。</P>
@@ -255,7 +255,7 @@
             <a href="javascript:void(0);"><img width=418 height=518 src="{{ARTICLE_URL}}/vip/project/study.png"></a>
         </div>
         <div class='describe'>
-            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾网原创视频，学校信息案例整站开发视频教程(前端实战)</a></strong></p>
+            <p><span>课程名称：</span><strong><a class='show' href="javascript:void(0);">后盾人原创视频，学校信息案例整站开发视频教程(前端实战)</a></strong></p>
             <P><span>课时：</span>24课时</P>
             <P><span>知识点：</span>本套vip课程分三个学习阶段，第一阶段讲解了photoshop效果图设计、切片等网页前端实用技术，第二阶段进行符合国际标准规范的CSS布局，并对ie6,ie7,ie8,火狐等不同浏览器兼容性调试，给你呈现的是真实环境下的前端静态布局和调试，第三阶段，在前两个阶段的基础上，加入了jquery动态脚本，实现了幻灯片，文字图片放大提示等效果。通过本套教程可以完整的了解前端开发的整个流程与细节。
             </P>
@@ -268,9 +268,9 @@
             <a href="javascript:void(0);"><img width=418 height=518 src="{{ARTICLE_URL}}/vip/project/end.png"></a>
         </div>
         <div class='describe'>
-            <p><span>课程名称：</span><strong><a href="javascript:void(0);" onclick="return false;">后盾网原创VIP视频，持续更新中。。。</a></strong></p>
+            <p><span>课程名称：</span><strong><a href="javascript:void(0);" onclick="return false;">后盾人原创VIP视频，持续更新中。。。</a></strong></p>
             <P>
-                后盾网录制原创高清免费视频教程目前近500余课，更多提高版视频还在不断更新中，后盾网所有实战视频共40季(根据市场需求，以后还会有更多视频推出)，近1500余课，平均课时30分钟，全部项目实战视频累计定价为13220元，后盾网原创视频为业内最为权威，超重量级视频，也是近两年来PHP爱好者必看的，强烈追捧的视频，也是目前业界下载量最大的视频，更是众多培训机构学生重点必看的学习资料视频。</P>
+                后盾人录制原创高清免费视频教程目前近500余课，更多提高版视频还在不断更新中，后盾人所有实战视频共40季(根据市场需求，以后还会有更多视频推出)，近1500余课，平均课时30分钟，全部项目实战视频累计定价为13220元，后盾人原创视频为业内最为权威，超重量级视频，也是近两年来PHP爱好者必看的，强烈追捧的视频，也是目前业界下载量最大的视频，更是众多培训机构学生重点必看的学习资料视频。</P>
         </div>
     </div>
 
@@ -281,7 +281,7 @@
 <!--凤凰网-->
 <div class="zoom" style="left: 343px;">
     <div class="introduce">
-        <h3 class="title">后盾网原创视频，凤凰网首页制作视频教程(前端实战)</h3>
+        <h3 class="title">后盾人原创视频，凤凰网首页制作视频教程(前端实战)</h3>
         <div class="view">
             <a target="_blank" href="http://example.houdunwang.com/ifeng/">查看项目演示</a>
         </div>
@@ -345,7 +345,7 @@
 <!--团800-->
 <div class="zoom" style="left: 343px;">
     <div class="introduce">
-        <h3 class="title">后盾网远程视频教程，团800首页制作(前端实战)</h3>
+        <h3 class="title">后盾人远程视频教程，团800首页制作(前端实战)</h3>
         <div class="view">
             <a href="http://example.houdunwang.com/hdsqz/tuan800/" target="_blank">查看项目演示</a>
         </div>
@@ -435,7 +435,7 @@
 <!--框架开发-->
 <div class="zoom" style="left: 343px;">
     <div class="introduce">
-        <h3 class="title">后盾网原创视频，框架开发视频教程(PHP实战)</h3>
+        <h3 class="title">后盾人原创视频，框架开发视频教程(PHP实战)</h3>
         <div class="view">
         </div>
         <div class="contact">
@@ -502,7 +502,7 @@
 <!--javascript高级运动框-->
 <div class="zoom" style="left: 343px;">
     <div class="introduce">
-        <h3 class="title">后盾网原创视频，javascript高级运动框架视频教程(前端实战)</h3>
+        <h3 class="title">后盾人原创视频，javascript高级运动框架视频教程(前端实战)</h3>
         <div class="view">
         </div>
         <div class="contact">
@@ -560,7 +560,7 @@
 <!--微博-->
 <div class="zoom" style="left: 343px;">
     <div class="introduce">
-        <h3 class="title">后盾网原创视频，微博项目开发视频教程(PHP实战)</h3>
+        <h3 class="title">后盾人原创视频，微博项目开发视频教程(PHP实战)</h3>
         <div class="view">
         </div>
         <div class="contact">
@@ -695,7 +695,7 @@
 <!--since1984-->
 <div class="zoom" style="left: 343px;">
     <div class="introduce">
-        <h3 class="title">后盾网远程视频教程，since1984首页制作(前端实战)</h3>
+        <h3 class="title">后盾人远程视频教程，since1984首页制作(前端实战)</h3>
         <div class="view">
             <a href="http://example.houdunwang.com/since/" target="_blank">查看项目演示</a>
         </div>
@@ -753,7 +753,7 @@
 <!--仿京东网（基于HDPHP）-->
 <div class="zoom" style="left: 343px;">
     <div class="introduce">
-        <h3 class="title">后盾网原创视频，仿京东商城（基于HDPHP框架开发）视频教程(PHP实战)</h3>
+        <h3 class="title">后盾人原创视频，仿京东商城（基于HDPHP框架开发）视频教程(PHP实战)</h3>
         <div class="view">
             <a href="http://example.houdunwang.com/mall/" target="_blank">查看项目演示</a>
         </div>
@@ -906,7 +906,7 @@
 <!--hdjob二次开发-->
 <div class="zoom" style="left: 343px;">
     <div class="introduce">
-        <h3 class="title">后盾网原创视频，hdjob二次开发视频教程(PHP实战)</h3>
+        <h3 class="title">后盾人原创视频，hdjob二次开发视频教程(PHP实战)</h3>
         <div class="view">
             <a href="http://example.houdunwang.com/hdjob/" target="_blank">查看项目演示</a>
         </div>
@@ -984,7 +984,7 @@
 <!--hdinfo-->
 <div class="zoom" style="left: 343px;">
     <div class="introduce">
-        <h3 class="title">后盾网原创视频，HDinfo后盾分类信息系统二次开发视频教程(PHP实战)</h3>
+        <h3 class="title">后盾人原创视频，HDinfo后盾分类信息系统二次开发视频教程(PHP实战)</h3>
         <div class="view">
             <a href="http://example.houdunwang.com/hdinfo/" target="_blank">查看项目演示</a>
         </div>
@@ -1056,7 +1056,7 @@
 <!----好123-->
 <div class="zoom" style="left: 343px;">
     <div class="introduce">
-        <h3 class="title">后盾网远程视频教程，hao123首页制作(前端实战)</h3>
+        <h3 class="title">后盾人远程视频教程，hao123首页制作(前端实战)</h3>
         <div class="view">
             <a href="http://example.houdunwang.com/hao123/" target="_blank">查看项目演示</a>
         </div>
@@ -1119,7 +1119,7 @@
 <!--仿京东网-->
 <div class="zoom" style="left: 343px;">
     <div class="introduce">
-        <h3 class="title">后盾网原创视频，京东网首页制作视频教程(前端实战)</h3>
+        <h3 class="title">后盾人原创视频，京东网首页制作视频教程(前端实战)</h3>
         <div class="view">
             <a href="http://example.houdunwang.com/360buy/" target="_blank">查看项目演示</a>
         </div>
@@ -1200,7 +1200,7 @@
 <!--DEDECMS万能仿站-->
 <div class="zoom" style="left: 343px;">
     <div class="introduce">
-        <h3 class="title">后盾网原创视频，DEDECMS万能仿站视频教程(二次开发)</h3>
+        <h3 class="title">后盾人原创视频，DEDECMS万能仿站视频教程(二次开发)</h3>
         <div class="view">
             <!--<a href="http://example.houdunwang.com/hdsqz/wannengfangzhan/" target="_blank">查看项目演示</a>
         --!></div>
@@ -1277,7 +1277,7 @@
 <!--ecshop二次开发-->
             <div class="zoom" style="left: 343px;">
                 <div class="introduce">
-                    <h3 class="title">后盾网原创视频，ecshop二次开发视频教程(二次开发)</h3>
+                    <h3 class="title">后盾人原创视频，ecshop二次开发视频教程(二次开发)</h3>
                     <div class="view">
                     </div>
                     <div class="contact">
@@ -1366,7 +1366,7 @@
             <!--凤凰网-->
             <div class="zoom" style="left: 343px;">
                 <div class="introduce">
-                    <h3 class="title">后盾网原创视频，凤凰网首页制作视频教程(前端实战)</h3>
+                    <h3 class="title">后盾人原创视频，凤凰网首页制作视频教程(前端实战)</h3>
                     <div class="view">
                         <a target="_blank" href="http://example.houdunwang.com/wenda/">查看项目演示</a>
                     </div>
@@ -1446,7 +1446,7 @@
             <!--网站上线运营实战-->
             <div class="zoom" style="left: 343px;">
                 <div class="introduce">
-                    <h3 class="title">后盾网原创视频，网站上线运营实战视频教程(二次开发)</h3>
+                    <h3 class="title">后盾人原创视频，网站上线运营实战视频教程(二次开发)</h3>
                     <div class="view">
                     </div>
                     <div class="contact">
@@ -1501,7 +1501,7 @@
             <!--商城（基于过程开发，适合新手）-->
             <div class="zoom" style="left: 343px;">
                 <div class="introduce">
-                    <h3 class="title">后盾网原创视频，商城（基于过程开发，适合新手）视频教程(PHP实战)</h3>
+                    <h3 class="title">后盾人原创视频，商城（基于过程开发，适合新手）视频教程(PHP实战)</h3>
                     <div class="view">
                         <!--<a target="_blank" href="http://shop.houdunwang.com">查看项目演示</a>
     --!>				</div>
@@ -1625,7 +1625,7 @@
             <!--北京土特产网-->
                         <div class="zoom" style="left: 343px;">
                             <div class="introduce">
-                                <h3 class="title">后盾网原创视频，北京土特产网视频教程(二次开发)</h3>
+                                <h3 class="title">后盾人原创视频，北京土特产网视频教程(二次开发)</h3>
                                 <div class="view">
                                 </div>
                                 <div class="contact">
@@ -1658,7 +1658,7 @@
                                 </div>
                                 <ul class="course">
                                     <p>课程列表：</p>
-                                    <li>1 后盾网DIV+CSS网页标准布局__实战练习引言</li>
+                                    <li>1 后盾人DIV+CSS网页标准布局__实战练习引言</li>
                                     <li>2 实战课程_网站标准布局DIVCSS及整站建设</li>
                                     <li>3 实战课程_网站标准布局DIVCSS及整站建设</li>
                                     <li>4 实战课程_网站标准布局DIVCSS及整站建设</li>
@@ -1711,7 +1711,7 @@
                         <!--学校项目网站开发-->
                         <div class="zoom" style="left: 343px;">
                             <div class="introduce">
-                                <h3 class="title">后盾网原创视频，学校信息案例整站开发视频教程(二次开发)</h3>
+                                <h3 class="title">后盾人原创视频，学校信息案例整站开发视频教程(二次开发)</h3>
                                 <div class="view">
                                 </div>
                                 <div class="contact">

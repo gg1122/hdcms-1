@@ -15,7 +15,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label star">站点名称</label>
                     <div class="col-sm-10">
-                        <input type="text" name="name" class="form-control" placeholder="如: 后盾网" required="required">
+                        <input type="text" name="name" class="form-control" placeholder="如: 后盾人" required="required">
                         <span class="help-block">站点中显示的站点名称,可以使用中文等任意字符</span>
                     </div>
                 </div>

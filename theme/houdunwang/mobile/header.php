@@ -61,7 +61,7 @@
 				<a href="http://www.houdunwang.com/article11-51-42-3.html" class="title">关于我们</a>
 				<ul>
 					<li>
-						<a href="http://www.houdunwang.com/article11-51-42-3.html">关于后盾网</a>
+						<a href="http://www.houdunwang.com/article11-51-42-3.html">关于后盾人</a>
 					</li>
 					<li>
 						<a href="http://www.houdunwang.com/article11-50-42-3.html">联系我们</a>

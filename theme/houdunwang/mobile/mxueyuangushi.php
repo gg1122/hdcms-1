@@ -218,7 +218,7 @@
         <p class="name">邹韬</p>
         <p class="peixunqian">培训前</p>
         <p class="desc">邹韬是一名企业客服</p>
-        <p class="desc">后盾网第一名学员 开创先河 奋斗不息</p>
+        <p class="desc">后盾人第一名学员 开创先河 奋斗不息</p>
         <p class="peixunqian">现薪资17000元</p>
     </li>
     <li style="background: #449D44;">

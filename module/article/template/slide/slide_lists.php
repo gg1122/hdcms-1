@@ -20,22 +20,16 @@
                     <foreach from="$data" value="$d">
                         <tr>
                             <td>
-                                <input type="text" class="form-control input-sm"
-                                       name="slide[{{$d['id']}}]"
-                                       value="{{$d['displayorder']}}">
+                                <input type="text" class="form-control input-sm" name="slide[{{$d['id']}}]" value="{{$d['displayorder']}}">
                             </td>
                             <td>
-                                <img onclick="hdcms.preview('{{$d['thumb']}}')"
-                                     src="{{pic($d['thumb'])}}"
-                                     style="height:45px;border:solid 1px #dcdcdc;">
+                                <img onclick="hdcms.preview('{{$d['thumb']}}')" src="{{pic($d['thumb'])}}" style="height:45px;border:solid 1px #dcdcdc;">
                             </td>
                             <td>{{$d['title']}}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{!! url('slide.post')!!}&id={{$d['id'] !!}"
-                                       class="btn btn-default btn-sm">编辑</a>
-                                    <a href="javascript:del({{$d['id']}})"
-                                       class="btn btn-default btn-sm">删除</a>
+                                    <a href="{!! url('slide.post')!!}&id={{$d['id']}}" class="btn btn-default btn-sm">编辑</a>
+                                    <a href="javascript:del({{$d['id']}})" class="btn btn-default btn-sm">删除</a>
                                 </div>
 
                             </td>

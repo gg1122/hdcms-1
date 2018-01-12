@@ -129,6 +129,7 @@ class Modules extends Common
      */
     protected static function defindConst()
     {
+        define('MODULE_VERSION', v('module.version'));
         define('MODULE_PATH', v('module.path'));
         define("MODULE_TEMPLATE_PATH", v('module.path')."/template");
         define("MODULE_TEMPLATE_URL", root_url().'/'.v('module.path')."/template");
@@ -850,6 +851,7 @@ class Modules extends Common
                 $namespace = "addons\\{$name}\\database\migrations";
                 $class     = $namespace.'\\'.substr($info['basename'], 13, -4);
                 (new $class)->down();
+
                 return Db::table('migrations')->where('migration', $info['basename'])->delete();
             }
         }

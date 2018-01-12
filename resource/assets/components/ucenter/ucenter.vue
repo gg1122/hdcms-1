@@ -12,7 +12,7 @@
                     <div class="col-xs-3 ico">
                         <img src="./images/user.jpg">
                     </div>
-                    <div class="col-xs-7 user"><h2 class="col-xs-12">后盾网向军老师</h2>
+                    <div class="col-xs-7 user"><h2 class="col-xs-12">后盾人向军老师</h2>
                         <div class="col-xs-6">普通会员</div>
                         <div class="col-xs-6">100积分</div>
                     </div>
@@ -86,9 +86,9 @@
                                     </div>
                                 </div>
                                 <div class="page-header"> 个人中心扩展菜单</div>
-                                <div class="col-sm-12 ext-menus" v-for="v in menus">
+                                <div class="col-sm-12 ext-menus" v-for="(v,k) in menus">
                                     <div class="del-menu">
-                                        <i class="fa fa-times-circle delete-ico"></i>
+                                        <i class="fa fa-times-circle delete-ico" @click="removeMenu(k)"></i>
                                     </div>
                                     <div class="alert">
                                         <div class="form-group">
@@ -169,7 +169,7 @@
         },
         methods: {
             ...mapMutations('ucenter', [
-                'set', 'addMenu', 'upImage', 'font', 'systemLink'
+                'set', 'addMenu','removeMenu', 'upImage', 'font', 'systemLink'
             ]),
             submit() {
                 hdjs.submit();

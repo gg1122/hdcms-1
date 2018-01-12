@@ -14,7 +14,7 @@
                 <i class="fa fa-mixcloud"></i> <span>会员中心</span>
             </a>
             <div class="TopMenu">
-                <a href="{{__ROOT__}}"> <i class="fa fa-home"></i> 网站首页</a>
+                <a href="{{__ROOT__}}" target="_blank"> <i class="fa fa-home"></i> 网站首页</a>
                 <a href="{{url('message.lists',['status'=>0],'ucenter')}}"> <i class="fa fa-rss-square"></i> 消息中心</a>
             </div>
         </div>

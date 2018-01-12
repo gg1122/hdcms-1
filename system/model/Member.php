@@ -395,7 +395,6 @@ class Member extends Common
         }
         $model['password'] = $info['password'];
         $model['security'] = $info['security'];
-
         switch (v('site.setting.register.type')) {
             case 1:
                 //手机号注册
@@ -403,7 +402,7 @@ class Member extends Common
                     return ['valid' => 0, 'message' => '请输入手机号'];
                 }
                 $model['mobile'] = $data['username'];
-                if (Db::table('member')->where('mobile', $data['mobile'])->where('siteid', siteid())->get()) {
+                if (Db::table('member')->where('mobile', $data['username'])->where('siteid', siteid())->get()) {
                     return ['valid' => 0, 'message' => '手机号已经存在'];
                 }
                 break;
@@ -413,7 +412,7 @@ class Member extends Common
                     return ['valid' => 0, 'message' => '请输入邮箱'];
                 }
                 $model['email'] = $data['username'];
-                if (Db::table('member')->where('email', $data['email'])->where('siteid', siteid())->get()) {
+                if (Db::table('member')->where('email', $data['username'])->where('siteid', siteid())->get()) {
                     return ['valid' => 0, 'message' => '邮箱已经存在'];
                 }
                 break;
@@ -423,12 +422,12 @@ class Member extends Common
                     return ['valid' => 0, 'message' => '请输入邮箱或手机号'];
                 } else if (preg_match('/^\d{11}$/', $data['username'])) {
                     $model['mobile'] = $data['username'];
-                    if (empty($data['username']) || Db::table('member')->where('mobile', $data['mobile'])->where('siteid', siteid())->get()) {
+                    if (Db::table('member')->where('mobile', $data['username'])->where('siteid', siteid())->get()) {
                         return ['valid' => 0, 'message' => '手机号已经存在'];
                     }
                 } else {
                     $model['email'] = $data['username'];
-                    if (empty($data['username']) || Db::table('member')->where('email', $data['email'])->where('siteid', siteid())->get()) {
+                    if (Db::table('member')->where('email', $data['username'])->where('siteid', siteid())->get()) {
                         return ['valid' => 0, 'message' => '邮箱已经存在'];
                     }
                 }
