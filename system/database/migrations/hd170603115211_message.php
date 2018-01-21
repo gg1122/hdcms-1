@@ -2,6 +2,7 @@
 
 use houdunwang\database\build\Migration;
 use houdunwang\database\Schema;
+use houdunwang\db\Db;
 class hd170603115211_message extends Migration
 {
     //执行

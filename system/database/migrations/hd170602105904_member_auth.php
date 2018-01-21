@@ -3,6 +3,7 @@
 use houdunwang\database\build\Migration;
 use houdunwang\database\build\Blueprint;
 use houdunwang\database\Schema;
+use houdunwang\db\Db;
 class hd170602105904_member_auth extends Migration
 {
     //执行
