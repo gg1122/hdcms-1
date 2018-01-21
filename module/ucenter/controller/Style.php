@@ -13,7 +13,8 @@ use houdunwang\request\Request;
 use module\HdController;
 use system\model\Navigate;
 use system\model\Page;
-use system\model\WeChat;
+use system\model\SiteWeChat;
+use View;
 
 /**
  * 后台移动端界面管理
@@ -32,11 +33,13 @@ class Style extends HdController
     /**
      * 移动端界面设置
      *
-     * @param \system\model\WeChat $weChatModel
+     * @param \system\model\SiteWeChat $weChatModel
+     * @param \system\model\Page       $Page
      *
      * @return mixed|string
+     * @throws \Exception
      */
-    public function post(WeChat $weChatModel, Page $Page)
+    public function post(SiteWeChat $weChatModel, Page $Page)
     {
         if (IS_POST) {
             //模块数据
@@ -86,6 +89,7 @@ class Style extends HdController
         //模块参数
         $modules = $Page->getParamsByType('profile');
         View::with(['modules' => $modules, 'menus' => $this->getProfileMenu()]);
+
         return view($this->template.'/style/post.php');
     }
 

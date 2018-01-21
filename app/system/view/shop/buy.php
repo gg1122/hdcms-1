@@ -10,14 +10,16 @@
             <li role="presentation"><a href="{!! u('module.installed') !!}">已经安装模块</a></li>
             <li role="presentation"><a href="{!! u('module.prepared') !!}">安装模块</a></li>
             <li role="presentation"><a href="{!! u('module.design') !!}">设计新模块</a></li>
-            <li role="presentation"><a href="{!! u('shop.lists',['type'=>'module']) !!}">模块商城</a></li>
+            <li role="presentation"><a href="{!! u('shop.lists',['type'=>'module']) !!}">模块商城</a>
+            </li>
             <li role="presentation"><a href="{!! u('shop.upgradeLists') !!}">模块更新</a></li>
             <li role="presentation" class="active"><a href="javascript:;">已购模块</a></li>
             <else/>
             <li role="presentation"><a href="{!! u('template.installed') !!}">已经安装模板</a></li>
             <li role="presentation"><a href="{!! u('template.prepared') !!}">安装模板</a></li>
             <li role="presentation"><a href="{!! u('template.design') !!}">设计新模板</a></li>
-            <li role="presentation"><a href="{!! u('shop.lists',['type'=>'template']) !!}">模板商城</a></li>
+            <li role="presentation"><a href="{!! u('shop.lists',['type'=>'template']) !!}">模板商城</a>
+            </li>
             <li role="presentation" class="active"><a href="javascript:;">已购模板</a></li>
         </if>
     </ul>
@@ -47,9 +49,11 @@
                         </small>
                         <p class="resume" v-html="v.resume"></p>
                         <p>
-                            <a v-if="!v.is_install" @click="install(v)" class="btn btn-primary btn-sm btn-block" role="button">开始安装</a>
+                            <a v-if="!v.is_install" @click="install(v)"
+                               class="btn btn-primary btn-sm btn-block" role="button">开始安装</a>
                         </p>
-                        <p><span v-if="v.is_install" class="disabled btn btn-default btn-sm btn-block">已经安装</span></p>
+                        <p><span v-if="v.is_install"
+                                 class="disabled btn btn-default btn-sm btn-block">已经安装</span></p>
                     </div>
                 </div>
             </div>

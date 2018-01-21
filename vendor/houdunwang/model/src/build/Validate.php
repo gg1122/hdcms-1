@@ -1,4 +1,5 @@
-<?php
+<?php namespace houdunwang\model\build;
+
 /** .-------------------------------------------------------------------
  * |  Software: [HDPHP framework]
  * |      Site: www.hdphp.com  www.hdcms.com
@@ -7,8 +8,6 @@
  * |    WeChat: aihoudun
  * | Copyright (c) 2012-2019, www.houdunwang.com. All Rights Reserved.
  * '-------------------------------------------------------------------*/
-
-namespace houdunwang\model\build;
 
 use houdunwang\db\Db;
 use houdunwang\validate\build\VaAction;

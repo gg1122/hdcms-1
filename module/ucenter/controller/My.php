@@ -14,7 +14,7 @@ use system\model\Member;
 use system\model\Message;
 use houdunwang\request\Request;
 use Session;
-
+use View;
 /**
  * 会员资料管理
  * Class My

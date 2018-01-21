@@ -1,6 +1,7 @@
 <?php namespace app\system\controller;
 
 use system\model\Cloud;
+use Request;
 
 /**
  * 应用商店

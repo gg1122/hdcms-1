@@ -11,6 +11,7 @@
 namespace app\site\controller;
 
 use system\model\Modules;
+use View;
 
 /**
  * 模块配置管理

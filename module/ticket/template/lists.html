@@ -5,7 +5,7 @@
             <a href="#">管理{{$ticket_name}}</a>
         </li>
         <li>
-            <a href="{!! url('site/post')}}&type={{$_GET['type'] !!}">
+            <a href="{!! url('site/post')!!}&type={!! $_GET['type'] !!}">
                 <i class="fa fa-plus"></i> 添加{{$ticket_name}}
             </a>
         </li>
@@ -74,7 +74,7 @@
                         <td>{{date('Y-m-d',$t['starttime'])}} ~ {{date("Y-m-d",$t['endtime'])}}</td>
                         <td>
                             <div class="btn-group">
-                                <a href="{!! url('site/post')}}&type={{$t['type']}}&tid={{$t['tid'] !!}"
+                                <a href="{!! url('site/post')!!}&type={{$t['type']}}&tid={{$t['tid']}}"
                                    class="btn btn-default">编辑</a>
                                 <a href="javascript:;" onclick="del({{$t['type']}},{{$t['tid']}})"
                                    class="btn btn-default">删除</a>

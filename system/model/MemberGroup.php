@@ -10,6 +10,8 @@
 
 namespace system\model;
 
+use Db;
+
 /**
  * 前台用户组
  * Class MemberGroup

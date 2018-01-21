@@ -11,6 +11,7 @@
 namespace module\quicknavigate\controller;
 
 use module\HdController;
+use Db;
 
 /**
  * 后台底部快捷导航

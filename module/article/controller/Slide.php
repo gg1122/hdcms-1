@@ -11,6 +11,7 @@
 
 use module\HdController;
 use module\article\model\WebSlide;
+use View;
 
 /**
  * 幻灯片管理

@@ -14,6 +14,8 @@ use module\article\model\WebCategory;
 use module\article\model\WebModel;
 use module\HdController;
 use Arr;
+use Request;
+
 /**
  * 栏目管理
  * Class Category

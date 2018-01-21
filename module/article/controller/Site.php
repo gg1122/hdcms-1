@@ -16,6 +16,8 @@ use houdunwang\request\Request;
 use module\article\model\Web;
 use module\HdController;
 use system\model\WeChat;
+use system\model\SiteWeChat;
+use Db;
 
 class Site extends HdController
 {
@@ -31,8 +33,9 @@ class Site extends HdController
      * @param \system\model\WeChat $weChatModel
      *
      * @return mixed|string
+     * @throws \Exception
      */
-    public function post(WeChat $weChatModel)
+    public function post(SiteWeChat $weChatModel)
     {
         if (IS_POST) {
             $model                  = Web::where('siteid', siteid())->first() ?: new Web();

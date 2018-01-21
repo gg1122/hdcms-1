@@ -11,6 +11,7 @@
 use houdunwang\cli\Cli;
 use houdunwang\request\Request;
 use system\model\Modules;
+use houdunwang\database\Schema;
 
 /**
  * 模块数据表设置
@@ -63,8 +64,8 @@ class Database extends Admin
         if ( ! preg_match('/^[a-z_]+$/i', $data['migrate_table'])) {
             return message('表名必须为小写英文字母或下划线', '', 'info');
         }
-        $table = $this->module.'_'.$data['migrate_table'];
-        $file  = $table.'_create';
+        $table = $this->module . '_' . $data['migrate_table'];
+        $file  = $table . '_create';
         if (Schema::tableExists($table)) {
             return message('数据表已经存在', '', 'error');
         }
@@ -87,8 +88,8 @@ class Database extends Admin
         if ( ! preg_match('/^[a-z_]+$/i', $data['migrate_table'])) {
             return message('表名必须为小写英文字母');
         }
-        $table = $this->module.'_'.$data['migrate_table'];
-        $file  = $table.'_field';
+        $table = $this->module . '_' . $data['migrate_table'];
+        $file  = $table . '_field';
         $cli   = "hd make:migration {$file} --table={$table}";
         if (Cli::call($cli) === false) {
             return message(Cli::getError(), '', 'error');
@@ -152,7 +153,7 @@ class Database extends Admin
         if ( ! preg_match('/^[a-z_]+$/i', $data['seed_table'])) {
             return message('表名必须为小写字母或下划线', '', 'info');
         }
-        $table = $this->module.'_'.$data['seed_table'].'_'.date("ymdhis");
+        $table = $this->module . '_' . $data['seed_table'] . '_' . date("ymdhis");
         $cli   = "hd make:seed {$table}";
         if (Cli::call($cli) === false) {
             return message(Cli::getError(), '', 'error');
@@ -185,12 +186,10 @@ class Database extends Admin
     public function resetSeed()
     {
         foreach (glob("addons/{$this->module}/database/seeds/*") as $file) {
-            $info = pathinfo($file);
-            require $file;
+            $info      = pathinfo($file);
             $namespace = "addons\\{$this->module}\\database\seeds";
-            $class     = $namespace.'\\'.substr($info['basename'], 13, -4);
+            $class     = $namespace . '\\' . $info['filename'];
             (new $class)->down();
-
             Db::table('seeds')->where('seed', $info['basename'])->delete();
         }
 

@@ -17,7 +17,8 @@ use system\model\Ticket;
 use system\model\TicketGroups;
 use system\model\TicketModule;
 use system\model\TicketRecord;
-use system\model\Site as SiteModel;
+use Db;
+use View;
 
 /**
  * 卡券管理

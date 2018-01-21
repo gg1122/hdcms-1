@@ -1,5 +1,7 @@
 <?php namespace system\model;
 
+use Db;
+
 /**
  * 公众号管理接口
  * Class SiteWeChat
@@ -18,7 +20,13 @@ class SiteWeChat extends Common
             ['appid', 'required', 'appid不能为空', self::EXIST_VALIDATE, self::MODEL_INSERT],
             ['appsecret', 'required', 'appsecret不能为空', self::EXIST_VALIDATE, self::MODEL_INSERT],
             ['token', 'required', 'token不能为空', self::EXIST_VALIDATE, self::MODEL_INSERT],
-            ['encodingaeskey', 'required', 'encodingaeskey不能为空', self::EXIST_VALIDATE, self::MODEL_INSERT],
+            [
+                'encodingaeskey',
+                'required',
+                'encodingaeskey不能为空',
+                self::EXIST_VALIDATE,
+                self::MODEL_INSERT,
+            ],
         ];
     protected $auto
         = [
@@ -34,7 +42,13 @@ class SiteWeChat extends Common
             ['icon', 'resource/images/hd.png', 'string', self::EMPTY_AUTO, self::MODEL_INSERT],
             ['is_connect', 0, 'string', self::EMPTY_AUTO, self::MODEL_INSERT],
             ['token', 'autoToken', 'method', self::EMPTY_AUTO, self::MODEL_INSERT],
-            ['encodingaeskey', 'autoEncodingaeskey', 'method', self::EMPTY_AUTO, self::MODEL_INSERT],
+            [
+                'encodingaeskey',
+                'autoEncodingaeskey',
+                'method',
+                self::EMPTY_AUTO,
+                self::MODEL_INSERT,
+            ],
         ];
 
     protected function autoToken()
@@ -44,7 +58,7 @@ class SiteWeChat extends Common
 
     protected function autoEncodingaeskey()
     {
-        return substr(md5(time()).md5(time()), 0, 43);
+        return substr(md5(time()) . md5(time()), 0, 43);
     }
 
     /**
@@ -97,7 +111,14 @@ class SiteWeChat extends Common
     public static function removeRule($rid)
     {
         if ($rid) {
-            $tables = ['rule', 'rule_keyword', 'reply_cover', 'reply_basic', 'reply_image', 'reply_news'];
+            $tables = [
+                'rule',
+                'rule_keyword',
+                'reply_cover',
+                'reply_basic',
+                'reply_image',
+                'reply_news',
+            ];
             foreach ($tables as $tab) {
                 Db::table($tab)->where('rid', $rid)->delete();
             }
@@ -164,6 +185,7 @@ class SiteWeChat extends Common
      * @param $data
      *
      * @return bool|string
+     * @throws \Exception
      */
     public static function cover($data)
     {
@@ -183,7 +205,7 @@ class SiteWeChat extends Common
          * 添加回复规则
          * 回复规则唯一标识，用于确定唯一个图文回复
          */
-        $name = v('module.name').'#'.$data['name'];
+        $name = v('module.name') . '#' . $data['name'];
         $rid  = Db::table('rule')->where('siteid', SITEID)->where('name', $name)->pluck('rid');
         //回复关键词
         $rule['rid']      = $rid;
@@ -192,8 +214,10 @@ class SiteWeChat extends Common
         $rule['keywords'] = [['content' => $data['keyword']]];
         $rid              = self::rule($rule);
         //封面回复
-        $cover                = Db::table('reply_cover')->where('siteid', SITEID)->where('rid', $rid)->first();
-        $model                = empty($cover['id']) ? new ReplyCover() : ReplyCover::find($cover['id']);
+        $cover                = Db::table('reply_cover')->where('siteid', SITEID)
+                                  ->where('rid', $rid)->first();
+        $model                = empty($cover['id']) ? new ReplyCover()
+            : ReplyCover::find($cover['id']);
         $model['hash']        = '';
         $model['rid']         = $rid;
         $model['title']       = $data['title'];
@@ -228,7 +252,7 @@ class SiteWeChat extends Common
      */
     public static function getCoverByUrl($url)
     {
-        $hash = v('module.name').'#'.md5($url);
+        $hash = v('module.name') . '#' . md5($url);
 
         return Db::table('rule')->join('rule_keyword', 'rule.rid', '=', 'rule_keyword.rid')
                  ->field('rule.rid,rule_keyword.content as keyword,rule.siteid,rule.module,rule.status')

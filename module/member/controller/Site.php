@@ -15,6 +15,7 @@ use system\model\Member;
 use system\model\MemberFields;
 use system\model\MemberGroup;
 use system\model\Site as SiteModel;
+use Db;
 
 /**
  * 会员中心

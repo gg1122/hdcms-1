@@ -2,7 +2,8 @@
 
 use houdunwang\model\Model;
 use system\model\Rule;
-
+use Request;
+use Db;
 /**
  * 文章管理
  * Class WebContent
@@ -81,6 +82,7 @@ class WebContent extends Model
         foreach ($this->toArray() as $k => $v) {
             $url = str_replace('{'.$k.'}', $v, $url);
         }
+
         return $url;
     }
 

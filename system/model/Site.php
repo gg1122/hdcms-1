@@ -1,4 +1,5 @@
-<?php
+<?php namespace system\model;
+
 /** .-------------------------------------------------------------------
  * |  Software: [HDCMS framework]
  * |      Site: www.hdcms.com
@@ -8,10 +9,8 @@
  * | Copyright (c) 2012-2019, www.houdunwang.com. All Rights Reserved.
  * '-------------------------------------------------------------------*/
 
-namespace system\model;
-
+use houdunwang\config\Config as C;
 use houdunwang\db\Db;
-use houdunwang\config\Config;
 use houdunwang\arr\Arr;
 use houdunwang\request\Request;
 
@@ -24,13 +23,16 @@ use houdunwang\request\Request;
 class Site extends Common
 {
     protected $allowFill = ['*'];
+
     protected $table = 'site';
+
     protected $validate
         = [
             ['name', 'required', '站点名称不能为空', self::MUST_VALIDATE, self::MODEL_INSERT,],
             ['name', 'unique', '站点名称已经存在', self::MUST_VALIDATE, self::MODEL_INSERT,],
             ['description', 'required', '网站描述不能为空', self::MUST_VALIDATE, self::MODEL_INSERT,],
         ];
+
     protected $auto
         = [
             ['weid', 0, 'string', self::EMPTY_AUTO, self::MODEL_INSERT],
@@ -158,18 +160,18 @@ class Site extends Common
             "back_url"       => '',
         ];
         //设置微信通信数据配置
-        Config::set('wechat', array_merge(Config::get('wechat'), $config));
+        C::set('wechat', array_merge(C::get('wechat'), $config));
         //设置邮箱配置
-        Config::set('mail', v('site.setting.smtp'));
+        C::set('mail', v('site.setting.smtp'));
         //支付宝配置
-        Config::set('alipay', v('site.setting.pay.alipay'));
+        C::set('alipay', v('site.setting.pay.alipay'));
         //阿里云配置
         if (SITEID && v('site.setting.aliyun.aliyun.use_site_aliyun')) {
-            Config::set('aliyun', v('site.setting.aliyun.aliyun'));
+            C::set('aliyun', v('site.setting.aliyun.aliyun'));
         }
         //使用站点阿里云OSS配置
         if (SITEID && v('site.setting.aliyun.oss.use_site_oss')) {
-            Config::set('oss', v('site.setting.aliyun.oss'));
+            C::set('oss', v('site.setting.aliyun.oss'));
         }
 
         return true;
@@ -331,6 +333,7 @@ class Site extends Common
      * @param array $data 站点数据
      *
      * @return bool
+     * @throws \Exception
      */
     public function addSite(array $data = [])
     {
@@ -375,6 +378,7 @@ class Site extends Common
      * @param int $siteId 网站编号
      *
      * @return bool
+     * @throws \Exception
      */
     public static function updateCache($siteId = 0)
     {
@@ -527,6 +531,7 @@ class Site extends Common
      * 更新所有站点缓存
      *
      * @return bool
+     * @throws \Exception
      */
     public static function updateAllCache()
     {

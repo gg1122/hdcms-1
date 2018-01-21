@@ -29,13 +29,13 @@ class Tag
 		\$cid = array_filter(explode(',',$cid));
 		\$mid = $mid;
 		if(!\$mid && !empty(\$cid)){
-			\$mid = Db::table('web_category')->where('cid',\$cid[0])->pluck('mid');
+			\$mid = \Db::table('web_category')->where('cid',\$cid[0])->pluck('mid');
 		}
 		\$model = new module\article\model\WebContent(\$mid);
 		\$db = \$model->where('siteid',SITEID)->limit($start,$row);
 		//包含子栏目
 		if(!empty(\$cid) && $sub_category){
-			\$_sub_category = array_keys(Arr::channelList(Db::table('web_category')->get(),\$cid));
+			\$_sub_category = array_keys(Arr::channelList(\Db::table('web_category')->get(),\$cid));
 			\$cid = array_merge(\$cid,\$_sub_category);
 		}
 		if(!empty(\$cid)){
@@ -111,7 +111,7 @@ str;
     {
         $php
              = <<<str
-<?php \$slideData = Db::table('web_slide')->where('siteid',SITEID)
+<?php \$slideData = \Db::table('web_slide')->where('siteid',SITEID)
         ->orderBy('displayorder','DESC')->orderBy('id','desc')->get()?:[];
 foreach(\$slideData as \$field){?>
 str;
@@ -131,7 +131,7 @@ str;
         $autoplay = isset($attr['autoplay']) ? $attr['autoplay'] : 3000;
         $php
                   = <<<str
-        <?php \$slideData = Db::table('web_slide')->where('siteid',SITEID)->orderBy('displayorder','DESC')->get()?:[];?>
+        <?php \$slideData = \Db::table('web_slide')->where('siteid',SITEID)->orderBy('displayorder','DESC')->get()?:[];?>
         <?php if(!empty(\$slideData)){?>
 <div class="hdcms_swiper_container">
         <div class="swiper-wrapper">
@@ -209,7 +209,7 @@ str;
                   = <<<str
         <?php
 	        \$sql  ="SELECT * FROM ".tablename('navigate').' WHERE siteid=? AND position=? AND status=1';
-	        \$nav = Db::query(\$sql,[SITEID,$position]);
+	        \$nav = \Db::query(\$sql,[SITEID,$position]);
 	        foreach((array)\$nav as \$field){
 	            \$css = json_decode(\$field['css'],true);
 	            if(\$field['icontype']==1){
@@ -248,7 +248,7 @@ str;
         <div class="child_menu_list clearfix">
             <dl>
                 <?php
-                 \$categoryData = Db::table('web_category')->where('siteid',SITEID)->where('status',1)->get()?:[];
+                 \$categoryData = \Db::table('web_category')->where('siteid',SITEID)->where('status',1)->get()?:[];
                  \$categoryData = \Arr::channelLevel(\$categoryData,0,'','cid','pid');
                  foreach(\$categoryData as \$d){
                         \$d['url']=\module\article\model\WebCategory::url(\$d);
@@ -288,10 +288,10 @@ str;
 <?php
 \$cid = array_filter(explode(',','$cid'));
 if(empty(\$cid)){
-	\$cid = Db::table('web_category')->where('pid',Request::get('cid',0))->lists('cid,cid');
+	\$cid = \Db::table('web_category')->where('pid',Request::get('cid',0))->lists('cid,cid');
 }
 
-\$db =  Db::table('web_category')->where('siteid',SITEID)->orderBy('orderby','DESC');
+\$db =  \Db::table('web_category')->where('siteid',SITEID)->orderBy('orderby','DESC');
 if($pid!=-1){
 	\$db->where('pid',$pid);
 }
@@ -323,7 +323,7 @@ str;
         $php
             = <<<str
 <?php
-\$_category =  Db::table('web_category')->where('siteid',SITEID)->where('pid',0)->get();
+\$_category = \Db::table('web_category')->where('siteid',SITEID)->where('pid',0)->get();
 foreach(\$_category as \$field){
     //栏目链接
     if(empty(\$field['linkurl'])){
@@ -355,7 +355,7 @@ str;
         $php
             = <<<str
 <?php
-\$_son_category =  Db::table('web_category')->where('siteid',SITEID)->where('pid',\$field['cid'])->get();
+\$_son_category = \Db::table('web_category')->where('siteid',SITEID)->where('pid',\$field['cid'])->get();
 foreach(\$_son_category as \$field){
     //栏目链接
     if(empty(\$field['linkurl'])){
@@ -380,7 +380,7 @@ str;
         return <<<str
 <ol class="breadcrumb">
   <li><a href="{{__ROOT__}}">首页</a>{$separator}</li>
-  <?php \$_categorys = Db::table('web_category')->where('siteid',SITEID)->get();
+  <?php \$_categorys = \Db::table('web_category')->where('siteid',SITEID)->get();
   \$_cid  = isset(\$hdcms['category']['cid'])?\$hdcms['category']['cid']:\$hdcms['cid']; 
   \$_categorys = array_reverse(Arr::parentChannel(\$_categorys,\$_cid)?:[]);
   foreach(\$_categorys as \$_cat){?>
@@ -418,10 +418,10 @@ str;
             \$db->where('iscommend',1);
         }
         //当前栏目数据
-        \$_category = Db::table('web_category')->where('cid',Request::get('cid'))->where('siteid',SITEID)->first();
+        \$_category = \Db::table('web_category')->where('cid',Request::get('cid'))->where('siteid',SITEID)->first();
         //包含子栏目
 		if($sub_category){
-			\$_sub_category = array_keys(Arr::channelList(Db::table('web_category')->get(),\$cid));
+			\$_sub_category = array_keys(Arr::channelList(\Db::table('web_category')->get(),\$cid));
 			\$cid = array_merge(\$cid,\$_sub_category);
 		}
 		\$db->whereIN('cid',\$cid)->where('mid',\$_category['mid']);
@@ -472,7 +472,7 @@ str;
         }
     </style>
         <?php
-            \$res = Db::table('page')->where(siteid,SITEID)->where('type','quickmenu')->first();
+            \$res = \Db::table('page')->where(siteid,SITEID)->where('type','quickmenu')->first();
             if(\$res){
                 \$params = json_decode(\$res['params'],true);
                 if(empty(\$params['modules'])){

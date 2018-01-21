@@ -12,6 +12,7 @@ namespace system\model;
 
 use houdunwang\container\Container;
 use houdunwang\dir\Dir;
+use Db;
 
 /**
  * 模板

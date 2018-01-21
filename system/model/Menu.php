@@ -1,4 +1,5 @@
-<?php
+<?php namespace system\model;
+
 /** .-------------------------------------------------------------------
  * |  Software: [HDCMS framework]
  * |      Site: www.hdcms.com
@@ -7,11 +8,9 @@
  * |    WeChat: aihoudun
  * | Copyright (c) 2012-2019, www.houdunwang.com. All Rights Reserved.
  * '-------------------------------------------------------------------*/
-
-namespace system\model;
-
-use Db;
-use Arr;
+use houdunwang\db\Db;
+use houdunwang\arr\Arr;
+use houdunwang\request\Request;
 
 /**
  * 系统菜单管理

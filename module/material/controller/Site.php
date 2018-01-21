@@ -26,6 +26,7 @@ class Site extends HdController
      * 上传素材
      *
      * @return mixed|string
+     * @throws \Exception
      */
     public function upload_material()
     {
@@ -178,8 +179,10 @@ class Site extends HdController
                 }
             }
             $end = $pos + $result['item_count'];
+
             return message("准备同步[{$pos} ~ {$end}]图文消息", url('site/syncNews', ['pos' => $end]), 'success', 2);
         }
+
         return message('准备同步图文消息', url('site/syncNews', ['pos' => 0]), 'success', 2);
     }
 

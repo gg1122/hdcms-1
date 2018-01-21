@@ -1,14 +1,9 @@
 <?php namespace system\model;
 
+use Request;
+use Db;
 /**
  * 导航菜单管理
- * Class WebNav
- *
- * @package system\model
- * @author  向军 <2300071698@qq.com>
- * @site    www.houdunwang.com
- */
-/**
  * Class Navigate
  *
  * @package system\model

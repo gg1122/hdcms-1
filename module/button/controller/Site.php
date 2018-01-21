@@ -11,6 +11,7 @@
 
 use module\HdController;
 use system\model\Button;
+use View;
 
 /**
  * 微信菜单

@@ -2,7 +2,7 @@
 
 use houdunwang\curl\Curl;
 use houdunwang\dir\Dir;
-
+use Db;
 /**
  * 后盾云
  * Class Cloud

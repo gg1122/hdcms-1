@@ -1,10 +1,11 @@
 <?php namespace app\component\controller;
 
-use Request;
-use Middleware;
-use File;
-use Config;
+use houdunwang\request\Request;
+use houdunwang\middleware\Middleware;
+use houdunwang\file\File;
+use houdunwang\config\Config;
 use system\model\Attachment;
+use Db;
 
 /**
  * 上传处理
@@ -38,7 +39,7 @@ class Upload extends Common
         $file = File::path()->path($path)->upload();
         if ($file) {
             $data = [
-                'uid'        => v(Request::post('user_type').'.info.uid'),
+                'uid'        => v('member.info.uid'),
                 'siteid'     => siteid(),
                 'name'       => $file[0]['name'],
                 'module'     => Request::get("m", ''),
@@ -47,10 +48,10 @@ class Upload extends Common
                 'extension'  => strtolower($file[0]['ext']),
                 'createtime' => time(),
                 'size'       => $file[0]['size'],
-                'status'     => 0,
+                'status'     => 1,
                 'data'       => Request::post('data', ''),
                 'content'    => Request::post('content', ''),
-                'user_type'  => Request::post('user_type'),
+                'user_type'  => 'member',
             ];
             $attachment->save($data);
 
@@ -67,22 +68,20 @@ class Upload extends Common
      */
     public function filesLists()
     {
-        $db = Db::table('attachment')
-                ->where('uid', v(Request::post('user_type').'.info.uid'))
-                ->whereIn('extension', explode(',', strtolower(Request::post('extensions'))))
-                ->where('user_type', Request::post('user_type', 'member'))
-                ->orderBy('id', 'DESC');
-        if (Request::post('user_type') != 'user') {
-            //前台会员根据站点编号读取数据
-            $db->where('siteid', SITEID);
-        }
+        $db   = Db::table('attachment')
+                  ->where('uid', v('member.info.uid'))
+                  ->whereIn('extension', explode(',', strtolower(Request::post('extensions'))))
+                  ->where('user_type', 'member')
+                  ->orderBy('id', 'DESC')
+                  ->where('siteid', SITEID);
         $Res  = $db->paginate(32);
         $data = [];
         if ($Res->toArray()) {
             foreach ($Res as $k => $v) {
                 $data[$k]['createtime'] = date('Y/m/d', $v['createtime']);
                 $data[$k]['size']       = \Tool::getSize($v['size']);
-                $data[$k]['url']        = preg_match('/^http/i', $v['path']) ? $v['path'] : __ROOT__.'/'.$v['path'];
+                $data[$k]['url']        = preg_match('/^http/i', $v['path']) ? $v['path']
+                    : __ROOT__ . '/' . $v['path'];
                 $data[$k]['path']       = $v['path'];
                 $data[$k]['name']       = $v['name'];
             }
@@ -99,9 +98,9 @@ class Upload extends Common
     public function filesListsLocal()
     {
         $db = Db::table('attachment')
-                ->where('uid', v(Request::post('user_type').'.info.uid'))
+                ->where('uid', v('member.info.uid'))
                 ->whereIn('extension', explode(',', strtolower(Request::post('extensions'))))
-                ->where('user_type', Request::post('user_type', 'member'))
+                ->where('user_type', 'member')
                 ->where('path', "like", "attachment%")
                 ->orderBy('id', 'DESC');
         if (Request::post('user_type') != 'user') {
@@ -114,7 +113,8 @@ class Upload extends Common
             foreach ($Res as $k => $v) {
                 $data[$k]['createtime'] = date('Y/m/d', $v['createtime']);
                 $data[$k]['size']       = \Tool::getSize($v['size']);
-                $data[$k]['url']        = preg_match('/^http/i', $v['path']) ? $v['path'] : __ROOT__.'/'.$v['path'];
+                $data[$k]['url']        = preg_match('/^http/i', $v['path']) ? $v['path']
+                    : __ROOT__ . '/' . $v['path'];
                 $data[$k]['path']       = $v['path'];
                 $data[$k]['name']       = $v['name'];
             }
@@ -131,7 +131,7 @@ class Upload extends Common
     public function removeImage()
     {
         $db   = Db::table('attachment');
-        $file = $db->where('id', $_POST['id'])->where('uid', v('user.info.uid'))->first();
+        $file = $db->where('id', $_POST['id'])->where('uid', v('member.info.uid'))->first();
         if (is_file($file['path'])) {
             unlink($file['path']);
         }

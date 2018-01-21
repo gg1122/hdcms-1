@@ -10,17 +10,16 @@
 
 namespace app\site\controller;
 
-use houdunwang\aliyunsms\Sms;
 use houdunwang\response\Response;
 use Request;
 use houdunwang\route\Controller;
-use system\model\CreditsRecord;
 use system\model\Menu;
 use system\model\Modules;
 use system\model\ModulesBindings;
 use system\model\Site;
-use system\model\SiteSetting;
-
+use App;
+use Route;
+use Db;
 /**
  * 网站入口管理
  * Class Entry

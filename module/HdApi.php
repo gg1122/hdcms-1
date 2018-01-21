@@ -6,7 +6,7 @@ use houdunwang\route\Controller;
 use system\model\Member;
 use system\model\MemberToken;
 use system\model\Modules;
-use Code;
+use houdunwang\code\Code;
 use system\model\Site;
 
 /**

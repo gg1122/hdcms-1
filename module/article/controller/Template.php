@@ -10,6 +10,7 @@
  * '-------------------------------------------------------------------*/
 use module\HdController;
 use system\model\Template as TemplateModel;
+use houdunwang\request\Request;
 
 /**
  * 官网模板管理
@@ -53,6 +54,7 @@ class Template extends HdController
         $dir      = "theme/{$template['name']}";
         //桌面端模板
         $web = glob($dir.'/web/*.php');
+
         return view($this->template.'/template/template_files', compact('web'));
     }
 }

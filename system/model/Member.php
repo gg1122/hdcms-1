@@ -4,6 +4,7 @@ use houdunwang\request\Request;
 use houdunwang\validate\Validate;
 use houdunwang\session\Session;
 use houdunwang\wechat\WeChat;
+use Db;
 
 /**
  * 会员管理
@@ -203,10 +204,11 @@ class Member extends Common
         $member_uid = Session::get("member_uid");
         if (SITEID && $member_uid) {
             if ( ! v('member')) {
-                $user          = [];
-                $user['info']  = Db::table('member')->where('siteid', siteid())->find($member_uid);
-                $user['group'] = Db::table('member_group')->where('id', $user['info']['group_id'])->first();
-                $user['auth']  = Db::table('member_auth')->where('id', $user['info']['group_id'])->first();
+                $user                 = [];
+                $user['info']         = Db::table('member')->where('siteid', siteid())->find($member_uid);
+                $user['group']        = Db::table('member_group')->where('id', $user['info']['group_id'])->first();
+                $user['auth']         = Db::table('member_auth')->where('id', $user['info']['group_id'])->first();
+                $user['notification'] = Db::table('notification')->where('status', 0)->where('siteid', SITEID)->count();
                 v('member', $user);
             }
         }

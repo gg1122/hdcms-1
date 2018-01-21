@@ -25,7 +25,7 @@ Route::get('register', function () {
  * 会显示站点列表
  */
 Route::any('hdcms', function () {
-    Session::set('system.login', 'hdcms');
+    \houdunwang\session\Session::set('system.login', 'hdcms');
 
     return action(\app\system\controller\Entry::class, 'login');
 });
@@ -36,7 +36,7 @@ Route::any('hdcms', function () {
  * 不显示系统管理界面
  */
 Route::any('admin', function () {
-    Session::set('system.login', 'admin');
+    \houdunwang\session\Session::set('system.login', 'admin');
 
     return action(\app\system\controller\Entry::class, 'login');
 });

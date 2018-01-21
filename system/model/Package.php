@@ -11,7 +11,7 @@
 namespace system\model;
 
 use houdunwang\arr\Arr;
-
+use Db;
 /**
  * 套餐模型
  * Class Package

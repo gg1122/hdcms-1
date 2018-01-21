@@ -1,6 +1,7 @@
 <?php namespace system\model;
 
 use houdunwang\config\Config as C;
+use houdunwang\arr\Arr;
 
 /**
  * 系统配置
@@ -15,6 +16,7 @@ class Config extends Common
     protected $auto = [];
 
     protected $config = ['site' => [], 'register' => []];
+
     //允许填充字段
     protected $allowFill = ['*'];
 

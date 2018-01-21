@@ -10,13 +10,12 @@
 
 namespace module\ucenter\controller;
 
-use houdunwang\wechat\WeChat;
 use Request;
 use Session;
 use module\HdController;
 use system\model\Member;
 use system\model\Message;
-
+use View;
 /**
  * 会员登录注册管理
  * Class Entry

@@ -12,7 +12,7 @@ namespace module\ucenter\controller;
 
 use houdunwang\request\Request;
 use system\model\Pay as Model;
-
+use View;
 /**
  * 支付记录
  * Class Credit

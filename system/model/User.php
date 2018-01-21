@@ -1,8 +1,9 @@
 <?php namespace system\model;
 
 use houdunwang\db\Db;
-use Arr;
-use Session;
+use houdunwang\arr\Arr;
+use houdunwang\session\Session;
+use houdunwang\request\Request;
 
 /**
  * 管理员模型
@@ -238,6 +239,7 @@ class User extends Common
 
     /**
      * 帐号注册
+     *
      * @param $data
      *
      * @return bool

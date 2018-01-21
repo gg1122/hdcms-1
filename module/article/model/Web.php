@@ -1,7 +1,7 @@
 <?php namespace module\article\model;
 
 use houdunwang\model\Model;
-
+use Db;
 /**
  * 微站
  * Class Web

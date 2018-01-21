@@ -1,4 +1,4 @@
-<?php
+<?php namespace houdunwang\model\build;
 /** .-------------------------------------------------------------------
  * |  Software: [HDCMS framework]
  * |      Site: www.hdcms.com
@@ -8,13 +8,10 @@
  * | Copyright (c) 2012-2019, www.houdunwang.com. All Rights Reserved.
  * '-------------------------------------------------------------------*/
 
-namespace houdunwang\model\build;
-
 use houdunwang\db\Db;
 
 trait Relation
 {
-
     /**
      * 一对一
      *

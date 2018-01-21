@@ -60,9 +60,10 @@ class Base
 
     /**
      * 关闭调试模式时显示错误
+     *
      * @param string $msg
      */
-    protected function closeDebugShowError($msg='系统错误，请稍候访问')
+    protected function closeDebugShowError($msg = '系统错误，请稍候访问')
     {
         if (Request::isAjax()) {
             echo Response::ajax(['message' => $msg, 'valid' => 0]);
@@ -121,7 +122,9 @@ class Base
 
     }
 
-    //致命错误处理
+    /**
+     * 致命错误处理
+     */
     public function fatalError()
     {
         if (function_exists('error_get_last')) {
