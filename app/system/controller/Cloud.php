@@ -12,6 +12,7 @@
 use houdunwang\cli\Cli;
 use houdunwang\request\Request;
 use system\model\Cloud as CloudModel;
+use houdunwang\db\Db;
 
 /**
  * 云帐号管理
@@ -42,7 +43,7 @@ class Cloud extends Admin
         }
         $field = CloudModel::find(1)->toArray();
         if (empty($field['secret'])) {
-            $field['secret'] = md5(time().mt_rand(1, 9999));
+            $field['secret'] = md5(time() . mt_rand(1, 9999));
         }
         $field['password'] = '';
 
@@ -110,7 +111,9 @@ class Cloud extends Admin
     {
         if (is_file('version.php')) {
             $version = include 'version.php';
-            Db::table('cloud')->where('id', 1)->update(['build' => $version['build'], 'version' => $version['version'],]);
+            Db::table('cloud')->where('id', 1)->update(['build'   => $version['build'],
+                                                        'version' => $version['version'],
+            ]);
             CloudModel::updateHDownloadNum();
         }
 

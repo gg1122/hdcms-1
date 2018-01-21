@@ -65,7 +65,7 @@ class Cli extends Base
     {
         exec("git tag -l", $tags);
         usort($tags, function ($a, $b) {
-            return substr($a, 1) < substr($b, 1);
+            return substr($a, 1) > substr($b, 1);
         });
 
         return $tags;
@@ -79,7 +79,7 @@ class Cli extends Base
     public function version($type)
     {
         //最新的标签
-        $tags            = $this->getTags();
+        $tags = $this->getTags();
         $newTag          = array_pop($tags);
         $data['version'] = $newTag;
         $data['build']   = date("YmdHis");

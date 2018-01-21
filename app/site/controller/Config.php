@@ -30,7 +30,7 @@ class Config extends Admin
     {
         auth('system_setting');
         //后台分配菜单
-        $class = '\addons\\'.v('module.name').'\system\Config';
+        $class = '\addons\\' . v('module.name') . '\system\Config';
         if ( ! class_exists($class) || ! method_exists($class, 'settingsDisplay')) {
             return message('访问的模块不存在', 'back', 'error');
         }

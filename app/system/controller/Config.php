@@ -11,7 +11,7 @@
 namespace app\system\controller;
 
 use system\model\Config as ConfigModel;
-use system\model\User;
+use houdunwang\request\Request;
 
 /**
  * 系统配置管理
