@@ -7,7 +7,7 @@ use Session;
 use Request;
 use Middleware;
 use houdunwang\validate\Validate;
-
+use houdunwang\db\Db;
 /**
  * 用户管理
  * Class User
