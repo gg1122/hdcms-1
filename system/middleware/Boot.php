@@ -40,6 +40,12 @@ class Boot
             return redirect('setup.app.copyright');
         }
         $this->installed and $this->app();
+        //执行安装程序时
+        $this->defineConst();
+        //调试时允许跨域访问
+        if (\Config::get('app.debug')) {
+            header('Access-Control-Allow-Origin:*');
+        }
         $next();
     }
 
@@ -64,8 +70,9 @@ class Boot
      */
     protected function defineConst()
     {
-        define('HDCMS_VERSION', Cloud::version());
-        define('SITEID', Request::get('siteid', 0));
+        defined('HDCMS_VERSION') or define('HDCMS_VERSION',
+            $this->installed ? Cloud::version() : 999);
+        defined('SITEID') or define('SITEID', Request::get('siteid', 0));
 
         return $this;
     }
@@ -79,7 +86,7 @@ class Boot
      */
     protected function parseDomain()
     {
-        $domain       = trim($_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME']), '/\\');
+        $domain       = trim($_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']), '/\\');
         $moduleDomain = Db::table('module_domain')->where('domain', $domain)->first();
         if ($moduleDomain) {
             //没有站点编号时设置域名所在站点编号
