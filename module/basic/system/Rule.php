@@ -2,7 +2,7 @@
 
 use module\HdRule;
 use system\model\ReplyBasic;
-
+use View;
 /**
  * 文本消息处理
  * Class Module

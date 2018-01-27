@@ -1,6 +1,7 @@
 <?php namespace app\component\controller;
 
 use system\model\Template;
+use Db;
 
 /**
  * 模块与模板
