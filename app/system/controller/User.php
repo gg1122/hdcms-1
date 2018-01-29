@@ -8,6 +8,7 @@ use Request;
 use Middleware;
 use houdunwang\validate\Validate;
 use houdunwang\db\Db;
+
 /**
  * 用户管理
  * Class User
@@ -54,6 +55,7 @@ class User extends Admin
             $info             = $user->getPasswordAndSecurity(Request::post('password'));
             $user['password'] = $info['password'];
             $user['security'] = $info['security'];
+            $user['status']   = 1;
             //用户组过期时间
             $daylimit         = Db::table('user_group')->where('id', Request::post('groupid'))
                                   ->pluck('daylimit');

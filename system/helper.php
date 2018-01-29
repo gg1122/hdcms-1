@@ -81,7 +81,7 @@ function record($message)
     $data['uid']           = v('user.info.uid');
     $data['content']       = $message;
     $data['url']           = __URL__;
-    $data['system_module'] = MODULE == 'system' ? 1 : 0;
+    $data['system_module'] = defined('MODULE') ? (MODULE == 'system' ? 1 : 2) : 0;
 
     return (new \system\model\Log())->save($data);
 }
