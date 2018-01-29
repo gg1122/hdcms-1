@@ -546,6 +546,25 @@ class Site extends Common
     }
 
     /**
+     * 根据站长会员编号更新站点编号
+     *
+     * @param int $uid 站长编号
+     *
+     * @return bool
+     * @throws \Exception
+     */
+    public static function updateSiteCacheByUid($uid = 0)
+    {
+        $uid   = $uid ?: v('user.info.uid');
+        $sites = Db::table('site_user')->where('uid', $uid)->where('role', 'owner')->lists('siteid');
+        foreach ((array)$sites as $id) {
+            self::updateCache($id);
+        }
+
+        return true;
+    }
+
+    /**
      * 初始化站点时设置微信数据
      *
      * @param $siteid

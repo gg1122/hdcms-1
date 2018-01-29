@@ -20,6 +20,7 @@ use system\model\Site;
 use App;
 use Route;
 use Db;
+
 /**
  * 网站入口管理
  * Class Entry
@@ -46,7 +47,8 @@ class Entry extends Controller
             }
             $do = $ModulesBindings->getWebDo($module);
             if ($module && $do) {
-                $class = (v('module.is_system') ? 'module' : 'addons').'\\'.$module.'\system\Navigate';
+                $class = (v('module.is_system') ? 'module' : 'addons') . '\\' . $module
+                         . '\system\Navigate';
                 if (class_exists($class) && method_exists($class, $do['do'])) {
                     return call_user_func_array([new $class, $do['do']], []);
                 }
@@ -79,7 +81,8 @@ class Entry extends Controller
     public function moduleRoute()
     {
         $matchRoute = Route::getMatchRoute();
-        $route      = Db::table('router')->where('siteid', siteid())->where('module', v('module.name'))
+        $route      = Db::table('router')->where('siteid', siteid())
+                        ->where('module', v('module.name'))
                         ->where('router', $matchRoute['route'])->first();
         parse_str($route['url'], $gets);
         Request::set('get.action', $gets['action']);
@@ -96,8 +99,9 @@ class Entry extends Controller
         $info       = explode('/', Request::get('action'));
         $action     = array_pop($info);
         $controller = ucfirst(array_pop($info));
-        $namespace  = v('module.name').'\\'.implode('\\', $info);
-        $class      = (v('module.is_system') ? "module\\" : "addons\\")."{$namespace}\\{$controller}";
+        $namespace  = v('module.name') . '\\' . implode('\\', $info);
+        $class      = (v('module.is_system') ? "module\\" : "addons\\")
+                      . "{$namespace}\\{$controller}";
         if ( ! class_exists($class)) {
             return Response::_404();
         }
@@ -132,8 +136,7 @@ class Entry extends Controller
         }
         //当前用户可以使用的模块
         $modules = $Modules->getBySiteUser();
-
-        return view(view_path().'/home/'.$mark.'.php', compact('modules'));
+        return view(view_path() . '/home/' . $mark . '.php', compact('modules'));
     }
 
     /**
