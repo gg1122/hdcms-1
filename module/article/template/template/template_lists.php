@@ -54,9 +54,9 @@
                     <div class="thumbnail action">
                         <h5>{{$d['title']}}</h5>
                         <img src="theme/{{$d['name']}}/{{$d['thumb']}}">
-                        <div class="caption">
-                            <button type="button" class="btn btn-default btn-xs btn-block">使用</button>
-                        </div>
+<!--                        <div class="caption">-->
+<!--                            <button type="button" class="btn btn-default btn-xs btn-block">使用</button>-->
+<!--                        </div>-->
                     </div>
                 </foreach>
             </div>

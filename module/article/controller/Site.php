@@ -15,9 +15,8 @@ use houdunwang\arr\Arr;
 use houdunwang\request\Request;
 use module\article\model\Web;
 use module\HdController;
-use system\model\WeChat;
 use system\model\SiteWeChat;
-use Db;
+use houdunwang\db\Db;
 
 class Site extends HdController
 {
@@ -48,13 +47,13 @@ class Site extends HdController
             $model->save();
             //添加回复规则
             if ( ! empty($data['keyword'])) {
-                $res = WeChat::cover([
+                $res = SiteWeChat::cover([
                     'keyword'     => $data['keyword'],
                     'title'       => $data['title'],
                     'description' => $data['description'],
                     'thumb'       => $data['thumb'],
                     'url'         => url('entry.index'),
-                    'name'        => 'site-cover-'.siteid(),
+                    'name'        => 'site-cover-' . siteid(),
                 ]);
                 if ($res !== true) {
                     return message($res, '', 'error');
@@ -72,7 +71,8 @@ class Site extends HdController
              * 微信回复规则编号
              * 用于检测关键词是否存在及添加到rule表中使用
              */
-            $field['rid'] = Db::table('rule')->where('name', "article:site:".SITEID)->pluck('rid');
+            $field['rid'] = Db::table('rule')->where('name', "article:site:" . SITEID)
+                              ->pluck('rid');
         }
         $field = Arr::merge([
             'status'             => 1,
@@ -95,6 +95,6 @@ class Site extends HdController
         ], $model ? $field : []);
         $field = json_encode($field, JSON_UNESCAPED_UNICODE);
 
-        return view($this->template.'/site/post.php', compact('field'));
+        return view($this->template . '/site/post.php', compact('field'));
     }
 }
