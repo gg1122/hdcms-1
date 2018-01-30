@@ -169,7 +169,7 @@ function url($action, $args = [], $module = '', $merge = false)
         $args['mt'] = $mt;
     }
 
-    return u(web_url() . "/?m=" . $module . "&action=" . implode('/', $info), $args, $merge);
+    return u(web_url() . "?m=" . $module . "&action=" . implode('/', $info), $args, $merge);
 }
 
 /**

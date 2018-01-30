@@ -29,12 +29,10 @@ class Site extends HdController
     /**
      * 添加站点
      *
-     * @param \system\model\WeChat $weChatModel
-     *
      * @return mixed|string
      * @throws \Exception
      */
-    public function post(SiteWeChat $weChatModel)
+    public function post()
     {
         if (IS_POST) {
             $model                  = Web::where('siteid', siteid())->first() ?: new Web();
@@ -74,7 +72,7 @@ class Site extends HdController
             $field['rid'] = Db::table('rule')->where('name', "article:site:" . SITEID)
                               ->pluck('rid');
         }
-        $field = Arr::merge([
+        $field                   = Arr::merge([
             'status'             => 1,
             'is_default'         => 0,
             'close_message'      => '网站暂时关闭,请稍候访问',
@@ -93,7 +91,10 @@ class Site extends HdController
             'index_cache_expire' => 0,//首页缓存时间
             'template_dir_part'  => true,//移动端与桌面端目录分层
         ], $model ? $field : []);
-        $field = json_encode($field, JSON_UNESCAPED_UNICODE);
+        $field['template_thumb'] = pic("theme/{$field['template_name']}/{$field['template_thumb']}");
+        $field['thumb']          = pic($field['thumb']);
+        $field                   = json_encode($field, JSON_UNESCAPED_UNICODE);
+
 
         return view($this->template . '/site/post.php', compact('field'));
     }

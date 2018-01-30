@@ -61,6 +61,7 @@ class Module
      * @param \system\model\Template $templateModel
      *
      * @return mixed
+     * @throws \Exception
      */
     public function siteTemplateBrowser(Template $templateModel)
     {
