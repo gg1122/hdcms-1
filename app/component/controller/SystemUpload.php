@@ -29,7 +29,11 @@ class SystemUpload extends Common
      */
     public function uploader(Attachment $attachment)
     {
-        Config::set('upload.mold', 'local');
+        Config::set('upload', array_merge(Config::get('upload'), v('config.site.upload')));
+        Config::set('upload.path', Config::get('upload.path') . '/' . date('Y/m/d'));
+        Config::set('upload.size', v('config.site.upload.size') * 1024);
+        Config::set('oss', array_merge(Config::get('oss'), v('config.site.oss')));
+        //前台自定义模式
         $path = Request::post('uploadDir', Config::get('upload.path'));
         $file = File::path()->path($path)->upload();
         if ($file) {

@@ -28,50 +28,11 @@
                     <p>
                         <code><strong>安装框架:</strong> composer create-project houdunwang/hdphp blog  --prefer-dist</code>
                     </p>
-                <a href="http://www.houdunren.com/houdunren18_50_0.html" class="btn btn-success" target="_blank">观看视频教程</a>
+                <a href="http://www.houdunren.com/houdunren18_lesson_50" class="btn btn-success" target="_blank">观看视频教程</a>
             </div>
             <p class="qq">
                 交流QQ群:248767393(满) 517903509(开放)
             </p>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            最新文章
-                            <a href="http://www.hdphp.com/article13-145-1.html" class="pull-right">更多</a>
-                        </h3>
-                    </div>
-                    <ul class="list-group">
-                        <tag action="article.lists" row="10">
-                            <li class="list-group-item">
-                                <span class="label label-info">{{$field['category']['catname']}}</span>
-                                <a href="{{$field['url']}}" target="_blank">{{$field['title']}}</a>
-                                <span class="pull-right text-muted"> {{date("Y年m月d日",$field['createtime'])}}</span>
-                            </li>
-                        </tag>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            推荐文章
-                        </h3>
-                    </div>
-                    <ul class="list-group">
-                        <tag action="article.lists" row="10" iscommend="1">
-                            <li class="list-group-item">
-                                <span class="label label-success">{{$field['category']['catname']}}</span>
-                                <a href="{{$field['url']}}" target="_blank">{{$field['title']}}</a>
-                                <span class="pull-right text-muted"> {{date("Y年m月d日",$field['createtime'])}}</span>
-                            </li>
-                        </tag>
-                    </ul>
-                </div>
-            </div>
         </div>
 
         <div class="copyright text-center text-muted">

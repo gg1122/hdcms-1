@@ -1,5 +1,6 @@
 <?php namespace module;
 
+use houdunwang\arr\Arr;
 use houdunwang\config\Config;
 use houdunwang\request\Request;
 use houdunwang\route\Controller;
@@ -49,11 +50,25 @@ abstract class HdApi extends Controller
         $this->siteid = siteid();
         $module       = new Modules();
         $this->config = $module->getModuleConfig();
-        if ($token = Request::post('token')) {
+
+        if ($token = $this->getToken()) {
             $this->user = MemberToken::where('token', $token)->first();
         }
+
         //验证直接返回，不进行页面响应
         Config::set('validate.dispose', 'default');
+    }
+
+    /**
+     * 获取令牌
+     *
+     * @return string
+     */
+    final protected function getToken()
+    {
+        $headers = getallheaders();
+
+        return isset($headers['Hdcms-Token']) ? $headers['Hdcms-Token'] : '';
     }
 
     /**
@@ -72,8 +87,7 @@ abstract class HdApi extends Controller
     /**
      * 验证登录状态
      *
-     * @param bool $dispose
-     * true:验证失败时直接响应给客户端JSON（默认） false:返回验证状态
+     * @param bool $dispose true:验证失败时直接响应给客户端JSON（默认） false:返回验证状态
      *
      * @return bool
      * @throws \Exception

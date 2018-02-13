@@ -10,6 +10,8 @@
 
 namespace system\model;
 
+use houdunwang\db\Db;
+
 /**
  * 微信回复规则
  * Class Rule
@@ -57,9 +59,10 @@ class Rule extends Common
     public static function getByKeyword($content)
     {
         $content = trim($content);
-        $sql     = "SELECT * FROM ".tablename('rule').' AS r INNER JOIN '.tablename('rule_keyword')
-                   ." as k ON r.rid = k.rid WHERE k.status=1 AND k.siteid=".SITEID
-                   ." ORDER BY k.rank DESC,type DESC";
+        $sql     = "SELECT * FROM " . tablename('rule') . ' AS r INNER JOIN '
+                   . tablename('rule_keyword')
+                   . " as k ON r.rid = k.rid WHERE k.status=1 AND k.siteid=" . SITEID
+                   . " ORDER BY k.rank DESC,type DESC";
         $rules   = Db::query($sql);
         $content = strtolower($content);
         foreach ($rules as $rule) {
@@ -79,7 +82,7 @@ class Rule extends Common
                     break;
                 case 3:
                     //正则匹配
-                    if (preg_match('/'.$rule['content'].'/i', $content)) {
+                    if (preg_match('/' . $rule['content'] . '/i', $content)) {
                         return $rule;
                     }
                     break;

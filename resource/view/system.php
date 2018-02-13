@@ -78,8 +78,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href="http://bbs.houdunwang.com" target="_blank"><i
-                                        class="fa fa-w fa-forumbee"></i> 论坛讨论</a>
+                            <a href="http://bbs.houdunwang.com" target="_blank">
+                                <i class="fa fa-w fa-forumbee"></i> 论坛讨论
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -200,7 +201,7 @@
             })
         </script>
     </if>
-    <if value="v('config.site.hdcms_update_notice')">
+    <if value="v('config.site.hdcms_update_notice') && \system\Model\User::isSuperUser()">
         <script>
             //检测更新
             require(['hdjs'], function (hdjs) {

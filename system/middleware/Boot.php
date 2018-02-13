@@ -45,6 +45,7 @@ class Boot
         //调试时允许跨域访问
         if (\Config::get('app.debug')) {
             header('Access-Control-Allow-Origin:*');
+            header('Access-Control-Allow-Headers:*');
         }
         $next();
     }

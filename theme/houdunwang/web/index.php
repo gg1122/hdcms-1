@@ -11,9 +11,11 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/2.7.6/idangerous.swiper.min.css">
 	<script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/Swiper/2.7.6/idangerous.swiper.min.js"></script>
+    <script src="{{ARTICLE_URL}}/js/indexweekly.js"></script>
     <!--swiper end-->
 </head>
 <body>
+
 <!--头部-->
 <include file='ARTICLE_PATH/header'/>
 <!--头部结束-->
@@ -159,6 +161,38 @@
     <!--就业信息区域结束-->
 </div>
 <!--学员风采区域结束-->
+
+<!--学生周报活动-->
+<div id="stupro" style="height: 370px;overflow: hidden;">
+    <div class="proheader">实训班学员周报
+        <span>/
+            <tag action="article.category" cid="38">
+                <a href="/?m=studentlog&action=controller/entry/show&id={{SITEID}}">更多</a>
+            </tag>
+        </span>
+    </div>
+
+        <tag action="studentlog.lists" row="16">
+
+            <if value="$index%4 == 0">
+                <ul class="weekly">
+            </if>
+
+            <li>
+                <img src="{!! icon($field->member->icon) !!}" />
+                <p class="name">{{$field->member->nickname}}</p>
+                <p class="content">{{mb_substr(strip_tags($field['content']),0,110)}}...</p>
+            </li>
+
+            <if value="$index%4 == 3">
+                </ul>
+            </if>
+        </tag>
+
+
+</div>
+<!--学生周报结束-->
+
 
 
 <!--校园活动-->

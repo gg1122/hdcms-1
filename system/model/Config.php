@@ -64,13 +64,10 @@ class Config extends Common
                     'custom_domain' => 1,
                 ],
         ], isset($this['site']) ? json_decode($this['site'], true) : []);
-        C::set('upload', array_merge(C::get('upload'), $this->config['site']['upload']));
-        C::set('upload.size', $this->config['site']['upload']['size'] * 1024);
+
         C::set('app', array_merge(C::get('app'), $this->config['site']['app']));
         C::set('http', array_merge(C::get('http'), $this->config['site']['http']));
         C::set('aliyun', array_merge(C::get('aliyun'), $this->config['site']['aliyun']));
-        C::set('oss', array_merge(C::get('oss'), $this->config['site']['oss']));
-        C::set('upload.path', C::get('upload.path').'/'.date('Y/m/d'));
         v('config.site', $this->config['site']);
     }
 

@@ -194,7 +194,6 @@ class Model implements ArrayAccess, Iterator
         $this->fields = $this->data;
         $this->getFormatAttribute();
 
-
         return $this;
     }
 
@@ -211,7 +210,7 @@ class Model implements ArrayAccess, Iterator
             $n      = preg_replace_callback('/_([a-z]+)/', function ($v) {
                 return strtoupper($v[1]);
             }, $name);
-            $method = "get".ucfirst($n)."AtAttribute";
+            $method = "get" . ucfirst($n) . "AtAttribute";
             if (method_exists($this, $method)) {
                 $this->fields[$name] = $this->$method($val);
             }
@@ -227,7 +226,7 @@ class Model implements ArrayAccess, Iterator
      */
     final public function toArray()
     {
-        $data = $this->data;
+        $data = $this->fields;
         foreach ($data as $k => $v) {
             if (is_object($v) && method_exists($v, 'toArray')) {
                 $data[$k] = $v->toArray();

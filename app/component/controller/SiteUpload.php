@@ -6,6 +6,7 @@ use houdunwang\file\File;
 use houdunwang\config\Config;
 use system\model\Attachment;
 use Db;
+
 /**
  * 后台站点平台上传处理
  * Class SiteUpload
@@ -32,6 +33,8 @@ class SiteUpload extends Common
         //中间件
         Middleware::web('upload_begin');
         $path = Request::post('uploadDir', Config::get('upload.path'));
+        Config::set('upload.mold', v('site.setting.aliyun.oss.use_site_oss') ? 'oss' : 'local');
+        //前台自定义模式
         if ($uploadMold = Request::post('mold')) {
             Config::set('upload.mold', $uploadMold);
         }

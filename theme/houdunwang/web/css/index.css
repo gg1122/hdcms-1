@@ -1070,6 +1070,8 @@ div#notice div.noticearea div.kaixue h2 {
 div#notice div.noticearea div.kaixue h2 a {
     float: right;
     margin-right: 10px;
+    color:#236EB2;
+    
 }
 
 div#notice div.noticearea div.kaixue div.pics {
@@ -1197,7 +1199,9 @@ div#notice div.noticearea div.ganyan div.ganyanpic ul li div.desc h3 {
     font-size: 12px;
     margin: 0px;
 }
-
+div#notice div.noticearea div.ganyan div.ganyanpic ul li div.desc h3 a{
+	color:#236EB2;
+}
 div#notice div.noticearea div.ganyan div.ganyanpic ul li div.desc p {
     text-indent: 2em;
     color: #989898;
@@ -1262,3 +1266,45 @@ div#notice div.noticearea div.ganyan div.glist ul li a {
 }
 
 /*# sourceMappingURL=index.css.map */
+
+
+ /*学员周报*/
+#stupro .weekly {
+    width: 1170px;
+    height: 160px;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-around;
+    margin: 0 auto;
+    padding: 0;
+}
+#stupro .weekly li {
+    width: 280px;
+    height: 147px;
+    border: 1px solid #DCDCDC;
+    list-style: none;
+    box-sizing: border-box;
+    padding: 8px;
+    overflow: hidden;
+}
+#stupro .weekly li img {
+    width: 65px;
+    height: 65px;
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+#stupro .weekly li p.name {
+    font-size: 12px;
+    line-height: 18px;
+    color: rgba(0,0,0,0.8);
+}
+#stupro .weekly li p.content {
+    font-size: 12px;
+    line-height: 18px;
+    color: rgba(0,0,0,0.7);
+}
+
+/*学员周报结束*/
