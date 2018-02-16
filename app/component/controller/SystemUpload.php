@@ -30,9 +30,9 @@ class SystemUpload extends Common
     public function uploader(Attachment $attachment)
     {
         Config::set('upload', array_merge(Config::get('upload'), v('config.site.upload')));
-        Config::set('upload.path', Config::get('upload.path') . '/' . date('Y/m/d'));
+        Config::set('upload.mold', 'local');
+        Config::set('upload.path', Config::get('upload.path').'/'.date('Y/m/d'));
         Config::set('upload.size', v('config.site.upload.size') * 1024);
-        Config::set('oss', array_merge(Config::get('oss'), v('config.site.oss')));
         //前台自定义模式
         $path = Request::post('uploadDir', Config::get('upload.path'));
         $file = File::path()->path($path)->upload();
@@ -71,6 +71,7 @@ class SystemUpload extends Common
                   ->where('uid', v('user.info.uid'))
                   ->whereIn('extension', explode(',', strtolower(Request::post('extensions'))))
                   ->where('user_type', 'user')
+                  ->where('module', '')
                   ->orderBy('id', 'DESC');
         $Res  = $db->paginate(32);
         $data = [];
@@ -79,7 +80,7 @@ class SystemUpload extends Common
                 $data[$k]['createtime'] = date('Y/m/d', $v['createtime']);
                 $data[$k]['size']       = \Tool::getSize($v['size']);
                 $data[$k]['url']        = preg_match('/^http/i', $v['path']) ? $v['path']
-                    : __ROOT__ . '/' . $v['path'];
+                    : __ROOT__.'/'.$v['path'];
                 $data[$k]['path']       = $v['path'];
                 $data[$k]['name']       = $v['name'];
             }
@@ -97,8 +98,10 @@ class SystemUpload extends Common
     {
         $db   = Db::table('attachment')
                   ->where('uid', v('user.info.uid'))
-                  ->whereIn('extension',
-                      explode(',', strtolower(Request::post('extensions'))))
+                  ->whereIn(
+                      'extension',
+                      explode(',', strtolower(Request::post('extensions')))
+                  )
                   ->where('user_type', 'user')
                   ->where('path', "like", "attachment%")
                   ->orderBy('id', 'DESC');
@@ -109,7 +112,7 @@ class SystemUpload extends Common
                 $data[$k]['createtime'] = date('Y/m/d', $v['createtime']);
                 $data[$k]['size']       = \Tool::getSize($v['size']);
                 $data[$k]['url']        = preg_match('/^http/i', $v['path']) ? $v['path']
-                    : __ROOT__ . '/' . $v['path'];
+                    : __ROOT__.'/'.$v['path'];
                 $data[$k]['path']       = $v['path'];
                 $data[$k]['name']       = $v['name'];
             }

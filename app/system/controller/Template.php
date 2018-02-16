@@ -30,32 +30,45 @@ class Template extends Admin
         if (IS_POST) {
             $data = json_decode(Request::post('data'), JSON_UNESCAPED_UNICODE);
             //字段基本检测
-            Validate::make([
-                ['title', 'required', '模板名称不能为空'],
-                ['industry', 'required', '请选择行业类型'],
-                ['name', 'regexp:/^[a-z]+$/i', '模板标识必须为英文字母'],
-                ['resume', 'required', '模板简述不能为空'],
-                ['author', 'required', '作者不能为空'],
-                ['url', 'required', '请输入发布url'],
-                ['thumb', 'required', '官网预览图不能为空'],
-                ['position', 'regexp:/^\d+$/', '微站导航菜单数量必须为数字'],
-            ], $data);
+            Validate::make(
+                [
+                    ['title', 'required', '模板名称不能为空'],
+                    ['industry', 'required', '请选择行业类型'],
+                    ['name', 'regexp:/^[a-z]+$/i', '模板标识必须为英文字母'],
+                    ['resume', 'required', '模板简述不能为空'],
+                    ['author', 'required', '作者不能为空'],
+                    ['url', 'required', '请输入发布url'],
+                    ['thumb', 'required', '官网预览图不能为空'],
+                    ['position', 'regexp:/^\d+$/', '微站导航菜单数量必须为数字'],
+                ],
+                $data
+            );
             //模板标识转小写
             $data['name'] = strtolower($data['name']);
             //检查模板是否存在
-            if (is_dir('theme/' . $data['name'])
+            if (is_dir('theme/'.$data['name'])
                 || Db::table('template')->where('name', $data['name'])->first()) {
                 return message('模板已经存在,请更改模板标识', 'back', 'error');
             }
-            foreach (['web/css', 'mobile/css'] as $dir) {
+
+            foreach (['web', 'mobile'] as $dir) {
                 if ( ! Dir::create("theme/{$data['name']}/{$dir}")) {
                     return message('模板目录创建失败,请修改目录权限', 'back', 'error');
                 }
             }
+
+            //创建模板初始文件
+            foreach (['index.php', 'article_index.php', 'article_list.php', 'article.php'] as $file)
+            {
+                file_put_contents("theme/{$data['name']}/web/{$file}", '');
+                file_put_contents("theme/{$data['name']}/mobile/{$file}", '');
+            }
+
             //预览图
             $info = pathinfo($data['thumb']);
-            copy($data['thumb'], 'theme/' . $data['name'] . '/thumb.' . $info['extension']);
-            $data['thumb'] = 'thumb.' . $info['extension'];
+            copy($data['thumb'], 'theme/'.$data['name'].'/thumb.'.$info['extension']);
+
+            $data['thumb'] = 'thumb.'.$info['extension'];
             $package       = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
             file_put_contents("theme/{$data['name']}/package.json", $package);
 
@@ -89,12 +102,14 @@ class Template extends Admin
     public function createZip()
     {
         $name = Request::get('name');
-        $zip  = $name . ".zip";
+        $zip  = $name.".zip";
         //设置编译时间
         $config          = json_decode(file_get_contents("theme/{$name}/package.json"), true);
         $config['build'] = time();
-        file_put_contents("theme/{$name}/package.json",
-            json_encode($config, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+        file_put_contents(
+            "theme/{$name}/package.json",
+            json_encode($config, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT)
+        );
         //压缩文件
         Zip::create($zip, ["theme/{$name}"]);
         File::download($zip, $zip);
@@ -112,7 +127,7 @@ class Template extends Admin
         //本地模板
         $locality = [];
         foreach (Dir::tree('theme') as $d) {
-            if ($d['type'] == 'dir' && is_file($d['path'] . '/package.json')) {
+            if ($d['type'] == 'dir' && is_file($d['path'].'/package.json')) {
                 if ($config = json_decode(file_get_contents("{$d['path']}/package.json"), true)) {
                     //去除已经安装的模板
                     if ( ! in_array($config['name'], $templates)) {
@@ -139,9 +154,9 @@ class Template extends Admin
     {
         //模板安装检测
         if ($m = $template->where('name', Request::get('name'))->first()) {
-            return message($m['title'] . '模板已经安装', 'back', 'error');
+            return message($m['title'].'模板已经安装', 'back', 'error');
         }
-        $configFile = 'theme/' . Request::get('name') . '/package.json';
+        $configFile = 'theme/'.Request::get('name').'/package.json';
         if ( ! is_file($configFile)) {
             return message('配置文件不存在,无法安装', '', 'error');
         }

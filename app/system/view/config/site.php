@@ -87,7 +87,7 @@
                         <span class="help-block">请用英文半角逗号分隔文件类型</span>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-if="false">
                     <label class="col-sm-2 control-label">上传类型</label>
                     <div class="col-sm-10">
                         <label class="radio-inline">
@@ -98,14 +98,14 @@
                         </label>
                     </div>
                 </div>
-                <div class="well">
-                    <div class="form-group" v-if="field.upload.mold=='local'">
-                        <label class="col-sm-2 control-label">上传目录</label>
-                        <div class="col-sm-5">
-                            <input class="form-control" v-model="field.upload.path">
-                            <span class="help-block">上传到本地服务器的目录名称</span>
-                        </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">上传目录</label>
+                    <div class="col-sm-5">
+                        <input class="form-control" v-model="field.upload.path">
+                        <span class="help-block">上传到本地服务器的目录名称</span>
                     </div>
+                </div>
+                <div class="well" v-if="false">
                     <div class="form-group" v-if="field.upload.mold=='oss'">
                         <label class="col-sm-2 control-label">bucket</label>
                         <div class="col-sm-5">
