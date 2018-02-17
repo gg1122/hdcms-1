@@ -1,15 +1,16 @@
 <?php namespace module;
 
 use system\model\Modules;
-use WeChat;
+use houdunwang\wechat\WeChat;
 
 /**
- * 模块处理消息
- * Class HdProcessor
+ * 模块订阅消息
+ * Class hdSubscribe
  *
- * @package module
+ * @package system\core
+ * @author  向军
  */
-abstract class HdProcessor
+abstract class HdSubscribe
 {
     //配置项
     protected $config;
@@ -27,8 +28,8 @@ abstract class HdProcessor
         $this->content = $this->message->getMessage();
     }
 
-    //回复方法
-    abstract function handle($rid);
+    //处理方法
+    abstract function handle();
 
     public function __call($method, $arguments = [])
     {
