@@ -1,6 +1,6 @@
 <?php namespace system\middleware;
 
-use system\model\A;
+use houdunwang\response\Response;
 use system\model\Cloud;
 use system\model\Config;
 use system\model\Member;
@@ -47,7 +47,7 @@ class Boot
             header('Access-Control-Allow-Origin:*');
             header('Access-Control-Allow-Headers:*');
         }
-        class_exists('\addons\city\system\Subscribe');
+
         $next();
     }
 

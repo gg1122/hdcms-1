@@ -1,6 +1,7 @@
 <?php namespace module\news\system;
 
 use module\HdProcessor;
+use houdunwang\db\Db;
 
 /**
  * 图文消息处理
@@ -12,7 +13,9 @@ class Processor extends HdProcessor
 {
     public function handle($rid = 0)
     {
-        $parentNews = Db::table('reply_news')->where('rid', $rid)->where('pid', 0)->orderBy('rand()')->first();
+        $parentNews = Db::table('reply_news')->where('rid', $rid)->where('pid', 0)->orderBy(
+            'rand()'
+        )->first();
         if ($parentNews) {
             $news = Db::table('reply_news')->where('pid', $parentNews['id'])->get() ?: [];
             array_unshift($news, $parentNews);
@@ -27,7 +30,8 @@ class Processor extends HdProcessor
                         break;
                     case 0:
                         //跳转链接
-                        $d['url'] = preg_match('/^http/i', $f['url']) ? $f['url'] : __ROOT__.'/'.$f['url'];
+                        $d['url'] = preg_match('/^http/i', $f['url']) ? $f['url']
+                            : __ROOT__.'/'.$f['url'];
                 }
                 $data[] = $d;
             }

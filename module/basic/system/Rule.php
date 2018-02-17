@@ -2,8 +2,9 @@
 
 use module\HdRule;
 use system\model\ReplyBasic;
-use View;
+use houdunwang\view\View;
 use houdunwang\request\Request;
+use houdunwang\db\Db;
 /**
  * 文本消息处理
  * Class Module

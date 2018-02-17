@@ -30,7 +30,6 @@ class Api
 
     public function __construct()
     {
-        Config::set('app.debug', false);
         //与微信官网通信绑定验证
         WeChat::valid();
         $this->instance = WeChat::instance('message');
@@ -44,15 +43,14 @@ class Api
     {
         //消息定阅处理
         WeChatMessage::subscribe();
-        $this->instance->text('33');
-        die;
+
         //文本消息时进行处理
         WeChatMessage::reply(WeChat::content('Content'));
 
         //菜单关键词消息
         WeChatMessage::reply(WeChat::content('EventKey'));
 
-        //处理非文本类信息
+        //直接处理消息需要模块有权限
         WeChatMessage::processor();
 
         //回复默认消息
