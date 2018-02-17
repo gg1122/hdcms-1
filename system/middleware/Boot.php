@@ -47,6 +47,7 @@ class Boot
             header('Access-Control-Allow-Origin:*');
             header('Access-Control-Allow-Headers:*');
         }
+        class_exists('\addons\city\system\Subscribe');
         $next();
     }
 

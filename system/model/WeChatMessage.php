@@ -1,8 +1,8 @@
 <?php namespace system\model;
 
 use houdunwang\model\Model;
-use WeChat;
-
+use houdunwang\wechat\WeChat;
+use houdunwang\arr\Arr;
 /**
  * 微信消息处理
  * Class WeChatMessage
@@ -63,7 +63,7 @@ class WeChatMessage extends Model
             if (Arr::get($module['subscribes'], strtolower(WeChat::getMessageType()))) {
                 $class = ($module['is_system'] == 1 ? '\module\\' : '\addons\\').$module['name'].'\system\Subscribe';
                 if (class_exists($class)) {
-                    (new $class())->handle();
+//                    (new $class())->handle();
                 }
             }
         }

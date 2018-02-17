@@ -10,8 +10,9 @@
 
 namespace app\site\controller;
 
-use WeChat;
+use houdunwang\wechat\WeChat;
 use system\model\WeChatMessage;
+use houdunwang\config\Config;
 
 /**
  * 微信请求接口
@@ -29,6 +30,7 @@ class Api
 
     public function __construct()
     {
+        Config::set('app.debug', false);
         //与微信官网通信绑定验证
         WeChat::valid();
         $this->instance = WeChat::instance('message');
@@ -42,7 +44,8 @@ class Api
     {
         //消息定阅处理
         WeChatMessage::subscribe();
-
+        $this->instance->text('33');
+        die;
         //文本消息时进行处理
         WeChatMessage::reply(WeChat::content('Content'));
 

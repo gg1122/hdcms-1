@@ -115,7 +115,6 @@ class Rule extends Admin
         auth('system_rule');
         $rid = Request::get('rid');
         SiteWeChat::removeRule($rid);
-
         //执行模块中的删除动作
         $class    = (v('module.is_system') ? '\module\\' : 'addons\\').v('module.name').'\system\Rule';
         $instance = new $class();
