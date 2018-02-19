@@ -70,6 +70,9 @@ class SiteUpload extends Common
      */
     public function filesLists()
     {
+        if (Request::post('mold') == 'local') {
+            return $this->filesListsLocal();
+        }
         $db = Db::table('attachment')
                 ->where('uid', v('user.info.uid'))
                 ->whereIn('extension', explode(',', strtolower(Request::post('extensions'))))
@@ -86,7 +89,7 @@ class SiteUpload extends Common
                 $data[$k]['createtime'] = date('Y/m/d', $v['createtime']);
                 $data[$k]['size']       = \Tool::getSize($v['size']);
                 $data[$k]['url']        = preg_match('/^http/i', $v['path']) ? $v['path']
-                    : __ROOT__ . '/' . $v['path'];
+                    : __ROOT__.'/'.$v['path'];
                 $data[$k]['path']       = $v['path'];
                 $data[$k]['name']       = $v['name'];
             }
@@ -100,7 +103,7 @@ class SiteUpload extends Common
      *
      * @return array
      */
-    public function filesListsLocal()
+    protected function filesListsLocal()
     {
         $db   = Db::table('attachment')
                   ->where('uid', v('user.info.uid'))
@@ -116,13 +119,13 @@ class SiteUpload extends Common
                 $data[$k]['createtime'] = date('Y/m/d', $v['createtime']);
                 $data[$k]['size']       = \Tool::getSize($v['size']);
                 $data[$k]['url']        = preg_match('/^http/i', $v['path']) ? $v['path']
-                    : __ROOT__ . '/' . $v['path'];
+                    : __ROOT__.'/'.$v['path'];
                 $data[$k]['path']       = $v['path'];
                 $data[$k]['name']       = $v['name'];
             }
         }
 
-        return ['data' => $data, 'page' => $Res->links()];
+        return ['data' => $data, 'page' => $Res->links()->show()];
     }
 
     /**

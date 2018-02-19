@@ -11,7 +11,7 @@
 namespace app\site\controller;
 
 use houdunwang\response\Response;
-use Request;
+use houdunwang\request\Request;
 use houdunwang\route\Controller;
 use system\model\Menu;
 use system\model\Modules;
@@ -19,7 +19,7 @@ use system\model\ModulesBindings;
 use system\model\Site;
 use App;
 use Route;
-use Db;
+use houdunwang\db\Db;
 
 /**
  * 网站入口管理
@@ -47,8 +47,8 @@ class Entry extends Controller
             }
             $do = $ModulesBindings->getWebDo($module);
             if ($module && $do) {
-                $class = (v('module.is_system') ? 'module' : 'addons') . '\\' . $module
-                         . '\system\Navigate';
+                $class = (v('module.is_system') ? 'module' : 'addons').'\\'.$module
+                         .'\system\Navigate';
                 if (class_exists($class) && method_exists($class, $do['do'])) {
                     return call_user_func_array([new $class, $do['do']], []);
                 }
@@ -99,9 +99,9 @@ class Entry extends Controller
         $info       = explode('/', Request::get('action'));
         $action     = array_pop($info);
         $controller = ucfirst(array_pop($info));
-        $namespace  = v('module.name') . '\\' . implode('\\', $info);
+        $namespace  = v('module.name').'\\'.implode('\\', $info);
         $class      = (v('module.is_system') ? "module\\" : "addons\\")
-                      . "{$namespace}\\{$controller}";
+                      ."{$namespace}\\{$controller}";
         if ( ! class_exists($class)) {
             return Response::_404();
         }
@@ -136,7 +136,8 @@ class Entry extends Controller
         }
         //当前用户可以使用的模块
         $modules = $Modules->getBySiteUser();
-        return view(view_path() . '/home/' . $mark . '.php', compact('modules'));
+
+        return view(view_path().'/home/'.$mark.'.php', compact('modules'));
     }
 
     /**

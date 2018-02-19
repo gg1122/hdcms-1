@@ -118,7 +118,7 @@ class SystemUpload extends Common
             }
         }
 
-        return ['data' => $data, 'page' => $Res->links()];
+        return ['data' => $data, 'page' => $Res->links()->show()];
     }
 
     /**

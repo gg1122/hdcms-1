@@ -26,8 +26,8 @@ class WeChatMessage extends Model
     {
         if ($content && $rule = Rule::getByKeyword($content)) {
             $module = v('site.modules.'.$rule['module']);
-            $class  = ($module['is_system'] == 1 ? '\module\\' : '\addons\\').$module['name']
-                      .'\system\Processor';
+            $type   = ($module['is_system'] == 1 ? '\module\\' : '\addons\\');
+            $class  = $type.$module['name'].'\system\Processor';
             if (class_exists($class)) {
                 return (new $class())->handle($rule['rid']);
             }

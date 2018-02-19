@@ -32,7 +32,11 @@ abstract class HdController extends Controller
 
     public function __construct()
     {
-        $this->siteid   = siteid();
+        $this->siteid = siteid();
+
+        if (empty($this->siteid)) {
+            $this->_404('siteid Is Not Found');
+        }
         $module         = new Modules();
         $this->config   = $module->getModuleConfig();
         $this->template = MODULE_TEMPLATE_PATH;
@@ -62,7 +66,7 @@ abstract class HdController extends Controller
                 }
             }
             define('ARTICLE_PATH', $template);
-            define('ARTICLE_URL', root_url() . '/' . $template);
+            define('ARTICLE_URL', root_url().'/'.$template);
         }
 
         return ARTICLE_PATH ?: '';
@@ -92,7 +96,7 @@ abstract class HdController extends Controller
     protected function view($file, array $args = [])
     {
         if ( ! preg_match('@\.php$@i', $file)) {
-            $file = $file . '.php';
+            $file = $file.'.php';
         }
 
         if ( ! is_file($file)) {

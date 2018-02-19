@@ -12,7 +12,6 @@ namespace app\site\controller;
 
 use houdunwang\wechat\WeChat;
 use system\model\WeChatMessage;
-use houdunwang\config\Config;
 
 /**
  * 微信请求接口
@@ -64,13 +63,16 @@ class Api
      */
     protected function defaultMessage()
     {
-        $defaultMessage = v('site.setting.default_message');
-        if ($defaultMessage) {
-            if ($content = WeChatMessage::reply($defaultMessage)) {
-                return $content;
-            }
+        //上报地理位置等不回复消息
+        if ( ! in_array(WeChat::getMessageType(), ['LOCATION'])) {
+            $defaultMessage = v('site.setting.default_message');
+            if ($defaultMessage) {
+                if ($content = WeChatMessage::reply($defaultMessage)) {
+                    return $content;
+                }
 
-            return $this->instance->text($defaultMessage);
+                return $this->instance->text($defaultMessage);
+            }
         }
     }
 }

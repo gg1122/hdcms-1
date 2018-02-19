@@ -66,7 +66,6 @@ trait Matter
         $url  = $this->apiUrl
                 ."/cgi-bin/material/get_material?access_token={$this->accessToken}";
         $json = '{"media_id":"'.$mediaId.'"}';
-
         return $this->get(Curl::post($url, $json));
     }
 

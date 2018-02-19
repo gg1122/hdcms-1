@@ -133,7 +133,7 @@ function memberIsLogin($return = false)
 {
     $status = boolval(v('member.info.uid'));
     if ( ! $status && $return === false) {
-        die(go(web_url() . "?m=ucenter&action=controller/entry/login&from=" . urlencode(__URL__)));
+        die(go(web_url() . "?m=ucenter&action=controller/entry/login&siteid=".SITEID."&from=" . urlencode(__URL__)));
     }
 
     return $status;
