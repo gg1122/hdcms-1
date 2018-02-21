@@ -1,7 +1,7 @@
 <?php return array (
   'version' => 'V2.0',
-  'build' => '20180222001400',
+  'build' => '20180222001558',
   'logs' => '',
-  'type' => 'full',
+  'type' => 'upgrade',
   'explain' => '',
 );
