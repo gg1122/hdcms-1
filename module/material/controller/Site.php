@@ -6,6 +6,7 @@ use module\material\model\Material;
 use houdunwang\config\Config;
 use houdunwang\wechat\WeChat;
 use houdunwang\dir\Dir;
+use houdunwang\db\Db;
 
 /**
  * 微信素材管理
@@ -26,6 +27,7 @@ class Site extends HdController
      * 上传素材
      *
      * @return mixed|string
+     * @throws \Exception
      */
     public function upload_material()
     {
@@ -95,7 +97,8 @@ class Site extends HdController
      */
     public function news()
     {
-        $data = Material::where('siteid', SITEID)->where('type', 'news')->orderBy('id', 'DESC')->paginate(10);
+        $data = Material::where('siteid', SITEID)->where('type', 'news')->orderBy('id', 'DESC')
+                        ->paginate(10);
         foreach ($data as $k => $v) {
             $data[$k]['data'] = json_decode($v['data'], true);
         }
@@ -156,15 +159,25 @@ class Site extends HdController
                 }
                 //创建上传目录
                 foreach ($result['item'] as $k => $v) {
-                    $field = Material::where('media_id', $v['media_id'])->where('siteid', SITEID)->first();
+                    $field = Material::where('media_id', $v['media_id'])->where('siteid', SITEID)
+                                     ->first();
                     if (empty($field)) {
                         //保存缩略图
                         foreach ($v['content']['news_item'] as $n => $m) {
-                            $imgContent = WeChat::instance('material')->getMaterial($m['thumb_media_id']);
-                            if (isset($imgContent['errcode']) && $imgContent['errcode']) {
-                                return message('同步图文消息失败, '.$imgContent['errmsg'], url('site/news'), 'error');
+                            $imgContent = WeChat::instance('material')->getMaterial(
+                                $m['thumb_media_id']
+                            );
+                            if (is_array($imgContent) && isset($imgContent['errcode'])
+                                && $imgContent['errcode']) {
+                                break;
+//                                return message(
+//                                    '同步图文消息失败, '.$imgContent['errmsg'],
+//                                    url('site/news'),
+//                                    'error'
+//                                );
                             }
-                            $pic = Config::get('upload.path')."/{$v['media_id']}_{$m['thumb_media_id']}.jpg";
+                            $pic = Config::get('upload.path')
+                                   ."/{$v['media_id']}_{$m['thumb_media_id']}.jpg";
                             file_put_contents($pic, $imgContent);
                             $v['content']['news_item'][$n]['pic'] = $pic;
                         }
@@ -178,8 +191,15 @@ class Site extends HdController
                 }
             }
             $end = $pos + $result['item_count'];
-            return message("准备同步[{$pos} ~ {$end}]图文消息", url('site/syncNews', ['pos' => $end]), 'success', 2);
+
+            return message(
+                "准备同步[{$pos} ~ {$end}]图文消息",
+                url('site/syncNews', ['pos' => $end]),
+                'success',
+                2
+            );
         }
+
         return message('准备同步图文消息', url('site/syncNews', ['pos' => 0]), 'success', 2);
     }
 

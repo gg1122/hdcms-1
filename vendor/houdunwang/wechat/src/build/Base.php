@@ -16,6 +16,7 @@ use houdunwang\dir\Dir;
 use houdunwang\wechat\build\common\Error;
 use houdunwang\wechat\build\common\Sign;
 use houdunwang\wechat\build\common\Xml;
+use houdunwang\cache\Cache;
 
 /**
  * 基础类
@@ -65,12 +66,7 @@ class Base extends Error
      */
     public function setMessage()
     {
-        if (isset($GLOBALS['HTTP_RAW_POST_DATA'])) {
-            $content = $GLOBALS['HTTP_RAW_POST_DATA'];
-        } else {
-            $content = file_get_contents('php://input');
-        }
-
+        $content    = file_get_contents('php://input');
         $xml_parser = xml_parser_create();
         if ( ! xml_parse($xml_parser, $content, true)) {
             xml_parser_free($xml_parser);
@@ -125,7 +121,9 @@ class Base extends Error
      */
     public function valid()
     {
-        if ( ! isset($_GET["echostr"]) || ! isset($_GET["signature"]) || ! isset($_GET["timestamp"]) || ! isset($_GET["nonce"])) {
+        if ( ! isset($_GET["echostr"]) || ! isset($_GET["signature"])
+             || ! isset($_GET["timestamp"])
+             || ! isset($_GET["nonce"])) {
             return false;
         }
         $echoStr   = $_GET["echostr"];
@@ -164,10 +162,11 @@ class Base extends Error
     {
         static $accessToken;
         if ( ! $accessToken) {
-            $cacheName = $this->appid.$this->appsecret.'_wechat_access_token_';
+            $cacheName = $this->appid . $this->appsecret . '_wechat_access_token_';
             $data      = Cache::get($cacheName);
             if ($force === true || ! $data) {
-                $url  = $this->apiUrl.'/cgi-bin/token?grant_type=client_credential&appid='.$this->appid.'&secret='.$this->appsecret;
+                $url  = $this->apiUrl . '/cgi-bin/token?grant_type=client_credential&appid='
+                        . $this->appid . '&secret=' . $this->appsecret;
                 $data = json_decode(Curl::get($url), true);
                 //获取失败
                 if (isset($data['errmsg'])) {
@@ -191,7 +190,7 @@ class Base extends Error
      */
     public function instance($api)
     {
-        $class = '\houdunwang\wechat\build\\'.strtolower($api).'\\App';
+        $class = '\houdunwang\wechat\build\\' . strtolower($api) . '\\App';
 
         return new $class();
     }
@@ -212,9 +211,10 @@ class Base extends Error
             ];
         } else {
             $data = [
-                'media' => '@'.realpath($file),
+                'media' => '@' . realpath($file),
             ];
         }
+
         return $data;
     }
 }

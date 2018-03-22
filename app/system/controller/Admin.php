@@ -10,6 +10,7 @@
 
 namespace app\system\controller;
 
+use houdunwang\middleware\Middleware;
 use houdunwang\route\Controller;
 use system\model\User;
 

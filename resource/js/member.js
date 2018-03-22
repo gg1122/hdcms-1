@@ -6,6 +6,13 @@
 define(['hdjs'], function (hdjs) {
     return {
         /**
+         * 登录检测
+         * @returns {boolean}
+         */
+        isLogin: function () {
+            return !!window.user.uid;
+        },
+        /**
          * 获取会员列表
          * @param callback
          * @param siteid
@@ -20,8 +27,8 @@ define(['hdjs'], function (hdjs) {
             });
             window._selectMemberUser = function (user) {
                 if ($.isFunction(callback)) {
-                    callback(user);
                     modalobj.modal('hide');
+                    callback(user);
                 }
             }
         },

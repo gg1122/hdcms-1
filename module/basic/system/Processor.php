@@ -3,11 +3,11 @@
 /**
  * 测试模块模块消息处理器
  *
- * @author 后盾网
+ * @author 后盾人
  * @url http://open.hdcms.com
  */
 use module\HdProcessor;
-use Db;
+use houdunwang\db\Db;
 
 class Processor extends HdProcessor
 {

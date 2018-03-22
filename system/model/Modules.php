@@ -21,8 +21,10 @@ use app\system\controller\part\Subscribe;
 use app\system\controller\part\Tag;
 use houdunwang\cli\Cli;
 use houdunwang\container\Container;
+use houdunwang\db\Db;
 use houdunwang\dir\Dir;
-use Request;
+use houdunwang\request\Request;
+use houdunwang\validate\Validate;
 
 /**
  * 模块管理
@@ -36,10 +38,22 @@ class Modules extends Common
     protected $denyInsertFields = ['mid'];
     protected $validate
         = [
-            ['name', 'regexp:/^[a-z]+$/', '模块标识符只能由字母组成', self::MUST_VALIDATE, self::MODEL_INSERT,],
+            [
+                'name',
+                'regexp:/^[a-z]+$/',
+                '模块标识符只能由字母组成',
+                self::MUST_VALIDATE,
+                self::MODEL_INSERT,
+            ],
             ['industry', 'required', '模块类型不能为空', self::MUST_VALIDATE, self::MODEL_INSERT],
             ['title', 'maxlen:50', '模块名称不能超过50个字符', self::MUST_VALIDATE, self::MODEL_INSERT],
-            ['version', 'regexp:/^[\d\.]+$/', '版本号只能为数字', self::MUST_VALIDATE, self::MODEL_INSERT],
+            [
+                'version',
+                'regexp:/^[\d\.]+$/',
+                '版本号只能为数字',
+                self::MUST_VALIDATE,
+                self::MODEL_INSERT,
+            ],
             ['resume', 'required', '模块简述不能为空', self::MUST_VALIDATE, self::MODEL_INSERT],
             ['detail', 'required', '详细介绍不能为空', self::MUST_VALIDATE, self::MODEL_INSERT],
             ['author', 'required', '作者不能为空', self::MUST_VALIDATE, self::MODEL_INSERT],
@@ -78,7 +92,7 @@ class Modules extends Common
     {
         $name = Request::get('m');
         if (empty($name)) {
-            return;
+            return true;
         }
         /**
          * 初始化模块数据
@@ -86,9 +100,9 @@ class Modules extends Common
          */
         $module = Db::table('modules')->where('name', $name)->first();
         if (empty($module)) {
-            return;
+            return false;
         }
-        $module['path'] = ($module['is_system'] ? "module/" : "addons/").$name;
+        $module['path'] = ($module['is_system'] ? "module/" : "addons/") . $name;
         v('module', $module);
         /*
         * 加载扩展模块中间件
@@ -100,7 +114,8 @@ class Modules extends Common
             }
         }
         //模块初始执行程序
-        $class = (v('module.is_system') ? "module\\" : "addons\\").v('module.name').'\system\Init';
+        $class = (v('module.is_system') ? "module\\" : "addons\\") . v('module.name')
+                 . '\system\Init';
         if (class_exists($class) && method_exists($class, 'run')) {
             call_user_func_array([new $class, 'run'], []);
         }
@@ -113,12 +128,14 @@ class Modules extends Common
             Request::set('get.s', 'site/entry/action');
         }
         //如果存在helpr模块函数库时加载
-        $funFile = v('module.path')."/system/helper.php";
+        $funFile = v('module.path') . "/system/helper.php";
         if (is_file($funFile)) {
             require_once $funFile;
         }
         v('module_config', self::getModuleConfig());
         self::defindConst();
+
+        return true;
     }
 
     /**
@@ -126,13 +143,19 @@ class Modules extends Common
      */
     protected static function defindConst()
     {
+        define('MODULE_VERSION', v('module.version'));
         define('MODULE_PATH', v('module.path'));
-        define("MODULE_TEMPLATE_PATH", v('module.path')."/template");
-        define("MODULE_TEMPLATE_URL", root_url().'/'.v('module.path')."/template");
+        define("MODULE_TEMPLATE_PATH", v('module.path') . "/template");
+        define("MODULE_TEMPLATE_URL", root_url() . '/' . v('module.path') . "/template");
+        define("WIDGET_TEMPLATE_PATH", v('module.path') . "/widget/template");
+        define("WIDGETE_TEMPLATE_URL",
+            root_url() . '/' . v('module.path') . "/widget/template");
         //会员中心默认风格
-        define('UCENTER_TEMPLATE_PATH', 'ucenter/'.v('site.info.ucenter_template').'/'.(Request::isMobile() ? 'mobile' : 'web'));
-        define('UCENTER_TEMPLATE_URL', root_url().'/'.UCENTER_TEMPLATE_PATH);
-        define('UCENTER_MASTER_FILE', UCENTER_TEMPLATE_PATH.'/master.php');
+        define('UCENTER_TEMPLATE_PATH',
+            'ucenter/' . v('site.info.ucenter_template') . '/' . (Request::isMobile() ? 'mobile'
+                : 'web'));
+        define('UCENTER_TEMPLATE_URL', root_url() . '/' . UCENTER_TEMPLATE_PATH);
+        define('UCENTER_MASTER_FILE', UCENTER_TEMPLATE_PATH . '/master.php');
     }
 
     /**
@@ -173,7 +196,7 @@ class Modules extends Common
         $info = explode('.', $module);
         if ( ! isset($instance[$module])) {
             $data              = Modules::where('name', $info[0])->first();
-            $class             = 'addons\\'.$data['name'].'\api';
+            $class             = 'addons\\' . $data['name'] . '\api';
             $instance[$module] = new $class;
         }
 
@@ -278,7 +301,8 @@ class Modules extends Common
             $m['subscribes']  = json_decode($m['subscribes'], true) ?: [];
             $m['processors']  = json_decode($m['processors'], true) ?: [];
             $m['permissions'] = array_filter(json_decode($m['permissions'], true) ?: []);
-            $binds            = Db::table('modules_bindings')->where('module', $m['name'])->get() ?: [];
+            $binds            = Db::table('modules_bindings')->where('module', $m['name'])
+                                  ->get() ?: [];
             foreach ($binds as $b) {
                 //业务动作有多个储存时使用JSON格式的
                 if ($b['entry'] == 'business') {
@@ -324,8 +348,16 @@ class Modules extends Common
      *
      * @return mixed
      */
-    protected function formatModuleAccessData(&$modules, $name, $identifying, $cat_name, $title, $permission, $url, $ico)
-    {
+    protected function formatModuleAccessData(
+        &$modules,
+        $name,
+        $identifying,
+        $cat_name,
+        $title,
+        $permission,
+        $url,
+        $ico
+    ) {
         url_del(['mark']);
         $data['name']        = "$name";
         $data['title']       = $title;
@@ -336,10 +368,11 @@ class Modules extends Common
         $data['_hash']       = substr(md5($url), 0, 6);
         if (empty($permission)) {
             $data['_status'] = 1;
-        } elseif (isset($permission[$name]) && in_array($identifying, $permission[$name])) {
+        } elseif (isset($permission[$name])
+                  && in_array($identifying, $permission[$name])) {
             $data['_status'] = 1;
         }
-        $module                                = v('site.modules.'.$name);
+        $module                                = v('site.modules.' . $name);
         $modules[$name]['module']              = [
             'title'     => $module['title'],
             'name'      => $module['name'],
@@ -394,63 +427,78 @@ class Modules extends Common
         foreach ((array)v('site.modules') as $name => $m) {
             //对扩展模块进行处理
             if ($m['setting']) {
-                $this->formatModuleAccessData($modules, $name, 'system_setting', '系统功能', '参数设置', $permission,
+                $this->formatModuleAccessData($modules, $name, 'system_setting', '系统功能', '参数设置',
+                    $permission,
                     "?s=site/config/post&m={$name}&mark=package", 'fa fa-cog');
             }
             if ($m['crontab']) {
-                $this->formatModuleAccessData($modules, $name, 'system_crontab', '系统功能', '定时任务', $permission,
+                $this->formatModuleAccessData($modules, $name, 'system_crontab', '系统功能', '定时任务',
+                    $permission,
                     "?s=site/crontab/lists&m={$name}&mark=package", 'fa fa-globe');
             }
             if ($m['router']) {
-                $this->formatModuleAccessData($modules, $name, 'system_router', '系统功能', '路由规则', $permission,
+                $this->formatModuleAccessData($modules, $name, 'system_router', '系统功能', '路由规则',
+                    $permission,
                     "?s=site/router/lists&m={$name}&mark=package", 'fa fa-tachometer');
             }
             if ($m['domain']) {
-                $this->formatModuleAccessData($modules, $name, 'system_domain', '系统功能', '域名设置', $permission,
+                $this->formatModuleAccessData($modules, $name, 'system_domain', '系统功能', '域名设置',
+                    $permission,
                     "?s=site/domain/post&m={$name}&mark=package", 'fa fa-wordpress');
             }
             if ($m['middleware']) {
-                $this->formatModuleAccessData($modules, $name, 'system_middleware', '系统功能', '中间件设置', $permission,
+                $this->formatModuleAccessData($modules, $name, 'system_middleware', '系统功能',
+                    '中间件设置', $permission,
                     "?s=site/middleware/post&m={$name}&mark=package", 'fa fa-twitch');
             }
             if ($m['rule']) {
-                $this->formatModuleAccessData($modules, $name, 'system_rule', '微信回复', '回复规则列表', $permission,
+                $this->formatModuleAccessData($modules, $name, 'system_rule', '微信回复', '回复规则列表',
+                    $permission,
                     "?s=site/rule/lists&m={$name}&mark=package", 'fa fa-rss');
             }
             if ($m['budings']['cover']) {
                 foreach ($m['budings']['cover'] as $c) {
-                    $this->formatModuleAccessData($modules, $name, 'system_cover', '微信回复', $c['title'], $permission,
-                        "?s=site/cover/post&m={$name}&mark=package&bid={$c['bid']}", 'fa fa-file-image-o');
+                    $this->formatModuleAccessData($modules, $name, 'system_cover', '微信回复',
+                        $c['title'], $permission,
+                        "?s=site/cover/post&m={$name}&mark=package&bid={$c['bid']}",
+                        'fa fa-file-image-o');
                 }
             }
             if ($m['budings']['member']) {
-                $this->formatModuleAccessData($modules, $name, 'system_member', '导航菜单', '桌面会员中心导航', $permission,
+                $this->formatModuleAccessData($modules, $name, 'system_member', '导航菜单', '桌面会员中心导航',
+                    $permission,
                     "?s=site/navigate/lists&entry=member&m={$name}&mark=package", 'fa fa-renren');
             }
             if ($m['budings']['profile']) {
-                $this->formatModuleAccessData($modules, $name, 'system_profile', '导航菜单', '移动会员中心导航', $permission,
+                $this->formatModuleAccessData($modules, $name, 'system_profile', '导航菜单',
+                    '移动会员中心导航', $permission,
                     "?s=site/navigate/lists&entry=profile&m={$name}&mark=package", 'fa fa-github');
             }
             if ($m['budings']['business']) {
                 //控制器业务功能
                 foreach ($m['budings']['business'] as $c) {
                     foreach ($c['do'] as $d) {
-                        $identifying = 'controller/'.$c['controller'].'/'.trim($d['do']);
-                        $this->formatModuleAccessData($modules, $name, $identifying, $c['title'], $d['title'],
-                            $permission, "?m={$name}&action=controller/{$c['controller']}/{$d['do']}&mark=package",
+                        $identifying = 'controller/' . $c['controller'] . '/' . trim($d['do']);
+                        $this->formatModuleAccessData($modules, $name, $identifying, $c['title'],
+                            $d['title'],
+                            $permission,
+                            "?m={$name}&action=controller/{$c['controller']}/{$d['do']}&mark=package",
                             'fa fa-pencil-square-o');
                     }
                 }
             }
             //设置模块时添加的扩展权限标识
             //不会在站点后台进行显示
-            $extPermissions = Db::table('modules')->where('name', $name)->pluck('permissions');
+            $extPermissions = Db::table('modules')->where('name', $name)
+                                ->pluck('permissions');
             $extPermissions = json_decode($extPermissions, true);
 
             foreach ((array)$extPermissions as $d) {
-                $identifying = 'controller/'.trim($d['do']);
-                $this->formatModuleAccessData($modules, $name, $identifying, 'extPermissions', $d['title'], $permission,
-                    "?m={$name}&action=controller/{$d['do']}&mark=package", 'fa fa-pencil-square-o');
+                $identifying = 'controller/' . trim($d['do']);
+                $this->formatModuleAccessData($modules, $name, $identifying, 'extPermissions',
+                    $d['title'], $permission,
+                    "?m={$name}&action=controller/{$d['do']}&mark=package",
+                    'fa fa-pencil-square-o');
             }
         }
 
@@ -470,12 +518,13 @@ class Modules extends Common
     public static function getBySiteUser($siteId = 0, $uid = 0, $onlyExt = 1)
     {
         static $cache = [];
-        $name = "cache_{$siteId}{$uid}".intval($onlyExt);
+        $name = "cache_{$siteId}{$uid}" . intval($onlyExt);
         if ( ! isset($cache[$name])) {
             $siteId = $siteId ?: siteid();
             $uid    = $uid ?: v('user.info.uid');
             //插件模块列表
-            $permission = UserPermission::where('siteid', $siteId)->where('uid', $uid)->lists('type,permission');
+            $permission = UserPermission::where('siteid', $siteId)->where('uid', $uid)
+                                        ->lists('type,permission');
             $modules    = v('site.modules') ?: [];
             //非管理员时根据其他权限获取模块
             if ( ! User::isManage() && ! empty($permission)) {
@@ -549,7 +598,8 @@ class Modules extends Common
         static $cache = [];
         $module = $module ?: v('module.name');
         if ( ! isset($config[$module])) {
-            $config = ModuleSetting::where('siteid', SITEID)->where('module', $module)->pluck('config');
+            $config = ModuleSetting::where('siteid', SITEID)->where('module', $module)
+                                   ->pluck('config');
 
             return $cache[$module] = $config ? json_decode($config, true) : [];
         }
@@ -665,29 +715,42 @@ class Modules extends Common
         ], $data);
         //模块标识转小写
         $data['name'] = strtolower($data['name']);
-        $dir          = "addons/".$data['name'];
+        $dir          = "addons/" . $data['name'];
         //检查插件是否存在
-        $isSystem = Db::table('modules')->where('is_system', 1)->where('name', $data['name'])->get();
+        $isSystem = Db::table('modules')->where('is_system', 1)->where('name', $data['name'])
+                      ->get();
         $isCloud  = is_file("module/{$data['name']}/cloud.php");
         if ($isSystem || $isCloud) {
             return '模块是系统模块或云模块不允许创建,请更改模块标识';
         }
         //系统关键字不允许定义为模块标识
-        if (in_array($data['name'], ['user', 'system', 'houdunwang', 'houdunyun', 'hdphp', 'hd', 'hdcms', 'xj',])) {
+        if (in_array($data['name'],
+            ['user', 'system', 'houdunwang', 'houdunyun', 'hdphp', 'hd', 'hdcms', 'xj',])) {
             return '模块已经存在,请更改模块标识';
         }
         //创建目录创建安全文件
-        foreach (['controller', 'template', 'service/template', 'model', 'system', 'system/template'] as $d) {
+        foreach (
+            [
+                'controller',
+                'template',
+                'api',
+                'service/template',
+                'model',
+                'system',
+                'system/template',
+                'widget/template',
+            ] as $d
+        ) {
             if ( ! Dir::create("{$dir}/{$d}")) {
                 return '模块目录创建失败,请修改addons目录的权限';
             }
-            file_put_contents("{$dir}/{$d}/index.html", 'Not allowed to access');
+//            file_put_contents("{$dir}/{$d}/index.html", 'Not allowed to access');
         }
         //模块预览图
         $info    = pathinfo($data['preview']);
-        $preview = $dir.'/preview.'.$info['extension'];
+        $preview = $dir . '/preview.' . $info['extension'];
         copy($data['preview'], $preview);
-        $data['preview'] = 'preview.'.$info['extension'];
+        $data['preview'] = 'preview.' . $info['extension'];
         //初始创建模块需要的脚本文件
         Tag::make($data);
         Subscribe::make($data);
@@ -703,7 +766,8 @@ class Modules extends Common
         \app\system\controller\part\Rule::make($data);
         \app\system\controller\part\Pay::make($data);
 
-        return file_put_contents($dir.'/package.json', json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT)) ? true : false;
+        return file_put_contents($dir . '/package.json',
+            json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT)) ? true : false;
     }
 
     /**
@@ -753,7 +817,8 @@ class Modules extends Common
                 }
             }
             //控制器数据不完整时删除
-            if (empty($d['title']) || empty($d['controller']) || empty($data['business'][$k]['action'])) {
+            if (empty($d['title']) || empty($d['controller'])
+                || empty($data['business'][$k]['action'])) {
                 unset($data['business'][$k]);
             }
         }
@@ -815,16 +880,37 @@ class Modules extends Common
     public function migrateReset($name)
     {
         foreach (glob("addons/{$name}/database/migrations/*") as $file) {
-            $info = pathinfo($file);
-            require $file;
+            $info      = pathinfo($file);
             $namespace = "addons\\{$name}\\database\migrations";
-            $class     = $namespace.'\\'.substr($info['basename'], 13, -4);
+            $class     = $namespace . '\\' . $info['filename'];
             (new $class)->down();
-
             Db::table('migrations')->where('migration', $info['basename'])->delete();
         }
 
         return true;
+    }
+
+    /**
+     * 迁移回滚
+     *
+     * @param string $name 模块标识
+     *
+     * @return mixed
+     */
+    public function migrateRollback($name)
+    {
+        $data = glob("addons/{$name}/database/migrations/*");
+        rsort($data);
+        foreach ($data as $file) {
+            $info = pathinfo($file);
+            if (Db::table('migrations')->where('migration', $info['basename'])->get()) {
+                $namespace = "addons\\{$name}\\database\migrations";
+                $class     = $namespace . '\\' . $info['filename'];
+                (new $class)->down();
+
+                return Db::table('migrations')->where('migration', $info['basename'])->delete();
+            }
+        }
     }
 
 
@@ -884,7 +970,7 @@ class Modules extends Common
      */
     public function exceInstallFile($name)
     {
-        $class = 'addons\\'.$name.'\system\Setup';
+        $class = 'addons\\' . $name . '\system\Setup';
 
         call_user_func_array([new $class, 'install'], []);
 
@@ -896,14 +982,15 @@ class Modules extends Common
      *
      * @param $module 模块标识
      *
-     * @return bool
+     * @return mixed
+     * @throws \Exception
      */
     public function initModuleData($module)
     {
         $dir    = "addons/{$module}";
         $config = json_decode(file_get_contents("{$dir}/package.json"), true);
         //执行模块更新表语句
-        $class = 'addons\\'.$module.'\system\Setup';
+        $class = 'addons\\' . $module . '\system\Setup';
         call_user_func_array([new $class, 'upgrade'], []);
         //权限标识处理
         $permissions = [];
@@ -937,7 +1024,7 @@ class Modules extends Common
         $model['router']      = $config['router'];
         $model['domain']      = $config['domain'];
         $model['permissions'] = json_encode($permissions, JSON_UNESCAPED_UNICODE);
-        $model['locality']    = is_file($dir.'/cloud.php') ? 0 : 1;
+        $model['locality']    = is_file($dir . '/cloud.php') ? 0 : 1;
         $model->save();
         self::initModuleBinding($module);
 
@@ -951,6 +1038,7 @@ class Modules extends Common
      * @param string $module 模块标识
      *
      * @return bool
+     * @throws \Exception
      */
     public function initModuleBinding($module)
     {
@@ -1014,9 +1102,10 @@ class Modules extends Common
     /**
      * 从系统中删除模块
      *
-     * @param      $name 模块标识
+     * @param $name
      *
      * @return bool
+     * @throws \Exception
      */
     public function remove($name)
     {
@@ -1055,7 +1144,7 @@ class Modules extends Common
      */
     protected function uninstallModuleSoft($name)
     {
-        $class = 'addons\\'.$name.'\system\Setup';
+        $class = 'addons\\' . $name . '\system\Setup';
         if (class_exists($class) && method_exists($class, 'uninstall')) {
             return call_user_func_array([new $class, 'uninstall'], []);
         }

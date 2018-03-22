@@ -14,7 +14,7 @@ use houdunwang\request\Request;
 use module\HdController;
 use module\article\model\Field as FieldModel;
 use Schema;
-
+use View;
 /**
  * 模型字段管理
  * Class Field

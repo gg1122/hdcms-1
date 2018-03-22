@@ -3,6 +3,7 @@
 use houdunwang\cli\build\Base;
 use Curl;
 use Dir;
+use houdunwang\zip\Zip;
 
 /**
  * 命令处理
@@ -15,7 +16,8 @@ class Cli extends Base
     use Make;
     //编译工作目录
     protected $savePath = '/Users/xj/Desktop/hdcms';
-
+    //编译时间
+    protected $build;
     //软件目录
     protected $hdcmsDir;
     //不进行打包的文件或目录
@@ -41,6 +43,7 @@ class Cli extends Base
     public function __construct()
     {
         $this->hdcmsDir = realpath('.');
+        $this->build    = date("YmdHis");
     }
 
     //不生成到更新压缩包的文件
@@ -62,21 +65,12 @@ class Cli extends Base
      */
     public function version($type)
     {
-        //最新的标签
-        exec("git tag -l", $tags);
-        $newTag          = array_pop($tags);
-        $data['version'] = $newTag;
-        $data['build']   = date("YmdHis");
-        //更新日志
-        exec("git log -1", $logs);
-        $logs = array_splice($logs, 4);
-        array_walk($logs, function (&$v) {
-            $v = trim($v);
-        });
-        $data['logs']    = implode('####', $logs);
+        $data['version'] = 'V2.0';
+        $data['build']   = $this->build;
+        $data['logs']    = '';
         $data['type']    = $type;
         $data['explain'] = '';
-        file_put_contents('version.php', "<?php return ".var_export($data, true).';');
+        file_put_contents('version.php', "<?php return " . var_export($data, true) . ';');
     }
 
     /**
@@ -88,42 +82,37 @@ class Cli extends Base
         //复制目录
         Dir::copy('.', $this->savePath);
         foreach ($this->filters as $d) {
-            $file = $this->savePath.'/'.$d;
+            $file = $this->savePath . '/' . $d;
             is_dir($d) ? Dir::del($file) : Dir::delFile($file);
         }
         //创建压缩包
-        exec("git tag -l", $tags);
-        $newVersion = array_pop($tags);
-        Zip::create(dirname($this->savePath).'/hdcms.full.zip', [$this->savePath]);
-        exec('rm -rf '.$this->savePath);
+        Zip::create(dirname($this->savePath) . '/hdcms.full.zip', [$this->savePath]);
+        exec('rm -rf ' . $this->savePath);
     }
 
     /**
      * 生成HDCMS更新压缩包
-     *
-     * @param string $oldVersion 上版本号
      */
-    public function upgrade($oldVersion = '')
+    public function upgrade()
     {
         $this->version('upgrade');
-        exec("git tag -l", $tags);
-        $newVersion = array_pop($tags);
-        $oldVersion = $oldVersion ?: array_pop($tags);
-        exec("git diff $oldVersion $newVersion --name-status ", $files);
+        exec("git diff master --name-status", $files);
         $files = $this->format($files);
         if ( ! empty($files)) {
             //复制文件
             foreach ($files as $f) {
-                Dir::copyFile($f['file'], $this->savePath.'/'.$f['file']);
+                Dir::copyFile($f['file'], $this->savePath . '/' . $f['file']);
             }
-            Dir::copyFile('version.php', $this->savePath.'/version.php');
+            Dir::copyFile('version.php', $this->savePath . '/version.php');
             foreach ($this->filters as $d) {
-                $file = $this->savePath.'/'.$d;
+                $file = $this->savePath . '/' . $d;
                 is_dir($d) ? Dir::del($file) : Dir::delFile($file);
             }
-            file_put_contents($this->savePath.'/upgrade_files.php', "<?php return ".var_export($files, true).';?>');
-            Zip::create(dirname($this->savePath).'/hdcms.upgrade.'.$newVersion.'.zip', [$this->savePath]);
-            exec('rm -rf '.$this->savePath);
+            file_put_contents($this->savePath . '/upgrade_files.php',
+                "<?php return " . var_export($files, true) . ';?>');
+            Zip::create(dirname($this->savePath) . '/hdcms.upgrade.' . date('md') . '.zip',
+                [$this->savePath]);
+            exec('rm -rf ' . $this->savePath);
         }
     }
 

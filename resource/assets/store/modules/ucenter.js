@@ -31,6 +31,10 @@ export default {
             };
             state.menus.push(menu);
         },
+        //删除菜单
+        removeMenu(state, pos) {
+            state.menus.splice(pos, 1);
+        },
         //上传图片
         upImage(state, data) {
             hdjs.image((images) => {

@@ -1,4 +1,5 @@
-<?php
+<?php namespace system\model;
+
 /** .-------------------------------------------------------------------
  * |  Software: [HDCMS framework]
  * |      Site: www.hdcms.com
@@ -7,11 +8,9 @@
  * |    WeChat: aihoudun
  * | Copyright (c) 2012-2019, www.houdunwang.com. All Rights Reserved.
  * '-------------------------------------------------------------------*/
-
-namespace system\model;
-
-use Db;
-use Arr;
+use houdunwang\db\Db;
+use houdunwang\arr\Arr;
+use houdunwang\request\Request;
 
 /**
  * 系统菜单管理
@@ -198,6 +197,7 @@ class Menu extends Common
      * 获取模块菜单类型
      *
      * @param string $entry 类型 member桌面会员中心
+     * @param int    $groupId
      *
      * @return array
      */
@@ -214,25 +214,26 @@ class Menu extends Common
                 ];
             }
         }
+        $menus = $data;
         foreach ($data as $k => $v) {
             foreach ($v['menus'] as $n => $m) {
-                $data[$k]['menus'][$n]['css'] = json_decode($m['css'], true);
-                $groups                       = json_decode($m['groups'], true);
-                $groups                       = is_array($groups) ? array_filter($groups) : [];
+                $menus[$k]['menus'][$n]['css'] = json_decode($m['css'], true);
+                $groups                        = json_decode($m['groups'], true);
+                $groups                        = is_array($groups) ? array_filter($groups) : [];
                 //指定会员组时只显示可访问的菜单
                 if ($groupId && ! empty($groups) && ! in_array($groupId, $groups)) {
-                    unset($data[$k]['menus']);
+                    unset($menus[$k]['menus'][$n]);
                 }
             }
         }
         //删除没有菜单的模块
-        foreach ($data as $k => $v) {
+        foreach ($menus as $k => $v) {
             if (empty($v['menus'])) {
-                unset($data[$k]);
+                unset($menus[$k]);
             }
         }
 
-        return $data;
+        return $menus;
     }
 
     /**

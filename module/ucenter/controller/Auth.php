@@ -11,7 +11,7 @@
 namespace module\ucenter\controller;
 
 use module\HdController;
-
+use Request;
 /**
  * 后台管理公共控制器/验证登录权限
  * Class Auth

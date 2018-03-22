@@ -3,6 +3,8 @@
 use houdunwang\database\build\Blueprint;
 use houdunwang\model\Model;
 use houdunwang\request\Request;
+use houdunwang\db\Db;
+use houdunwang\database\Schema;
 
 /**
  * 字段管理
@@ -52,7 +54,7 @@ class Field extends Model
     {
         $name = Db::table('web_model')->where('mid', $mid)->pluck('model_name');
 
-        return "web_content_{$name}".siteid();
+        return "web_content_{$name}" . siteid();
     }
 
     /**
@@ -68,7 +70,7 @@ class Field extends Model
         $table = $this->getModelTable($mid);
         //字段不存在时创建
         if ( ! Schema::fieldExists($options['name'], $table)) {
-            return call_user_func_array([$this, '_'.$options['type']], [$table, $options]);
+            return call_user_func_array([$this, '_' . $options['type']], [$table, $options]);
         }
     }
 
@@ -80,7 +82,7 @@ class Field extends Model
     public function delField()
     {
         $name  = Db::table('web_model')->where('mid', $this['mid'])->pluck('model_name');
-        $table = "web_content_".$name.siteid();
+        $table = "web_content_" . $name . siteid();
         if (Schema::dropField($table, $this['name'])) {
             return $this->destory();
         }

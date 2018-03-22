@@ -13429,7 +13429,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 __webpack_require__(79);
 __webpack_require__(103);
 
-
 var app = new _vue2.default({
     el: '#app',
     store: _index2.default,
@@ -14005,7 +14004,7 @@ exports.push([module.i, "\n.ucenter[data-v-4fb12ce5] {\n  border: solid 1px #ddd
             html: ''
         };
     },
-    methods: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["mapMutations"])('ucenter', ['set', 'addMenu', 'upImage', 'font', 'systemLink']), {
+    methods: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["mapMutations"])('ucenter', ['set', 'addMenu', 'removeMenu', 'upImage', 'font', 'systemLink']), {
         submit() {
             __WEBPACK_IMPORTED_MODULE_4_hdjs___default.a.submit();
         },
@@ -14572,6 +14571,9 @@ exports.push([module.i, "\n.header[data-v-309d9dd8] {\n  position: relative;\n  
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__js_hdcms__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__js_hdcms___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__js_hdcms__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_hdjs_dist_hdjs_css__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_hdjs_dist_hdjs_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_hdjs_dist_hdjs_css__);
+
 
 
 
@@ -14966,12 +14968,22 @@ var render = function() {
                             _vm._v(" 个人中心扩展菜单")
                           ]),
                           _vm._v(" "),
-                          _vm._l(_vm.menus, function(v) {
+                          _vm._l(_vm.menus, function(v, k) {
                             return _c(
                               "div",
                               { staticClass: "col-sm-12 ext-menus" },
                               [
-                                _vm._m(7, true, false),
+                                _c("div", { staticClass: "del-menu" }, [
+                                  _c("i", {
+                                    staticClass:
+                                      "fa fa-times-circle delete-ico",
+                                    on: {
+                                      click: function($event) {
+                                        _vm.removeMenu(k)
+                                      }
+                                    }
+                                  })
+                                ]),
                                 _vm._v(" "),
                                 _c("div", { staticClass: "alert" }, [
                                   _c("div", { staticClass: "form-group" }, [
@@ -15106,7 +15118,7 @@ var render = function() {
                                             "div",
                                             { staticClass: "input-group-btn" },
                                             [
-                                              _vm._m(8, true, false),
+                                              _vm._m(7, true, false),
                                               _vm._v(" "),
                                               _c(
                                                 "ul",
@@ -15172,7 +15184,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(9, false, false)
+      _vm._m(8, false, false)
     ]
   )
 }
@@ -15198,7 +15210,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-xs-7 user" }, [
-      _c("h2", { staticClass: "col-xs-12" }, [_vm._v("后盾网向军老师")]),
+      _c("h2", { staticClass: "col-xs-12" }, [_vm._v("后盾人向军老师")]),
       _vm._v(" "),
       _c("div", { staticClass: "col-xs-6" }, [_vm._v("普通会员")]),
       _vm._v(" "),
@@ -15299,14 +15311,6 @@ var staticRenderFns = [
         _vm._v(" 地址管理 "),
         _c("i", { staticClass: "fa fa-angle-right pull-right" })
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "del-menu" }, [
-      _c("i", { staticClass: "fa fa-times-circle delete-ico" })
     ])
   },
   function() {
@@ -15441,6 +15445,9 @@ exports.default = {
                 css: { "icon": "fa fa-external-link", "image": "", "color": "#333333", "size": 35 }
             };
             state.menus.push(menu);
+        },
+        removeMenu: function removeMenu(state, pos) {
+            state.menus.splice(pos, 1);
         },
         upImage: function upImage(state, data) {
             _hdjs2.default.image(function (images) {
@@ -46153,6 +46160,15 @@ module.exports = function spread(callback) {
 
 /***/ }),
 /* 103 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

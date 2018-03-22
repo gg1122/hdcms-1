@@ -13,8 +13,10 @@ namespace module\article\controller;
 use module\article\model\WebCategory;
 use module\article\model\WebContent;
 use module\HdController;
-use system\model\RuleKeyword;
-use system\model\WeChat;
+use Request;
+use View;
+use Db;
+use system\model\SiteWeChat as WeChat;
 
 /**
  * 文章管理
@@ -65,7 +67,7 @@ class Content extends HdController
         View::with('category', WebCategory::getLevelCategory());
         View::with('WebContent', $model);
 
-        return view($this->template.'/content/content_lists');
+        return view($this->template . '/content/content_lists');
     }
 
     /**
@@ -104,9 +106,11 @@ class Content extends HdController
                         //如果是添加文章操作将已经添加的文章删除
                         $model->destory();
                     }
+
                     return message($result, '', 'error');
                 }
             }
+
             return message('文章保存成功', url('content.lists'));
         }
         //编辑时获取原数据,微信关键词信息
@@ -123,7 +127,7 @@ class Content extends HdController
             'extField' => $extField,
         ]);
 
-        return view($this->template.'/content/content_post');
+        return view($this->template . '/content/content_post');
     }
 
     /**
@@ -136,7 +140,7 @@ class Content extends HdController
         if (WebContent::del(Request::get('aid'))) {
             return message('文章删除成功', url('content.lists'));
         } else {
-            return message('文章删除失败，请稍候再试', url('content.lists'),'error');
+            return message('文章删除失败，请稍候再试', url('content.lists'), 'error');
         }
     }
 }

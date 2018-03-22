@@ -1,5 +1,6 @@
 define([
-    'bootstrap', 'webuploader', 'dist/static/component/modal',
+    'bootstrap', 'webuploader',
+    'dist/static/component/modal',
     'dist/static/component/message',
     'css!dist/static/css/fileUploader.css'
 ], function ($, WebUploader, modal,Message) {
@@ -15,6 +16,7 @@ define([
                 post.user_type = window.system.user_type
             }
             post.csrf_token = options.data.csrf_token;
+            post = $.extend(post,options.data?options.data:{});
             $.post(url, post, function (res) {
                 if (res.valid == 0) {
                     modalobj.modal('hide');
@@ -84,7 +86,7 @@ define([
                                 if (options.multiple) {
                                     $("#imagelistsBox").append('<br/><div class="text-right"><div class="btn btn-default" data-dismiss="modal">取消</div> <div class="btn btn-primary uploadSelectFiles">确定使用</div></div>');
                                 }
-                                obj.getImageList(hdjs.filesLists + '&type=image');
+                                obj.getImageList(window.hdjs.filesLists + '&type=image');
                                 //分页处理
                                 modalobj.delegate('#imagelists .pagination a', 'click', function () {
                                     obj.getImageList($(this).attr('href'));
@@ -548,7 +550,6 @@ define([
 
                     // 成功
                     if (cur === 'error' || cur === 'invalid') {
-                        console.log(file.statusText);
                         showError(file.statusText);
                         percentages[file.id][1] = 1;
                     } else if (cur === 'interrupt') {

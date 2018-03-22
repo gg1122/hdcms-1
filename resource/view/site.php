@@ -5,19 +5,22 @@
     <title>{{v('site.info.name')}} - HDCMS开源免费内容管理系统</title>
     <meta http-equiv="Cache-Control" content="Public"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-    <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css?version={{HDCMS_VERSION}}" rel="stylesheet">
-    <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version={{HDCMS_VERSION}}" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css?version={{HDCMS_VERSION}}"
+          rel="stylesheet">
+    <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version={{HDCMS_VERSION}}"
+          rel="stylesheet">
     <link rel="stylesheet" href="/resource/css/hdcms.css?version={{HDCMS_VERSION}}">
     <link rel="stylesheet" href="/resource/hdjs/dist/static/css/hdjs.css?version={{HDCMS_VERSION}}">
     <script>
         //HDJS组件需要的配置
         window.hdjs = {
             'base': '{{root_url()}}/resource/hdjs/',
-            'uploader': '{!! u("component/upload/uploader",["m"=>Request::get("m"),"siteid"=>siteid()]) !!}',
-            'filesLists': '{!! u("component/upload/filesLists",["m"=>Request::get("m"),"siteid"=>siteid()]) !!}',
-            'removeImage': '{!! u("component/upload/removeImage",["m"=>Request::get("m"),"siteid"=>siteid()]) !!}',
+            'uploader': '{!! u("component/SiteUpload/uploader",["m"=>Request::get("m"),"siteid"=>siteid()]) !!}',
+            'filesLists': '{!! u("component/SiteUpload/filesLists",["m"=>Request::get("m"),"siteid"=>siteid()]) !!}',
+            'removeImage': '{!! u("component/SiteUpload/removeImage",["m"=>Request::get("m"),"siteid"=>siteid()]) !!}',
             'ossSign': '{!! u("component/oss/sign",["m"=>Request::get("m"),"siteid"=>siteid()]) !!}',
         };
         window.system = {
@@ -72,7 +75,8 @@
                                     <else/>
                                 <li class="top_menu">
                             </if>
-                            <a href="{{$m['url']}}&siteid={{SITEID}}&mark={{$m['mark']}}" class="quickMenuLink">
+                            <a href="{{$m['url']}}&siteid={{SITEID}}&mark={{$m['mark']}}"
+                               class="quickMenuLink">
                                 <i class="'fa-w {{$m['icon']}}"></i> {{$m['title']}}
                             </a>
                             </li>
@@ -83,19 +87,24 @@
                     <ul class="nav navbar-nav navbar-right">
                         <if value="q('session.system.login')=='hdcms'">
                             <li class="dropdown">
-                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"
+                                <a href="javascript:;" class="dropdown-toggle"
+                                   data-toggle="dropdown"
                                    style="display:block; max-width:150px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; "
                                    aria-expanded="false">
-                                    <i class="fa fa-group"></i> {{v('site.info.name')}} <b class="caret"></b>
+                                    <i class="fa fa-group"></i> {{v('site.info.name')}} <b
+                                            class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="?s=system/site/edit&siteid={{SITEID}}"><i class="fa fa-weixin fa-fw"></i>
+                                        <a href="?s=system/site/edit&siteid={{SITEID}}"><i
+                                                    class="fa fa-weixin fa-fw"></i>
                                             编辑当前账号资料
                                         </a>
                                     </li>
-                                    <li><a href="?s=system/site/lists"><i class="fa fa-cogs fa-fw"></i> 管理se其它公众号</a></li>
-                                    <li><a href="javascript:;" onclick="updateSiteCache()"><i class="fa fa-sitemap"></i> 更新站点缓存</a></li>
+                                    <li><a href="?s=system/site/lists"><i
+                                                    class="fa fa-cogs fa-fw"></i> 管理se其它公众号</a></li>
+                                    <li><a href="javascript:;" onclick="updateSiteCache()"><i
+                                                    class="fa fa-sitemap"></i> 更新站点缓存</a></li>
                                 </ul>
                                 <script>
                                     function updateSiteCache() {
@@ -107,7 +116,8 @@
                             </li>
                         </if>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                               role="button">
                                 <i class="fa fa-w fa-user"></i>
                                 {{v('user.info.username')}}
                                 <span class="caret"></span>
@@ -132,10 +142,11 @@
         <div class="row">
             <div class="col-xs-12 col-sm-3 col-lg-2 left-menu">
                 <div class="search-menu">
-                    <input class="form-control input-lg" id="searchMenu" type="text" placeholder="输入菜单名称可快速查找">
+                    <input class="form-control input-lg" id="searchMenu" type="text"
+                           placeholder="输入菜单名称可快速查找">
                 </div>
                 <script>
-                    require(['hdjs', 'resource/js/site_menu.js'], function (hdjs, menu) {
+                    require(['hdjs', '/resource/js/site_menu.js'], function (hdjs, menu) {
                         //当前点击样式
                         menu.changeCurrentLinkStyle();
                         //菜单搜索
@@ -143,7 +154,7 @@
                             menu.search(this);
                         });
                     })
-                    require(['hdjs', 'resource/js/site_footer_quickmenu.js'], function (hdjs, menu) {
+                    require(['hdjs', '/resource/js/site_footer_quickmenu.js'], function (hdjs, menu) {
                         //后台底部快捷导航
                         menu.quickmenu();
                     })
@@ -151,13 +162,16 @@
                 <!--扩展模块动作 start-->
                 <if value="'package'==Request::get('mark') && Request::get('m')">
                     <div class="btn-group module_action_type">
-                        <a class="btn {{Request::get('mt')=='default'?'btn-primary':'btn-default'}} default col-sm-4" href="{!! url_del('mt') !!}&mt=default">
+                        <a class="btn {{Request::get('mt')=='default'?'btn-primary':'btn-default'}} default col-sm-4"
+                           href="{!! url_del('mt') !!}&mt=default">
                             默认
                         </a>
-                        <a class="btn {{Request::get('mt')=='system'?'btn-primary':'btn-default'}} system  col-sm-4" href="{!! url_del('mt') !!}&mt=system">
+                        <a class="btn {{Request::get('mt')=='system'?'btn-primary':'btn-default'}} system  col-sm-4"
+                           href="{!! url_del('mt') !!}&mt=system">
                             系统
                         </a>
-                        <a class="btn {{Request::get('mt')=='group'?'btn-primary':'btn-default'}} group  col-sm-4" href="{!! url_del('mt') !!}&mt=group">
+                        <a class="btn {{Request::get('mt')=='group'?'btn-primary':'btn-default'}} group  col-sm-4"
+                           href="{!! url_del('mt') !!}&mt=group">
                             组合
                         </a>
                     </div>
@@ -170,7 +184,8 @@
                                 <foreach from="$m['_data']" value="$d">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">{{$d['title']}}</h4>
-                                        <a class="panel-collapse" data-toggle="collapse" href="javascript:;">
+                                        <a class="panel-collapse" data-toggle="collapse"
+                                           href="javascript:;">
                                             <i class="fa fa-chevron-circle-down"></i>
                                         </a>
                                     </div>
@@ -210,7 +225,8 @@
                             </li>
                             <li class="list-group-item">
                                 <a href="{{site_url('site.entry.module')}}&m={{$_GET['m']}}">
-                                    <i class="fa fa-desktop"></i> {{$LINKS['module']['module']['title']}}
+                                    <i class="fa fa-desktop"></i>
+                                    {{$LINKS['module']['module']['title']}}
                                 </a>
                             </li>
                         </ul>
@@ -220,7 +236,8 @@
                             <if value="!empty($t) && $title!='extPermissions'">
                                 <div class="panel-heading module_back module_action">
                                     <h4 class="panel-title">{{$title}}</h4>
-                                    <a class="panel-collapse" data-toggle="collapse" aria-expanded="true">
+                                    <a class="panel-collapse" data-toggle="collapse"
+                                       aria-expanded="true">
                                         <i class="fa fa-chevron-circle-down"></i>
                                     </a>
                                 </div>
@@ -280,7 +297,7 @@
                     </ol>
                 </if>
                 <div>
-                        <blade name="content"/>
+                    <blade name="content"/>
                     <div style="height: 100px;"></div>
                 </div>
             </div>
@@ -312,7 +329,8 @@
                     </foreach>
                     <foreach from="$QUICKMENU['module']" value="$v">
                         <div class="btn-group dropup">
-                            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                            <button type="button" class="btn btn-default btn-sm dropdown-toggle"
+                                    data-toggle="dropdown">
                                 {{$v['title']}} <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
@@ -327,11 +345,13 @@
             </div>
         </if>
         <if value="!empty($errors)">
-            <div class="modal fade in" id="myModalMessage" role="dialog" tabindex="-1" aria-hidden="true">
+            <div class="modal fade in" id="myModalMessage" role="dialog" tabindex="-1"
+                 aria-hidden="true">
                 <div class="modal-dialog" role="document" style="width: 600px;">
                     <div class="modal-content  alert alert-info">
                         <div class="modal-header" style="padding: 5px;">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            <button type="button" class="close" data-dismiss="modal"
+                                    aria-label="Close"><span
                                         aria-hidden="true">×</span></button>
                             <h4 class="modal-title">系统提示</h4></div>
                         <div class="modal-body">
@@ -344,7 +364,8 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -357,5 +378,6 @@
         </if>
     </div>
 </div>
+<div style="height: 50px;"></div>
 </body>
 </html>

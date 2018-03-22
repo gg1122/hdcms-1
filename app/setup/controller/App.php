@@ -1,10 +1,12 @@
 <?php namespace app\setup\controller;
 
 use houdunwang\route\Controller;
-use Session;
+use houdunwang\session\Session;
 use PDO;
-use Config;
-use Dir;
+use houdunwang\config\Config;
+use houdunwang\dir\Dir;
+use houdunwang\request\Request;
+use houdunwang\db\Db;
 
 /**
  * 系统安装
@@ -33,7 +35,7 @@ class App extends Controller
      */
     protected function environmentalTest()
     {
-        if ( ! is_dir($_SERVER['DOCUMENT_ROOT'].'/resource/hdjs')) {
+        if ( ! is_dir($_SERVER['DOCUMENT_ROOT'] . '/resource/hdjs')) {
             die(view('environmentalTest'));
         }
     }
@@ -59,23 +61,31 @@ class App extends Controller
         $data['PHP_OS']              = PHP_OS;
         $data['SERVER_SOFTWARE']     = $_SERVER['SERVER_SOFTWARE'];
         $data['PHP_VERSION']         = PHP_VERSION;
-        $data['upload_max_filesize'] = get_cfg_var("upload_max_filesize") ? get_cfg_var("upload_max_filesize")
+        $data['upload_max_filesize'] = get_cfg_var("upload_max_filesize")
+            ? get_cfg_var("upload_max_filesize")
             : "不允许上传附件";
-        $data['max_execution_time']  = get_cfg_var("max_execution_time")."秒 ";
-        $data['memory_limit']        = get_cfg_var("memory_limit") ? get_cfg_var("memory_limit") : "0";
+        $data['max_execution_time']  = get_cfg_var("max_execution_time") . "秒 ";
+        $data['memory_limit']        = get_cfg_var("memory_limit") ? get_cfg_var("memory_limit")
+            : "0";
         //运行环境
-        $data['h_PHP_VERSION'] = ! version_compare(phpversion(), '5.6.0', '<') ? '<i class="fa fa-check-circle fa-1x alert-success"></i>'
+        $data['h_PHP_VERSION'] = ! version_compare(phpversion(), '5.6.0', '<')
+            ? '<i class="fa fa-check-circle fa-1x alert-success"></i>'
             : '<i class="fa fa-times-circle alert-danger"></i>';
-        $data['h_Pdo']         = extension_loaded('Pdo') ? '<i class="fa fa-check-circle fa-1x alert-success"></i>'
+        $data['h_Pdo']         = extension_loaded('Pdo')
+            ? '<i class="fa fa-check-circle fa-1x alert-success"></i>'
             : '<i class="fa fa-times-circle alert-danger"></i>';
-        $data['h_Gd']          = extension_loaded('Gd') ? '<i class="fa fa-check-circle fa-1x alert-success"></i>'
+        $data['h_Gd']          = extension_loaded('Gd')
+            ? '<i class="fa fa-check-circle fa-1x alert-success"></i>'
             : '<i class="fa fa-times-circle alert-danger"></i>';
-        $data['h_curl']        = extension_loaded('curl') ? '<i class="fa fa-check-circle fa-1x alert-success"></i>'
+        $data['h_curl']        = extension_loaded('curl')
+            ? '<i class="fa fa-check-circle fa-1x alert-success"></i>'
             : '<i class="fa fa-times-circle alert-danger"></i>';
-        $data['h_openSSL']     = extension_loaded('openSSL') ? '<i class="fa fa-check-circle fa-1x alert-success"></i>'
+        $data['h_openSSL']     = extension_loaded('openSSL')
+            ? '<i class="fa fa-check-circle fa-1x alert-success"></i>'
             : '<i class="fa fa-times-circle alert-danger"></i>';
         //目录状态
-        $data['d_root'] = is_writable('.') ? '<i class="fa fa-check-circle fa-1x alert-success"></i>'
+        $data['d_root'] = is_writable('.')
+            ? '<i class="fa fa-check-circle fa-1x alert-success"></i>'
             : '<i class="fa fa-times-circle alert-danger"></i>';
 
         return view('', compact('data'));
@@ -100,9 +110,11 @@ class App extends Controller
                 $password = $this->config['password'];
                 $database = $this->config['database'];
                 $dsn      = "mysql:host={$host};dbname={$database}";
-                new Pdo($dsn, $username, $password, [PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'"]);
+                new Pdo($dsn, $username, $password,
+                    [PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'"]);
                 //修改配置文件
-                file_put_contents('data/database.php', '<?php return '.var_export($this->config, true).';?>');
+                file_put_contents('data/database.php',
+                    '<?php return ' . var_export($this->config, true) . ';?>');
             } catch (\Exception $e) {
                 die($this->error('数据库不存在或帐号与密码错误'));
             }

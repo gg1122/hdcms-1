@@ -14,6 +14,8 @@ namespace houdunwang\framework\build;
 use houdunwang\config\Config;
 use houdunwang\framework\middleware\ViewParseFile;
 use houdunwang\middleware\Middleware;
+use houdunwang\request\Request;
+use houdunwang\response\Response;
 use houdunwang\route\Route;
 use houdunwang\session\Session;
 use houdunwang\view\View;
@@ -32,9 +34,8 @@ trait Bootstrap
             //模板文件处理中间件
             Middleware::add('view_parse_file', [ViewParseFile::class]);
             //执行路由或控制器方法
-            if ($content = Route::bootstrap()->exec()) {
-                echo is_object($content) ? $content : Response::make($content);
-            }
+            $content = Route::bootstrap()->exec();
+            echo is_object($content) ? $content : Response::make($content);
         }
     }
 

@@ -13,6 +13,7 @@ use Exception;
 use houdunwang\ArrayAccess;
 use houdunwang\config\Config;
 use houdunwang\dir\Dir;
+use houdunwang\middleware\Middleware;
 use houdunwang\page\Page;
 
 class Query implements \ArrayAccess, \Iterator
@@ -325,15 +326,13 @@ class Query implements \ArrayAccess, \Iterator
      *
      * @param int $row     每页显示数量
      * @param int $pageNum 页面数量
-     * @param int $count   总数
      *
      * @return mixed
      */
-    public function paginate($row, $pageNum = 8, $count = -1)
+    public function paginate($row, $pageNum = 8)
     {
-        $obj   = unserialize(serialize($this));
-        $count = is_string($count) ? $obj->count($count) : ($count == -1 ? $obj->count() : $count);
-        Page::row($row)->pageNum($pageNum)->make($count);
+        $obj = unserialize(serialize($this));
+        Page::row($row)->pageNum($pageNum)->make($obj->count());
         $res = $this->limit(Page::limit())->get();
         $this->data($res ?: []);
 
@@ -347,7 +346,7 @@ class Query implements \ArrayAccess, \Iterator
      */
     public function links()
     {
-        return Page::show();
+        return new Page();
     }
 
     /**
@@ -559,6 +558,7 @@ class Query implements \ArrayAccess, \Iterator
      */
     public function first()
     {
+        $this->limit(1);
         $data = $this->query($this->build->select(), $this->build->getSelectParams());
 
         return $data ? $data[0] : [];
@@ -707,12 +707,23 @@ class Query implements \ArrayAccess, \Iterator
         return $this;
     }
 
+    /**
+     * 统计
+     *
+     * @param string $field
+     *
+     * @return int
+     */
     public function count($field = '*')
     {
         $this->build->bindExpression('field', "count($field) AS m");
-        $data = $this->first();
+        //有分组时统计
+        if ($this->build->getBindExpression('groupBy')) {
+            return count($this->get());
+        }
+        $data = $this->get();
 
-        return intval($data ? $data['m'] : 0);
+        return $data ? $data[0]['m'] : 0;
     }
 
     public function max($field)

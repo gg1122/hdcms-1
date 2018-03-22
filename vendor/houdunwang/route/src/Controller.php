@@ -11,7 +11,8 @@
 namespace houdunwang\route;
 
 use houdunwang\route\controller\Message;
-use Code;
+use houdunwang\code\Code;
+use houdunwang\response\Response;
 
 /**
  * 控制器基础类
@@ -29,5 +30,15 @@ abstract class Controller
     final public function captcha()
     {
         Code::make();
+    }
+
+    /**
+     * 404 NotFound
+     *
+     * @return mixed
+     */
+    final public function _404($return = false)
+    {
+        return Response::_404($return);
     }
 }

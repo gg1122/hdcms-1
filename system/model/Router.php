@@ -12,9 +12,9 @@ class Router extends Common
     protected $allowFill = ['*'];
     protected $validate
         = [
-            ['title', 'required', '中文描述不能为空', self::MUST_VALIDATE, self::MODEL_BOTH],
-            ['router', 'required', '路由规则不能为空', self::MUST_VALIDATE, self::MODEL_BOTH],
-            ['url', 'required', '匹配地址不能为空', self::MUST_VALIDATE, self::MODEL_BOTH],
+            ['title', 'required', '中文描述不能为空', self::EXIST_VALIDATE, self::MODEL_BOTH],
+            ['router', 'required', '路由规则不能为空', self::EXIST_VALIDATE, self::MODEL_BOTH],
+            ['url', 'required', '匹配地址不能为空', self::EXIST_VALIDATE, self::MODEL_BOTH],
 
         ];
     protected $auto

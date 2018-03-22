@@ -31,7 +31,7 @@ div.news .lists ul li.action a {
 }
 div.news .lists ul li div.pic {
   height: 160px;
-  background-size: cover;
+  background-size: cover !important;
   background-repeat: no-repeat;
   background-position: center center;
   position: relative;

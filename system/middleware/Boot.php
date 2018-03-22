@@ -1,13 +1,14 @@
 <?php namespace system\middleware;
 
+use houdunwang\response\Response;
 use system\model\Cloud;
+use system\model\Config;
 use system\model\Member;
 use system\model\Modules;
 use system\model\Site;
-use system\model\Config as ConfigModel;
 use houdunwang\request\Request;
-use Db;
-use Route;
+use houdunwang\db\Db;
+use houdunwang\route\Route;
 use system\model\User;
 
 /**
@@ -20,6 +21,11 @@ class Boot
 {
     protected $installed;
 
+    public function __construct()
+    {
+        $this->installed = is_file('data/lock.php');
+    }
+
     /**
      * 自动执行的方法
      *
@@ -29,81 +35,60 @@ class Boot
      */
     public function run($next)
     {
-        $installed = is_file('data/lock.php');
         //没有安装时跳转到安装界面
-        if ( ! $installed && ! preg_match('@setup/app@i', Request::get('s'))) {
+        if ( ! $this->installed and ! preg_match('@setup/app@i', Request::get('s'))) {
             return redirect('setup.app.copyright');
         }
-
-        //已经安装时加载站点数据
-        if ($installed) {
-            //加载配置项
-            $this->config();
-            //分析模块域名
-            $this->parseDomain();
-            //设置路由
-            $this->router();
-            $this->defineConst();
-            User::initUserInfo();
-            $this->initSiteData();
-            Member::initMemberInfo();
+        $this->installed and $this->app();
+        //执行安装程序时
+        $this->defineConst();
+        //调试时允许跨域访问
+        if (\Config::get('app.debug')) {
+            header('Access-Control-Allow-Origin:*');
+            header('Access-Control-Allow-Headers:*');
         }
+
         $next();
     }
 
     /**
+     * 运行应用
+     */
+    protected function app()
+    {
+        //加载系统配置项
+        Config::findOrCreate(1)->initConfig();
+        //分析模块域名与路由
+        $this->parseDomain()->router()->defineConst();
+        $this->initSiteData();
+        User::initUserInfo();
+        Member::initMemberInfo();
+    }
+
+    /**
      * 设置常量
+     *
+     * @return $this
      */
     protected function defineConst()
     {
-        define('HDCMS_VERSION', Cloud::version());
-        define('SITEID', Request::get('siteid', 0));
-    }
+        defined('HDCMS_VERSION') or define('HDCMS_VERSION',
+            $this->installed ? Cloud::version() : 999);
+        defined('SITEID') or define('SITEID', Request::get('siteid', 0));
 
-    /**
-     * 加载系统配置项
-     * 只加载系统配置不加载站点配置
-     * 即网站安装成功后才有系统配置可加载
-     * 因为那时已经有数据表存在了
-     */
-    protected function config()
-    {
-        $model = ConfigModel::find(1) ?: new ConfigModel();
-        $model->initConfig();
-    }
-
-    /**
-     * 设置模块路由规则
-     * 根据站点编号读取该站点规则
-     * 并设置到系统路由队列中
-     */
-    protected function router()
-    {
-        $url = preg_replace('@/index.php/@', '', $_SERVER['REQUEST_URI']);
-        $url = trim($url, '/');
-        if (preg_match('@^([a-z]+)(\d+)@', $url, $match)) {
-            //设置站点与模块变量
-            if (count($match) == 3) {
-                Request::set('get.siteid', $match[2]);
-                Request::set('get.m', $match[1]);
-            }
-            if ($siteid = Request::get('siteid')) {
-                $routes = Db::table('router')->where('siteid', $siteid)->where('status', 1)->get();
-                foreach ($routes as $r) {
-                    Route::any($r['router'], 'app\site\controller\Entry@moduleRoute');
-                }
-            }
-        }
+        return $this;
     }
 
     /**
      * 地址中不存在动作标识
      * s m action 时检测域名是否已经绑定到模块
      * 如果存在绑定的模块时设置当请求的的模块
+     *
+     * @return $this
      */
     protected function parseDomain()
     {
-        $domain       = trim($_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME']), '/\\');
+        $domain       = trim($_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']), '/\\');
         $moduleDomain = Db::table('module_domain')->where('domain', $domain)->first();
         if ($moduleDomain) {
             //没有站点编号时设置域名所在站点编号
@@ -115,16 +100,55 @@ class Boot
                 Request::set('get.m', $moduleDomain['module']);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * 设置模块路由规则
+     * 根据站点编号读取该站点规则
+     * 并设置到系统路由队列中
+     *
+     * @return $this
+     */
+    protected function router()
+    {
+        $url = preg_replace('@/index.php/@', '', $_SERVER['REQUEST_URI']);
+        $url = trim($url, '/');
+        if (preg_match('@^([a-z]+)(\d+)@', $url, $match)) {
+            //设置站点与模块变量
+            if (count($match) == 3) {
+                Request::set('get.siteid', $match[2]);
+                Request::set('get.m', $match[1]);
+            }
+            $siteid = Request::get('siteid');
+            if ($siteid && ! Request::get('s')) {
+                $routes = Db::table('router')->where('siteid', $siteid)->where('status', 1)->get();
+                foreach ($routes as $r) {
+                    Route::any($r['router'], 'app\site\controller\Entry@moduleRoute');
+                }
+            }
+        }
+
+        return $this;
     }
 
     /**
      * 初始化站点数据
+     *
+     * @return $this
      */
     public function initSiteData()
     {
         //初始站点数据
-        Site::siteInitialize();
+        if (Site::siteInitialize() == false) {
+            die(Response::_404());
+        }
         //初始模块数据
-        Modules::moduleInitialize();
+        if (Modules::moduleInitialize() == false) {
+            die(Response::_404());
+        }
+
+        return $this;
     }
 }

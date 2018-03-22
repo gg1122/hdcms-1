@@ -13,6 +13,7 @@ namespace module\article\controller;
 use houdunwang\request\Request;
 use module\article\model\WebModel;
 use module\HdController;
+use View;
 
 /**
  * 文章模型管理

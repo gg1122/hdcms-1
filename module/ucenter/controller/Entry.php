@@ -10,13 +10,12 @@
 
 namespace module\ucenter\controller;
 
-use houdunwang\wechat\WeChat;
 use Request;
 use Session;
 use module\HdController;
 use system\model\Member;
 use system\model\Message;
-
+use View;
 /**
  * 会员登录注册管理
  * Class Entry
@@ -104,7 +103,8 @@ class Entry extends HdController
      * @param \system\model\Member  $Member
      * @param \system\model\Message $message
      *
-     * @return array|bool
+     * @return array|string
+     * @throws \Exception
      */
     public function register(Member $Member, Message $message)
     {
@@ -160,11 +160,18 @@ class Entry extends HdController
     public function login()
     {
         if (memberIsLogin(true) == true) {
+            Session::del('from');
+
             return $this->fromUrl;
         }
 
         if (IS_POST) {
-            return Member::login(Request::post());
+            $res = Member::login(Request::post());
+            if ($res['valid'] == 1) {
+                Session::del('from');
+            }
+
+            return $res;
         }
         $placeholder = [
             0 => '登录暂时关闭',

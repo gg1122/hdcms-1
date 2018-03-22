@@ -11,6 +11,8 @@
 
 use module\HdController;
 use module\article\model\WebSlide;
+use View;
+use houdunwang\request\Request;
 
 /**
  * 幻灯片管理

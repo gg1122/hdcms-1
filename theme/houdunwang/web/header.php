@@ -1,6 +1,6 @@
 <div id="head">
     <div class="header">
-        <a href="http://www.houdunwang.com" title="点击返回后盾网首页." class="logo"></a>
+        <a href="http://www.houdunwang.com" title="点击返回后盾人首页." class="logo"></a>
         <!--导航条-->
         <div id="daohang">
             <!--<div class="m">

@@ -6,6 +6,8 @@
  *
  * @package module\ucenter\controller
  */
+use Db;
+
 class Member extends Auth
 {
     /**
@@ -33,6 +35,7 @@ class Member extends Auth
                 $data[$k]['menus'][$n]['css'] = json_decode($m['css'], true);
             }
         }
+
         return $this->view($this->template.'/index', compact('data'));
     }
 }

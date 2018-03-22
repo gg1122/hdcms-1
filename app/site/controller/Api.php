@@ -10,7 +10,7 @@
 
 namespace app\site\controller;
 
-use WeChat;
+use houdunwang\wechat\WeChat;
 use system\model\WeChatMessage;
 
 /**
@@ -49,7 +49,7 @@ class Api
         //菜单关键词消息
         WeChatMessage::reply(WeChat::content('EventKey'));
 
-        //处理非文本类信息
+        //直接处理消息需要模块有权限
         WeChatMessage::processor();
 
         //回复默认消息
@@ -63,13 +63,16 @@ class Api
      */
     protected function defaultMessage()
     {
-        $defaultMessage = v('site.setting.default_message');
-        if ($defaultMessage) {
-            if ($content = WeChatMessage::reply($defaultMessage)) {
-                return $content;
-            }
+        //上报地理位置等不回复消息
+        if ( ! in_array(WeChat::getMessageType(), ['LOCATION'])) {
+            $defaultMessage = v('site.setting.default_message');
+            if ($defaultMessage) {
+                if ($content = WeChatMessage::reply($defaultMessage)) {
+                    return $content;
+                }
 
-            return $this->instance->text($defaultMessage);
+                return $this->instance->text($defaultMessage);
+            }
         }
     }
 }

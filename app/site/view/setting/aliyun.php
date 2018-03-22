@@ -63,7 +63,7 @@
             <div class="panel-heading">OSS设置</div>
             <div class="panel-body">
                 <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">使用站点配置</label>
+                    <label for="" class="col-sm-2 control-label">开启OSS</label>
                     <div class="col-sm-10">
                         <label class="radio-inline">
                             <input type="radio" value="1" v-model="field.oss.use_site_oss"> 是
@@ -76,14 +76,14 @@
                         </span>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-show="field.oss.use_site_oss==1">
                     <label for="" class="col-sm-2 control-label">储存块</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" v-model="field.oss.bucket">
                         <span class="help-block">Bucket块名称 https://oss.console.aliyun.com/index</span>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-show="field.oss.use_site_oss==1">
                     <label for="" class="col-sm-2 control-label">域名</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" v-model="field.oss.endpoint">
@@ -91,7 +91,7 @@
                             如果使用自定义域名，需要将下面的 "使用自定义域名" 设置为 "是"</span>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" v-show="field.oss.use_site_oss==1">
                     <label for="" class="col-sm-2 control-label">自定义域名</label>
                     <div class="col-sm-10">
                         <label class="radio-inline">

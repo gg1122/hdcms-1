@@ -3,11 +3,14 @@
 /**
  * 测试模块模块定义
  *
- * @author 后盾网
+ * @author 后盾人
  * @url http://open.hdcms.com
  */
 use module\HdRule;
 use system\model\ReplyNews;
+use houdunwang\view\View;
+use houdunwang\request\Request;
+use houdunwang\db\Db;
 
 class Rule extends HdRule
 {
@@ -40,7 +43,7 @@ class Rule extends HdRule
         $contents = json_encode($contents ?: json_decode(old('content', "[]"), true));
         View::with('contents', $contents);
 
-        return View::fetch($this->template.'/fieldsDisplay.html');
+        return View::fetch($this->template.'/fieldsDisplay.php');
     }
 
     public function fieldsValidate($rid = 0)

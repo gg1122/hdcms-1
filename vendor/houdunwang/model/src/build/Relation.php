@@ -1,4 +1,5 @@
-<?php
+<?php namespace houdunwang\model\build;
+
 /** .-------------------------------------------------------------------
  * |  Software: [HDCMS framework]
  * |      Site: www.hdcms.com
@@ -8,13 +9,10 @@
  * | Copyright (c) 2012-2019, www.houdunwang.com. All Rights Reserved.
  * '-------------------------------------------------------------------*/
 
-namespace houdunwang\model\build;
-
 use houdunwang\db\Db;
 
 trait Relation
 {
-
     /**
      * 一对一
      *
@@ -24,12 +22,17 @@ trait Relation
      *
      * @return mixed
      */
-    protected function hasOne($class, $foreignKey = 0, $localKey = 0)
+    protected function hasOne($class, $foreignKey = '', $localKey = '')
     {
-        $foreignKey = $foreignKey ?: $this->getTable().'_'.$this->getPk();
+        static $cache = [];
+        $foreignKey = $foreignKey ?: $this->getTable() . '_' . $this->getPk();
         $localKey   = $localKey ?: $this->getPk();
+        $name       = md5($class . $foreignKey . $localKey . $this[$localKey]);
+        if ( ! isset($cache[$name])) {
+            $cache[$name] = (new $class())->where($foreignKey, $this[$localKey])->first();
+        }
 
-        return (new $class())->where($foreignKey, $this[$localKey])->first();
+        return $cache[$name];
     }
 
     /**
@@ -43,10 +46,15 @@ trait Relation
      */
     protected function hasMany($class, $foreignKey = '', $localKey = '')
     {
-        $foreignKey = $foreignKey ?: $this->getTable().'_'.$this->getPk();
+        static $cache = [];
+        $foreignKey = $foreignKey ?: $this->getTable() . '_' . $this->getPk();
         $localKey   = $localKey ?: $this->getPk();
+        $name       = md5($class . $foreignKey . $localKey . $this[$localKey]);
+        if ( ! isset($cache[$name])) {
+            $cache[$name] = (new $class())->where($foreignKey, $this[$localKey])->get();
+        }
 
-        return (new $class())->where($foreignKey, $this[$localKey])->get();
+        return $cache[$name];
     }
 
     /**
@@ -58,15 +66,19 @@ trait Relation
      *
      * @return mixed
      */
-    protected function belongsTo($class, $localKey = null, $parentKey = null)
+    protected function belongsTo($class, $localKey = '', $parentKey = '')
     {
+        static $cache = [];
         //父表
         $instance  = new $class();
         $parentKey = $parentKey ?: $instance->getPk();
-        $localKey  = $localKey
-            ?: $instance->getTable().'_'.$instance->getPk();
+        $localKey  = $localKey ?: $instance->getTable() . '_' . $instance->getPk();
+        $name      = md5($class . $localKey . $parentKey . $this[$localKey]);
+        if ( ! isset($cache[$name])) {
+            $cache[$name] = $instance->where($parentKey, $this[$localKey])->first();
+        }
 
-        return $instance->where($parentKey, $this[$localKey])->first();
+        return $cache[$name];
     }
 
     /**
@@ -79,25 +91,22 @@ trait Relation
      *
      * @return mixed
      */
-    protected function belongsToMany(
-        $class,
-        $middleTable = '',
-        $localKey = '',
-        $foreignKey = ''
-    ) {
+    protected function belongsToMany($class, $middleTable = '', $localKey = '', $foreignKey = '')
+    {
+        static $cache = [];
 
         $instance    = new $class;
-        $middleTable = $middleTable
-            ?: $this->getTable().'_'.$instance->getTable();
-        $localKey    = $localKey ?: $this->table.'_'.$this->pk;
-        $foreignKey  = $foreignKey
-            ?: $instance->getTable().'_'.$instance->getPrimaryKey();
-        $middle      = Db::table($middleTable)->where(
-            $localKey,
-            $this[$this->pk]
-        )->lists($foreignKey);
+        $middleTable = $middleTable ?: $this->getTable() . '_' . $instance->getTable();
+        $localKey    = $localKey ?: $this->table . '_' . $this->pk;
+        $foreignKey  = $foreignKey ?: $instance->getTable() . '_' . $instance->getPrimaryKey();
+        $name        = md5($class . $middleTable . $localKey . $foreignKey . $this[$this->pk]);
+        if ( ! isset($cache[$name])) {
+            $middle       = Db::table($middleTable)->where($localKey, $this[$this->pk])
+                              ->lists($foreignKey);
+            $cache[$name] = $instance->whereIn($instance->getPk(), array_values($middle))->get();
+        }
 
-        return $instance->whereIn($instance->getPk(), array_values($middle))->get();
+        return $cache[$name];
     }
 }
 

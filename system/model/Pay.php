@@ -10,6 +10,8 @@
 
 namespace system\model;
 
+use houdunwang\db\Db;
+
 /**
  * 支付记录模型
  * Class Pay
@@ -81,14 +83,18 @@ class Pay extends Common
      *
      * @param array $param 参数
      *
-     * @return string
+     * @return bool|string
+     * @throws \Exception
      */
-    public function make(array $param)
+    public static function make(array $param)
     {
-        if ( ! v('module.name') || ! v('member.info.uid') || empty($param['goods_name']) || empty($param['fee'])
+        if ( ! v('module.name') || ! v('member.info.uid')
+             || empty($param['goods_name'])
+             || empty($param['fee'])
              || empty($param['body'])
+             || empty($param['type'])
              || empty($param['tid'])) {
-            return '支付参数错误,请重新提交';
+            return '支付参数错误';
         }
         if ($pay = Db::table('pay')->where('tid', $param['tid'])->first()) {
             if ($pay['status'] == 1) {
@@ -111,7 +117,7 @@ class Pay extends Common
         $data['card_id']    = isset($param['is_usecard']) ? $param['card_id'] : 0;
         $data['card_fee']   = isset($param['card_fee']) ? $param['card_fee'] : 0;
 
-        $this->save($data);
+        (new self())->save($data);
 
         return true;
     }

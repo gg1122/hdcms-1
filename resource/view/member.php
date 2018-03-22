@@ -5,6 +5,7 @@
 <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css?version={{HDCMS_VERSION}}" rel="stylesheet">
 <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css?version={{HDCMS_VERSION}}" rel="stylesheet">
 <link rel="stylesheet" href="/resource/hdjs/dist/static/css/hdjs.css?version={{HDCMS_VERSION}}">
+<link rel="stylesheet" href="/resource/css/member.css">
 <script>
     //HDJS组件需要的配置
     window.hdjs = {

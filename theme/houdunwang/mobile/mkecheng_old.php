@@ -15,7 +15,7 @@
 <!--课程-->
 <div class="swiper-slide five">
     <h1 class="ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.6s" swiper-animate-delay="0.3s"><span>权威</span>全面更新<span>火爆高薪</span>知识点</h1>
-    <p class="desc ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.6s" swiper-animate-delay="0.3s">在原有业界超前沿的课程体系外，2017年后盾网又新加了laravel、Vue、微信开发等超火爆的高薪课程</p>
+    <p class="desc ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.6s" swiper-animate-delay="0.3s">在原有业界超前沿的课程体系外，2017年后盾人又新加了laravel、Vue、微信开发等超火爆的高薪课程</p>
     <div class="ico">
         <div class="ani" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.6s" swiper-animate-delay="0.6s">
             <img src="{{ARTICLE_URL}}/mlibs/images/5/app.png"/>

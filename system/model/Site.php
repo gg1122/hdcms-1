@@ -1,4 +1,5 @@
-<?php
+<?php namespace system\model;
+
 /** .-------------------------------------------------------------------
  * |  Software: [HDCMS framework]
  * |      Site: www.hdcms.com
@@ -8,10 +9,8 @@
  * | Copyright (c) 2012-2019, www.houdunwang.com. All Rights Reserved.
  * '-------------------------------------------------------------------*/
 
-namespace system\model;
-
+use houdunwang\config\Config as C;
 use houdunwang\db\Db;
-use houdunwang\config\Config;
 use houdunwang\arr\Arr;
 use houdunwang\request\Request;
 
@@ -24,13 +23,16 @@ use houdunwang\request\Request;
 class Site extends Common
 {
     protected $allowFill = ['*'];
+
     protected $table = 'site';
+
     protected $validate
         = [
             ['name', 'required', '站点名称不能为空', self::MUST_VALIDATE, self::MODEL_INSERT,],
             ['name', 'unique', '站点名称已经存在', self::MUST_VALIDATE, self::MODEL_INSERT,],
             ['description', 'required', '网站描述不能为空', self::MUST_VALIDATE, self::MODEL_INSERT,],
         ];
+
     protected $auto
         = [
             ['weid', 0, 'string', self::EMPTY_AUTO, self::MODEL_INSERT],
@@ -65,7 +67,8 @@ class Site extends Common
         } else {
             //普通站长获取站点列表
             $where[] = ['uid', v('user.info.uid')];
-            $sites   = self::join('site_user', 'site.siteid', '=', 'site_user.siteid')->groupBy('site.siteid')->where($where)->get();
+            $sites   = self::join('site_user', 'site.siteid', '=', 'site_user.siteid')
+                           ->groupBy('site.siteid')->where($where)->get();
         }
         if ($sites) {
             //获取站点套餐与所有者数据
@@ -114,9 +117,13 @@ class Site extends Common
     {
         if (SITEID) {
             if (Db::table('site')->find(SITEID)) {
-                self::loadSite(SITEID);
+                return self::loadSite(SITEID);
             }
+
+            return false;
         }
+
+        return true;
     }
 
     /**
@@ -154,13 +161,19 @@ class Site extends Common
             "back_url"       => '',
         ];
         //设置微信通信数据配置
-        Config::set('wechat', array_merge(Config::get('wechat'), $config));
+        C::set('wechat', array_merge(C::get('wechat'), $config));
         //设置邮箱配置
-        Config::set('mail', v('site.setting.smtp'));
-        //短信配置
-        Config::set('aliyunsms', v('site.setting.sms.aliyun'));
+        C::set('mail', v('site.setting.smtp'));
         //支付宝配置
-        Config::set('alipay', v('site.setting.pay.alipay'));
+        C::set('alipay', v('site.setting.pay.alipay'));
+        //阿里云配置
+        if (SITEID && v('site.setting.aliyun.aliyun.use_site_aliyun')) {
+            C::set('aliyun', v('site.setting.aliyun.aliyun'));
+        }
+        //使用站点阿里云OSS配置
+        if (SITEID && v('site.setting.aliyun.oss.use_site_oss')) {
+            C::set('oss', v('site.setting.aliyun.oss'));
+        }
 
         return true;
     }
@@ -180,7 +193,7 @@ class Site extends Common
          */
         $tables = \Schema::getAllTableInfo();
         foreach ($tables['table'] as $name => $info) {
-            $table = str_replace(Config::get('database.prefix'), '', $name);
+            $table = str_replace(\Config::get('database.prefix'), '', $name);
             //表中存在siteid字段时操作这个表
             if (\Schema::fieldExists('siteid', $table)) {
                 Db::table($table)->where('siteid', $siteId)->delete();
@@ -226,11 +239,11 @@ class Site extends Common
         $SiteSetting['siteid']      = $siteId;
         $SiteSetting['quickmenu']   = 1;
         $SiteSetting['creditnames'] = json_encode([
-            'credit1' => ['title' => '积分', 'status' => 1,'unit'=>'个'],
-            'credit2' => ['title' => '余额', 'status' => 1,'unit'=>'元'],
-            'credit3' => ['title' => '', 'status' => 0,'unit'=>'个'],
-            'credit4' => ['title' => '', 'status' => 0,'unit'=>'个'],
-            'credit5' => ['title' => '', 'status' => 0,'unit'=>'个'],
+            'credit1' => ['title' => '积分', 'status' => 1, 'unit' => '个'],
+            'credit2' => ['title' => '余额', 'status' => 1, 'unit' => '元'],
+            'credit3' => ['title' => '', 'status' => 0, 'unit' => '个'],
+            'credit4' => ['title' => '', 'status' => 0, 'unit' => '个'],
+            'credit5' => ['title' => '', 'status' => 0, 'unit' => '个'],
         ], JSON_UNESCAPED_UNICODE);
         //注册设置
         $SiteSetting['register'] = [
@@ -321,6 +334,7 @@ class Site extends Common
      * @param array $data 站点数据
      *
      * @return bool
+     * @throws \Exception
      */
     public function addSite(array $data = [])
     {
@@ -334,17 +348,17 @@ class Site extends Common
         $site['domain']           = Request::post('domain');
         $site['module']           = Request::post('module');
         $site['ucenter_template'] = 'default';
-        $siteId                   = $site->save($data);
+        $site                     = $site->save($data);
         //添加站长数据,系统管理员不添加数据
         $uid = v('user.info.uid');
         if ( ! User::isSuperUser($uid)) {
-            SiteUser::setSiteOwner($siteId, $uid);
+            SiteUser::setSiteOwner($site['siteid'], $uid);
         }
         //创建用户字段表等数据
-        $this->InitializationSiteTableData($siteId);
+        $this->InitializationSiteTableData($site['siteid']);
 
         //更新站点缓存
-        return $this->updateCache($siteId);
+        return $this->updateCache($site['siteid']);
     }
 
     /**
@@ -356,7 +370,8 @@ class Site extends Common
      */
     public function getUserAllSite($uid)
     {
-        return $this->join('site_user', 'site.siteid', '=', 'site_user.siteid')->where('site_user.uid', $uid)->get();
+        return $this->join('site_user', 'site.siteid', '=', 'site_user.siteid')
+                    ->where('site_user.uid', $uid)->get();
     }
 
     /**
@@ -365,6 +380,7 @@ class Site extends Common
      * @param int $siteId 网站编号
      *
      * @return bool
+     * @throws \Exception
      */
     public static function updateCache($siteId = 0)
     {
@@ -380,7 +396,8 @@ class Site extends Common
         //站点模块
         $data['modules'] = (new Modules())->getSiteAllModules($siteId, false);
         foreach ($data as $key => $value) {
-            cache($key, $value, 0, ['siteid' => $siteId, 'module' => '', 'type' => 'system'], $siteId);
+            cache($key, $value, 0, ['siteid' => $siteId, 'module' => '', 'type' => 'system'],
+                $siteId);
         }
 
         return true;
@@ -494,7 +511,6 @@ class Site extends Common
             //模板目录独立
             'template_dir_diff' => 1,
         ], json_decode($setting['config'], true));
-
         //阿里云
         $setting ['aliyun'] = Arr::merge([
             'aliyun' => [
@@ -518,11 +534,31 @@ class Site extends Common
      * 更新所有站点缓存
      *
      * @return bool
+     * @throws \Exception
      */
     public static function updateAllCache()
     {
         foreach (self::lists('siteid') as $siteid) {
             self::updateCache($siteid);
+        }
+
+        return true;
+    }
+
+    /**
+     * 根据站长会员编号更新站点编号
+     *
+     * @param int $uid 站长编号
+     *
+     * @return bool
+     * @throws \Exception
+     */
+    public static function updateSiteCacheByUid($uid = 0)
+    {
+        $uid   = $uid ?: v('user.info.uid');
+        $sites = Db::table('site_user')->where('uid', $uid)->where('role', 'owner')->lists('siteid');
+        foreach ((array)$sites as $id) {
+            self::updateCache($id);
         }
 
         return true;

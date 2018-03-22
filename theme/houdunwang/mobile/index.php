@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>中国顶尖IT教育-后盾网 毕业起薪10000-22000元！</title>
+		<title>中国顶尖IT教育-后盾人 毕业起薪10000-22000元！</title>
 		<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
 		<link rel="stylesheet" type="text/css" href="{{ARTICLE_URL}}/mphpluodiye/libs/base.css"/>
 		<link rel="stylesheet" type="text/css" href="{{ARTICLE_URL}}/mphpluodiye/libs/style.css"/>
@@ -33,7 +33,7 @@
 		<!--头部结束-->
 		<img src="{{ARTICLE_URL}}/mphpluodiye/images/banner.jpg" class="banner" />
 		<h2>2017PHP界权威全面更新火爆高薪知识点</h2>
-		<p class="desc">在原有业界超前沿的课程体系外，2017年后盾网php培训又新增了APP开发、Vue.js、微信开发、HTML5/CSS3，最新Laravel、Thinkphp实战、Composer、Git、阿里云、SPA应用等行业最新技术。</p>
+		<p class="desc">在原有业界超前沿的课程体系外，2017年后盾人php培训又新增了APP开发、Vue.js、微信开发、HTML5/CSS3，最新Laravel、Thinkphp实战、Composer、Git、阿里云、SPA应用等行业最新技术。</p>
 		
 		<!--四个特色课程-->
 		<ul class="class">
@@ -69,8 +69,8 @@
 		</div>
 		<!--前景结束-->
 		
-		<h2>他们选择了后盾网，获得了月薪10000+</h2>
-		<p class="h2">每5个月薪过万的PHP程序员至少一个来自后盾网</p>
+		<h2>他们选择了后盾人，获得了月薪10000+</h2>
+		<p class="h2">每5个月薪过万的PHP程序员至少一个来自后盾人</p>
 		
 		
 		<!--学员回访-->
@@ -236,7 +236,7 @@
 		<!--反馈-->
 		<div id="feedback">
 			<h3>真实反馈！拒绝伪装</h3>
-			<p>所有截图均来自后盾网毕业学员真实聊天记录！
+			<p>所有截图均来自后盾人毕业学员真实聊天记录！
 				<br />我们学员薪水高，你说我吹，我说我没吹，<br />你说不吹也是一种吹。好吧，你赢了！</p>
 			
 			<!--反馈截图-->
@@ -285,12 +285,12 @@
 				<li>
 					<h3>讲师团队</h3>
 					<img src="{{ARTICLE_URL}}/mphpluodiye/images/tese/2.jpg" alt="" />
-					<p>后盾网拥有业界超顶级讲师团队，所有讲师均有8年以上一线开发经验和教学经验，选讲师，不将就！</p>
+					<p>后盾人拥有业界超顶级讲师团队，所有讲师均有8年以上一线开发经验和教学经验，选讲师，不将就！</p>
 				</li>
 				<li>
 					<h3>教学特色</h3>
 					<img src="{{ARTICLE_URL}}/mphpluodiye/images/tese/3.jpg" alt="" />
-					<p>后盾网始终坚持小班化教学，讲师能照顾到每一位学员，拒绝大锅饭。以实战贯穿始终，传授真功夫。</p>
+					<p>后盾人始终坚持小班化教学，讲师能照顾到每一位学员，拒绝大锅饭。以实战贯穿始终，传授真功夫。</p>
 				</li>
 				<li>
 					<h3>无忧就业</h3>
@@ -930,7 +930,7 @@ WEB前端开发阶段</li>
 			
 			<!--底部-->
 			<div class="bg">
-				<h2>后盾网 你高薪路上超坚强的后盾
+				<h2>后盾人 你高薪路上超坚强的后盾
 				<br />告别碌碌无为！青春从此起航！
 				<br />I  WANT  YOU 
 				</h2>

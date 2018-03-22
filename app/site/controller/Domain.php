@@ -13,6 +13,7 @@ namespace app\site\controller;
 use houdunwang\request\Request;
 use system\model\ModuleDomain;
 use system\model\Site;
+use Db;
 
 /**
  * 域名设置
@@ -34,6 +35,7 @@ class Domain extends Admin
                 $has = ModuleDomain::where('domain', $domain)->first();
                 if ($has) {
                     $site = Site::find($has['siteid']);
+
                     return message("{$domain}已经被站点 {$site['name']}<br/>使用在 {$has['module']} 模块", '', 'error');
                 }
                 $model           = new ModuleDomain();

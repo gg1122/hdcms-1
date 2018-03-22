@@ -11,7 +11,8 @@
 
 use module\HdController;
 use system\model\Button;
-
+use View;
+use houdunwang\request\Request;
 /**
  * 微信菜单
  * Class Site
@@ -105,7 +106,7 @@ class Site extends HdController
         $id   = Request::post('id');
         $data = Button::where('id', $id)->pluck('data');
         $data = json_decode($data, true);
-        $data = $this->addHttp($data);
+        $data = $this->addHttp($data);p($data);die;
         $res  = \WeChat::instance('button')->create($data);
         if ($res['errcode'] == 0) {
             Button::whereNotIn('id', [$id])->update(['status' => 0]);

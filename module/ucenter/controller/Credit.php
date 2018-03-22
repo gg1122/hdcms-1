@@ -13,7 +13,7 @@ namespace module\ucenter\controller;
 use houdunwang\request\Request;
 use system\model\CreditsRecord;
 use system\model\SiteSetting;
-
+use View;
 /**
  * 会员积分余额管理
  * Class Credit

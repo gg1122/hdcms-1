@@ -26,7 +26,7 @@
 						<img src="{{ARTICLE_URL}}/images/yumaoqiu.jpg"/>
 						<p class="imgs"></p>
 						<dl>
-							<dt>后盾网（北京后盾计算机技术培训有限责任公司）</dt>
+							<dt>后盾人（北京后盾计算机技术培训有限责任公司）</dt>
 							<dd>
 								<table>
 									<tr><td width="100">招生热线</td><td>400-682-3231</td></tr>
@@ -34,16 +34,16 @@
 									<tr><td>古老师：</td><td>13910959565</td></tr>
 									<tr><td>QQ:</td>
 									<td>
-										<a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=2781400417&Site=后盾网&Menu=yes><img border="0" SRC="http://wpa.qq.com/pa?p=1:2781400417:7" alt="联系在线客服老师" style="width:71px;height:24px;margin:0;" class="online"></a>
-										<a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=1455067020&Site=后盾网&Menu=yes><img border="0" SRC="http://wpa.qq.com/pa?p=1:1455067020:7" alt="联系在线客服老师" style="width:71px;height:24px;margin:0;" class="online"></a>
-										<a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=931241005&Site=后盾网&Menu=yes><img border="0" SRC="http://wpa.qq.com/pa?p=1:931241005:7" alt="联系在线客服老师" style="width:71px;height:24px;margin:0;" class="online"></a>
+										<a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=2781400417&Site=后盾人&Menu=yes><img border="0" SRC="http://wpa.qq.com/pa?p=1:2781400417:7" alt="联系在线客服老师" style="width:71px;height:24px;margin:0;" class="online"></a>
+										<a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=1455067020&Site=后盾人&Menu=yes><img border="0" SRC="http://wpa.qq.com/pa?p=1:1455067020:7" alt="联系在线客服老师" style="width:71px;height:24px;margin:0;" class="online"></a>
+										<a target=blank href=http://wpa.qq.com/msgrd?V=3&uin=931241005&Site=后盾人&Menu=yes><img border="0" SRC="http://wpa.qq.com/pa?p=1:931241005:7" alt="联系在线客服老师" style="width:71px;height:24px;margin:0;" class="online"></a>
 									</td></tr>
 								</table>
 							</dd>
 						</dl>
 						<!--北京校区-->
 						<dl>
-							<dt>后盾网北京总部</dt>
+							<dt>后盾人北京总部</dt>
 							<dd>
 								<table>
 									<tr><td width="100">邮编：</td><td>100103</td></tr>
@@ -83,7 +83,7 @@
 						<!--北京校区结束-->
 						<!--上海校区-->
 						<dl>
-							<dt>后盾网上海分部</dt>
+							<dt>后盾人上海分部</dt>
 							<dd>
 								<table>
 									<tr><td width="130">邮编：</td><td>201613</td></tr>

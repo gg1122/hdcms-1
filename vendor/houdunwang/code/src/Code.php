@@ -7,32 +7,37 @@
  * |    WeChat: aihoudun
  * | Copyright (c) 2012-2019, www.houdunwang.com. All Rights Reserved.
  * '-------------------------------------------------------------------*/
+
 namespace houdunwang\code;
 
 use houdunwang\code\build\Base;
 use houdunwang\config\Config;
 
-class Code {
-	protected $link;
+class Code
+{
+    protected $link;
 
-	public function __call( $method, $params ) {
-		if ( ! $this->link ) {
-			$this->link = new Base();
-		}
+    public function __call($method, $params)
+    {
+        if ( ! $this->link) {
+            $this->link = new Base();
+        }
 
-		return call_user_func_array( [ $this->link, $method ], $params );
-	}
+        return call_user_func_array([$this->link, $method], $params);
+    }
 
-	public static function single() {
-		static $link = null;
-		if ( is_null( $link ) ) {
-			$link = new Code();
-		}
+    public static function single()
+    {
+        static $link = null;
+        if (is_null($link)) {
+            $link = new Code();
+        }
 
-		return $link;
-	}
+        return $link;
+    }
 
-	public static function __callStatic( $name, $arguments ) {
-		return call_user_func_array( [ static::single(), $name ], $arguments );
-	}
+    public static function __callStatic($name, $arguments)
+    {
+        return call_user_func_array([static::single(), $name], $arguments);
+    }
 }

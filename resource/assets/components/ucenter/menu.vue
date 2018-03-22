@@ -10,6 +10,7 @@
     import hdjs from 'hdjs'
     import hdcms from '../../../js/hdcms'
     import {mapMutations} from 'vuex'
+    import 'hdjs/dist/hdjs.css'
     export default {
         computed: {
             menus() {

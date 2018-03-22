@@ -10,6 +10,7 @@
  * '-------------------------------------------------------------------*/
 use module\HdController;
 use system\model\Template as TemplateModel;
+use houdunwang\request\Request;
 
 /**
  * 官网模板管理
@@ -31,12 +32,13 @@ class Template extends HdController
      * @param \system\model\Template $TemplateModel
      *
      * @return mixed
+     * @throws \Exception
      */
     public function lists(TemplateModel $TemplateModel)
     {
         $data = $TemplateModel->getSiteAllTemplate(SITEID, Request::get('type'));
 
-        return view($this->template.'/template/template_lists')->with(['data' => $data]);
+        return view($this->template . '/template/template_lists')->with(['data' => $data]);
     }
 
     /**
@@ -52,7 +54,8 @@ class Template extends HdController
         $template = $TemplateModel->getTemplateData();
         $dir      = "theme/{$template['name']}";
         //桌面端模板
-        $web = glob($dir.'/web/*.php');
-        return view($this->template.'/template/template_files', compact('web'));
+        $web = glob($dir . '/web/*.php');
+
+        return view($this->template . '/template/template_files', compact('web'));
     }
 }

@@ -12,8 +12,8 @@ namespace app\system\controller;
 
 use houdunwang\request\Request;
 use system\model\Menu as MenuModel;
-use Arr;
-use Schema;
+use houdunwang\arr\Arr;
+
 /**
  * 菜单管理
  * Class Menu
@@ -31,13 +31,14 @@ class Menu extends Admin
      * 编辑菜单
      *
      * @return mixed|string
+     * @throws \Exception
      */
     public function edit()
     {
         if (IS_POST) {
             $data = json_decode(Request::post('menu'), true);
             foreach ($data as $m) {
-                $model = empty($m['id']) ? new MenuModel() : MenuModel::find($m['id']);
+                $model               = empty($m['id']) ? new MenuModel() : MenuModel::find($m['id']);
                 $model['pid']        = intval($m['pid']);
                 $model['title']      = $m['title'];
                 $model['permission'] = $m['permission'];
@@ -55,6 +56,7 @@ class Menu extends Admin
         }
         $data  = MenuModel::get()->toArray();
         $menus = Arr::tree($data, 'title', 'id', 'pid');
+
         return view()->with('menus', json_encode($menus, JSON_UNESCAPED_UNICODE));
     }
 

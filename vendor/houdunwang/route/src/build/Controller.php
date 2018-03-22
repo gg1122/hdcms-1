@@ -11,6 +11,7 @@
 namespace houdunwang\route\build;
 
 use Exception;
+use houdunwang\route\Route;
 use houdunwang\view\View;
 use ReflectionMethod;
 use houdunwang\container\Container;
@@ -103,7 +104,6 @@ trait Controller
                     }
                 }
             }
-
             //执行控制器方法
             return $reflectionMethod->invokeArgs($controller, $args);
         } catch (ReflectionException $e) {
